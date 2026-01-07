@@ -1,0 +1,186 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
+body {
+    color: black;
+    background-color:white;
+    font-weight: 400;
+}
+
+/* Sidebar Styling */
+ .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 95%;
+    width: 230px;
+    background-color: #fff;
+    color: #000;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #ccc;
+    border-right:2px solid #ccc; ;
+}
+
+.sidebar h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 22px;
+    margin-left: 20px;
+    color: #000;
+}
+
+.sidebar a {
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+} 
+
+.sidebar a.active {
+    background-color: blue;
+} 
+
+
+.sidebar a:hover {
+    background-color: rgb(40, 130, 219);
+} 
+
+
+.roll{
+    margin-left: 300px;
+   margin-right: 100px;
+}
+
+.arc{
+    padding-top: 50px;
+      display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ccc;
+}
+
+.en button {
+    justify-content: space-between;
+    border-radius: 20px;
+    /* border: 1px solid #ccc; */
+    border: none;
+    padding: 10px 8px;
+    margin: 10px;
+     margin-right: 20px;
+    text-align: center;
+
+}
+
+.tv{
+    color: #000;
+}
+
+.end{
+    background-color: rgb(33, 33, 78);
+    color: #fff;
+}
+
+
+
+.start{
+      display: grid;
+   align-items: center;
+   justify-content: center;
+   grid-template-columns: repeat(3,1fr);
+     margin-right: 100px;
+   gap: 10px;
+   margin-left: 280px;
+}
+
+
+/* .sum{
+   border: 1px solid rgb(227, 227, 227);
+   border-radius: 20px;
+   width: 300px;
+   height: 300px;
+   padding-top: 20px;
+   padding-left: 20px;
+   margin-left: 20px;
+   margin-top: 20px;
+} */
+
+.sum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 20px;
+    width: 300px;
+    height: 300px;
+    padding-top: 20px;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+.sum:hover {
+    box-shadow: 0 2px 4px rgba(21, 21, 255, 0.902);
+}
+
+.sum img{
+    border-radius: 20px;
+    display: block;
+    /* margin: 0 auto;    */
+
+     margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+.sum h4{
+    font-size: 20px;
+}
+
+
+.price-row {
+    display: flex;
+    justify-content: space-between; /* price left, button right */
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.price {
+    /* margin: 0; */
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.sum button {
+    padding: 8px 15px;
+    border: none;
+    background-color: rgb(53, 53, 192);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-right: 20px;
+}
+
+
+.sum button:hover{
+    background-color: rgb(36, 36, 94);
+}
+
+.view img{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}

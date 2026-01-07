@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pay</title>
+    <link rel="stylesheet" href="css/pay.css">
+
+<script src="pay.js"></script>
+</head>
+<body>
+    <div class="checkout-container">
+    <div class="order-summary">
+        <h2>Order Summary</h2>
+
+        <div class="mind">
+    <div class="left">
+        <img src="image/carrot.jpg" alt="Carrot" width="80" height="80">
+        <h4>Mind Mosaic</h4>
+    </div>
+    <div class="right">
+        <h6>$300</h6>
+        <p>Qty: 1</p>
+    </div>
+</div>
+
+<div class="gift">
+         <input type="text" id="gift-number" placeholder="Gift or Discount code" maxlength="30">
+
+         <button>Apply</button>
+     </div>
+      <div class="sub">
+        <h5>Subtotal</h5>
+        <p>$300</p>
+      </div>
+
+      <div class="all">
+        <div class="total">
+        <h5>Total</h5>
+        <p>Including $2.35 for taxes</p>
+        </div>
+        <div class="price">
+            <h4>$302.35</h4>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    <div class="payment-section">
+        <h2>Payment</h2>
+    
+ <div class="pay-with">
+    <div class="pay-label">Pay with:</div>
+
+    <div class="options-row">
+        <label class="option">
+            <input type="radio" name="payment" value="card">
+            <span class="custom-radio"></span>
+            Card
+        </label>
+
+        <label class="option">
+            <input type="radio" name="payment" value="bank">
+            <span class="custom-radio"></span>
+            Bank
+        </label>
+    </div>
+
+       <div class="card-number-wrapper">
+    <label for="card-number">Card Number</label>
+    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="30">
+</div>
+
+   <div class="Expiration">
+    <div class="input-group">
+        <label for="expiration">Expiration Date</label>
+        <input type="text" id="expiration" placeholder="MM/YY" maxlength="5">
+    </div>
+
+    <div class="input-group">
+        <label for="cvv">CVV</label>
+        <input type="text" id="cvv" placeholder="123" maxlength="3">
+    </div>
+</div>
+<div class="show-details">
+    <label class="checkbox-container">
+        <input type="checkbox" id="show-details-checkbox">
+        Save Card Details
+    </label>
+</div>
+    <button class="pay-btn">Pay USD59.28</button>
+
+    <h5 class="your">Your personal will be used to process your order, support your experience throughout this website, and for other purposes described in our private policy.</h5>
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+    </div>
+</div>
+
+<!-- <script>
+   const btn = document.getElementsById('pay-btn');
+
+   btn.addEventListener('click',() => {alert('Thanks! Your payment was recorded (demo).');
+
+   btn.disabled = true;
+   btn.textContent = 'Paid';
+
+   fetch('https:
+   method:'POST',
+body: JSON.stringify({msg:'Faake payment received!'}));
+   });
+</script> -->
+
+</body>
+</html>

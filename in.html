@@ -1,0 +1,88 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IN</title>
+    <link rel="stylesheet" href="css/in.css">
+</head>
+<body>
+
+
+<div id="page-content">
+    <header>
+        <div class="container">
+            <nav class="nav-bar">
+                <h2>Thinkative</h2>
+                <div class="container-1">
+                    <div class="profile">
+                        <input type="checkbox" id="toggle">
+                        <label for="toggle" class="dropdown-btn">User</label>
+                        <div class="dropdown">
+                            <a href="#">⚙️ Settings</a>
+                            <a href="#">❔ Help</a>
+                            <a href="#" onclick="openModal()">🔀 Log out</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="sec">    
+            <div class="come">
+                <h3>Welcome</h3>
+                <p>Let’s get a personalized training program for you.</p>
+                <h4>We’ll start with</h4>
+
+                <div class="step">
+                    <div class="item">
+                        <div class="circle">1</div>
+                        <span>Your Goals</span>
+                    </div>
+
+                    <div class="item">
+                        <div class="circle circle-2">2</div>
+                        <span>Your Current Brain Performance</span>
+                    </div>
+
+                    <div class="item">
+                        <div class="circle circle-3">3</div>
+                        <span>Your Training Needs</span>
+                    </div>
+                </div>
+
+                <a href="begin.html" class="be-gin">Let's Begin</a>
+            </div>
+        </section>
+    </main>
+</div> 
+<!-- log out -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Are you sure you want to log out?</h3>
+        <button onclick="logout()">Yes, Log Out</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById("modal").style.display = "flex";
+        document.getElementById("page-content").classList.add("blur");
+    }
+
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("page-content").classList.remove("blur");
+    }
+
+    function logout() {
+        alert("Logged out!");
+    
+    }
+</script> 
+
+</body>
+</html>

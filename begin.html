@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>begin</title>
+
+    <link rel="stylesheet" href="css/begin.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+      <nav class="nav-bar">
+        <h2>Thinkative</h2>
+        <div class="container-1">
+            <div class="profile">
+                <input type="checkbox" id="toggle">
+                <label for="toggle" class="dropdown-btn">User</label>
+                <!-- <button id="dropdownBtn">User</button> -->
+                <div class="dropdown">
+                <a href="#">⚙️ Settings</a>
+                <a href="#">❔ Help</a>
+                 <a href="#" onclick="openModal()">🔀 Log out</a>
+                </div>
+            </div>
+        </div>
+
+         </nav>
+    </div>
+    </header>
+
+    <main>
+        <section class="sec">
+            <div class="container">
+
+                <div class="numbertext">1 / 2</div>
+                
+                <h3>Let’s start with your interests</h3>
+                <p>Select any 3 that meets your interest</p>
+                <form action="" id="interesr-form">
+                    <label for=""><input type="checkbox" name="interest">I like pushing myself to improve</label>
+
+                    <label for=""><input type="checkbox" name="interest">I'm curious about how my brain works</label>
+
+                    <label for=""><input type="checkbox" name="interest">I enjoy games that make me think</label>
+
+                    <label for=""><input type="checkbox" name="interest">I want to keep my mind active and challenged</label>
+
+                    <label for=""><input type="checkbox" name="interest">I'd like to manage stress and build better habits</label>
+
+                    <label for=""><input type="checkbox" name="interest">I'd like to manage stress and build better habits</label>
+
+                    <label for=""><input type="checkbox" name="interest">I want to train my memory and attention</label>
+
+                    <label for=""><input type="checkbox" name="interest">Something else</label>
+                </form>
+
+                <!-- <a href="continue.html"><button type="submit"> Continue</button> -->
+
+                    <button type="button" onclick="location.href='continue.html'">Continue</button>
+                    
+            </div>
+        </section>
+    </main>
+
+<!-- log out -->
+<!-- <div id="modal" class="modal">
+    <div class="modal-content">
+        <h3>Are you sure you want to log out?</h3>
+        <button onclick="logout()">Yes, Log Out</button>
+        <button onclick="closeModal()">Cancel</button>
+    </div>
+</div> -->
+
+
+<!-- <script>
+    function openModal() {
+        document.getElementById("modal").style.display = "flex";
+        document.getElementById("page-content").classList.add("blur");
+    }
+
+    function closeModal() {
+        document.getElementById("modal").style.display = "none";
+        document.getElementById("page-content").classList.remove("blur");
+    }
+
+    function logout() {
+        alert("Logged out!");
+    
+    }
+</script>  -->
+
+</body>
+</html>

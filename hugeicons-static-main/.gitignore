@@ -1,0 +1,6 @@
+/scripts
+node_modules
+.DS_Store
+dist
+/temp-icons
+/gc_icons 

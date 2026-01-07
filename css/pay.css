@@ -1,0 +1,314 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
+body{
+     font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+}
+
+
+.checkout-container {
+    display: flex;           
+    flex-direction: row;      
+    gap: 20px;                 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* order */
+.order-summary {
+    flex: 1;                 
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    
+}
+
+.order-summary h2{
+    border-bottom: 1px solid #000;  
+    padding-bottom: 15px;            
+    margin-bottom: 15px;
+}
+
+/* payment */
+.payment-section {
+    flex: 1;               
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.payment-section h2{
+     border-bottom: 1px solid #000;  
+    padding-bottom: 15px;            
+    margin-bottom: 15px;  
+}
+
+
+/* pay with */
+.pay-with {
+    display: flex;
+    flex-direction: column;   
+    gap: 8px;
+}
+
+.pay-label {
+    font-size: 15px;
+    margin: 0;
+}
+
+
+.options-row {
+    display: flex;
+    flex-direction: row;      
+    gap: 20px;                
+    align-items: center;
+}
+
+
+.option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* hide the default radio button */
+.option input[type="radio"] {
+    display: none;
+}
+
+/* circle */
+.custom-radio {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+    position: relative;
+}
+
+/* filled circle when checked */
+.option input[type="radio"]:checked + .custom-radio::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: #007bff;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* wrapper */
+
+.card-number-wrapper {
+    display: flex;
+    flex-direction: column;  
+    gap: 5px;          
+    max-width: 300px;        
+}
+
+.card-number-wrapper label {
+    font-size: 17px;
+    font-weight: 300;
+    margin-top: 20px;
+}
+
+.card-number-wrapper input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width:550px; 
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+.Expiration {
+    display: flex;             
+    gap: 20px;              
+    margin-top: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;      
+    gap: 5px;
+    flex: 1;              
+}
+
+.input-group label {
+    font-size: 17px;
+    font-weight: 300;
+}
+
+.input-group input {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+/* checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    color: grey;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.pay-btn{
+    color: #fff;
+    background-color: #007bff;
+     /* margin:20px;  */
+     margin-right: 100px;
+     margin-left: 100px;
+     margin-top: 20px;
+    border: none;
+    border-radius: 10px;
+    /* padding-right: 100px;
+    padding-left: 100px;
+    padding-top: 20px;
+    padding-bottom: 20px; */
+    padding: 14px 18px;
+    font-size: 15px;
+
+}
+
+.your{
+    font-size: 15px;
+    margin-left: 10px;
+    color: grey;
+    margin-top: 20px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.mind {
+    display: flex;           
+    justify-content: space-between; 
+    align-items: center;       
+    gap: 20px;                 
+    padding: 10px;
+    border-bottom: 1px solid #000; 
+    /* margin-top: 20px;
+    margin-bottom: 50px; */
+    padding-bottom: 20px;
+    padding-top: 20px;
+}
+
+.left {
+    display: flex;
+    flex-direction: row;   
+    /* align-items: flex-start;   */
+    gap: 5px;
+}
+
+.left h4{
+    font-size: 23px;
+    padding-top: 30px;
+    margin-left:20px ;
+}
+
+.left img {
+    border-radius: 5px;      
+}
+
+.right {
+    display: flex;
+    flex-direction: column;    
+    align-items: flex-end;   
+    gap: 5px;
+}
+
+.right p{
+    font-size: 12px;
+    color: grey;
+}
+
+.right h6{
+    font-size: 20px;
+
+}
+
+
+.gift{
+     margin-top: 30px;
+    gap: 200px;
+    border-bottom: 1px solid #000; 
+    padding-bottom: 20px;
+    /* display: flex;
+    align-items: center; */
+    /* justify-content: center; */
+}
+
+.gift input{
+     padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 380px; 
+    box-sizing: border-box;
+    /* margin-right: -100px; */
+}
+
+.gift button{
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    padding: 14px 24px;
+    margin-left: 100px;
+
+}
+
+
+.sub{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #000; 
+    padding: 20px;
+}
+
+.sub h5{
+    font-size: 15px;
+}
+
+.all{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-top: 20px;
+    align-items: center;
+}
+
+.total h5{
+    font-size: 20px;
+}
+
+.total p{
+    font-size: 12px;
+    color: grey;
+}
+
+.price h4{
+    font-size: 28px;
+}

@@ -1,0 +1,140 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
+body {
+    color: black;
+    background-color:white;
+    font-weight: 400;
+}
+
+/* Sidebar Styling */
+ .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 95%;
+    width: 230px;
+    background-color: #fff;
+    color: #000;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid #ccc;
+    border-right:2px solid #ccc; ;
+}
+
+.sidebar h2 {
+    text-align: left;
+    margin-bottom: 20px;
+    font-size: 22px;
+    margin-left: 20px;
+    color: #000;
+}
+
+.sidebar a {
+    padding: 15px 20px;
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+} 
+
+.sidebar a.active {
+    background-color: blue;
+} 
+
+
+.sidebar a:hover {
+    background-color: rgb(40, 130, 219);
+} 
+
+
+
+.profile-container {
+    /* max-width: 900px; */
+     /* margin: auto;  */
+    background: #fff;
+    padding: 100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    justify-content: center;
+    align-items: center;
+    width: 70%;
+    /* height: 40%; */
+    margin-left:300px;
+    margin-top: 50px;
+    margin-bottom: 70px;
+}
+
+h1 {
+    color: #000;
+padding-top: -50px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+.profile-form {
+    display: grid;
+    padding-top: 0cm20PX;
+    grid-template-columns: repeat(3, 1fr);
+      /* width: 100%; */
+    gap: 20px; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #000;
+    font-size: 0.9em;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; 
+    background-color: #f9f9f9; 
+    color: #333;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #aaa;
+}
+
+/* Class to make the Bio field span all 3 columns */
+.full-width {
+    grid-column: 1 / span 3;
+}
+
+/* Basic responsiveness for smaller screens */
+@media (max-width: 768px) {
+    .profile-form {
+        /* Changes to 2 columns on screens up to 768px */
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .full-width {
+        /* Bio spans 2 columns instead of 3 on smaller screens */
+        grid-column: 1 / span 2;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-form {
+        /* Changes to a single column on very small screens */
+        grid-template-columns: 1fr;
+    }
+    .full-width {
+        grid-column: 1 / span 1;
+    }
+}

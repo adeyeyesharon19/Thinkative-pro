@@ -1,0 +1,242 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
+body {
+    color: black;
+    background-color:white;
+    font-weight: 400;
+    background-image: url(in3.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* width: 100%; */
+     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('in3.jpeg') left/cover no-repeat;
+     background-position: right; 
+     /* border: 1px solid #333; */
+}
+
+/* NAVIGATION BAR */
+.container {
+    padding: 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 80px blue;
+    padding: 24px;
+}
+
+.nav-bar h2 {
+    font-size: 30px;
+    color: white;
+}
+
+.nav-bar .container-1{
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+
+.container-1{
+    font-family: Arial, Helvetica, sans-serif;
+    /* background: white; */
+    padding: 40px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.profile{
+    position: relative;
+}
+
+.dropdown-btn{
+     background: transparent;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold; 
+    cursor: pointer;
+    font-weight: bold;
+    background: transparent;
+    padding: 10px 15px;
+    display: inline-block;
+    border-radius: 5px;
+    color: white;
+}
+
+#toggle{
+    display: none;
+}
+
+
+.dropdown{
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background: white; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px black; 
+    width: 150px;
+    display: none;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.dropdown a{
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333; 
+    display: block;
+}
+
+ .dropdown a:hover {
+    background-color: #f0f0f0;
+} 
+
+#toggle:checked + .dropdown-btn + .dropdown {
+    display: flex;
+} 
+
+/*  main section */
+  .numbertext {
+  color: #000;
+  font-size: 15px;
+  padding: 140px;
+  position: absolute;
+  top: 0;
+}
+
+
+.sec .container-2{
+    /* max-width: 400px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center; */
+     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 10px;
+    border-radius: 20px;
+    background-color: white;
+    margin-left: 360px;
+    margin-right: 360px;
+    margin-top: -10px;
+    /* margin-top: 20px; */
+     /* padding: 20px;  */
+    height: 75vh;
+    padding-bottom: -20px;
+     border-radius: 5px;
+    background-color: whitesmoke;
+}
+ 
+
+ .container-2 h3{
+    /* font-size: 20px bold; */
+    margin-bottom: 10px;
+    padding-top: 30px;
+    font-size: 30px ;
+    color: #000;
+    /* margin-right: 270px; */
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    /
+}
+
+
+.container-2 h4{
+    margin-bottom: 10px;
+    padding-top: 10px;
+    margin-right: 300px;
+}
+
+.container-2 h5{
+    margin-bottom: 10px;
+}
+
+.container-3 .record{
+      border-radius: 5px;
+     background-color:whitesmoke; 
+    padding-right: 10px;
+    padding-left: 10px;
+     padding-bottom: 10px;
+}
+
+.container-3 .happy{
+      border-radius: 5px;
+    background-color: whitesmoke; 
+    padding-right: 3px;
+    padding-left: 3px;
+    margin-top: 10px;
+     padding-bottom: 10px;
+}
+
+.container-3 .rock{
+      border-radius: 5px;
+    background-color: whitesmoke; 
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-top: 10px;
+     padding-bottom: 10px;
+}
+
+.container-3 .none{
+      border-radius: 5px;
+    background-color: whitesmoke; 
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-top: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-bottom: 10px;
+    
+}
+
+.container-3 :hover{
+    background-color: lightgoldenrodyellow;
+    
+}
+
+.option-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;            
+    width: 100%;
+}
+
+
+.container-3 .option-link div {
+    border-radius: 5px;
+    background-color: whitesmoke;
+    padding: 10px;
+    margin-top: 10px;
+    transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+
+
+.container-3 .option-link div:hover {
+    background-color: lightgoldenrodyellow;
+    cursor: pointer;
+}
+
+
+/* OPTIONAL: special hover for record only */
+/* Remove this if you want them all the same */
+/* .record:hover {
+    background-color: rgb(20, 20, 223) !important;
+    color: white !important;
+}
+ */
