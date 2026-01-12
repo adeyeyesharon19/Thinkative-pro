@@ -8,6 +8,25 @@
 </head>
 
 <body>
+     
+    <header>
+        <div class="sidebar">
+            <h2>Dashboard</h2>
+
+            <a href="dash.html" class=""> Home</a>
+            <a href="profile.html">My Profile </a>
+                 <a href="courses.html"> Courses </a>
+            <a href="enrolled.html">Enrolled courses
+            </a>
+            <a href="certificate.html">My Certificate</a>
+                 <a href="review.html">Review</a>
+            <a href="#">Reports</a>
+            <a href="#"> Settings</a>
+            <a href="#">Logout</a>
+        </div>
+
+    </header>
+
 
     <section class="reviews-section">
         <!-- Header -->
@@ -20,15 +39,39 @@
         <div class="review-form-container">
             <h3>Write a Review</h3>
 
+
+
             <form class="review-form" id="reviewForm">
-                <input type="text" placeholder="Your Name" required />
+    <input type="text" id="userName" placeholder="Your Name" required />
+
+    <div class="rating" id="starRating">
+        <span data-value="1">★</span>
+        <span data-value="2">★</span>
+        <span data-value="3">★</span>
+        <span data-value="4">★</span>
+        <span data-value="5">★</span>
+    </div>
+
+    <textarea id="userReviewText" placeholder="Write your review..." required></textarea>
+
+    <input type="hidden" id="ratingValue" name="rating" required />
+    <button type="submit">Submit Review</button>
+
+    <p id="reviewMessage" style="color:rgb(47, 47, 209); display: none; margin-top: 10px;">
+        Thank you! Your review has been submitted.
+    </p>
+</form>
+
+
+            <!-- <form class="review-form" id="reviewForm">
+                <input type="text" placeholder="Your Name" required /> -->
 
                 <!-- <div class="rating">
         <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
       </div>
 
       <textarea placeholder="Write your review..." required></textarea> -->
-                <div class="rating" id="starRating">
+                <!-- <div class="rating" id="starRating">
                     <span data-value="1">★</span>
                     <span data-value="2">★</span>
                     <span data-value="3">★</span>
@@ -44,7 +87,7 @@
                 </p>
 
 
-            </form>
+            </form> -->
         </div>
 
         <!-- Reviews List -->
@@ -117,9 +160,9 @@
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // ----- Star rating -----
         const stars = document.querySelectorAll("#starRating span");
         const ratingInput = document.getElementById("ratingValue");
+        const reviewList = document.querySelector(".reviews-list"); // Target the list
         let selectedRating = 0;
 
         function highlightStars(rating) {
@@ -143,41 +186,59 @@
         const reviewMessage = document.getElementById("reviewMessage");
 
         reviewForm.addEventListener("submit", function (e) {
-            e.preventDefault(); // prevent reload
+            e.preventDefault(); 
 
-            // Ensure rating is selected
             if (!ratingInput.value) {
                 alert("Please select a star rating!");
                 return;
             }
 
+            // 1. Get the values from the form
+            const name = document.getElementById("userName").value;
+            const text = document.getElementById("userReviewText").value;
+            const rating = parseInt(ratingInput.value);
+            const date = new Date().toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric'
+            });
+
+            // 2. Create the Star String (e.g., ★★★★☆)
+            const starString = "★".repeat(rating) + "☆".repeat(5 - rating);
+
+            // 3. Create the HTML for the new review
+            const newReview = document.createElement("div");
+            newReview.className = "review-card";
+            newReview.innerHTML = `
+                <div class="review-top">
+                    <span class="stars">${starString}</span>
+                    <span class="name">${name}</span>
+                </div>
+                <p class="review-text">${text}</p>
+                <span class="date">${date}</span>
+            `;
+
+            // 4. PREPEND to the list (This puts it at the TOP)
+            reviewList.prepend(newReview);
+
             // Show confirmation message
             reviewMessage.style.display = "block";
-
-            // Hide after 3 seconds
             setTimeout(() => {
                 reviewMessage.style.display = "none";
             }, 3000);
 
-            // Reset form and stars
+            // Reset form
             reviewForm.reset();
             selectedRating = 0;
             highlightStars(selectedRating);
         });
 
-        // Load More Reviews functionality
+        // Load More logic...
         const loadMoreBtn = document.querySelector(".load-more");
-        const hiddenReviews = document.querySelectorAll(".hidden-review");
-
         loadMoreBtn.addEventListener("click", () => {
-            hiddenReviews.forEach(review => {
-                review.style.display = "block"; // Show hidden reviews
-            });
-            loadMoreBtn.style.display = "none"; // Hide the button
+            document.querySelectorAll(".hidden-review").forEach(rev => rev.style.display = "block");
+            loadMoreBtn.style.display = "none";
         });
-
     });
 </script>
-
-
 </html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Congratulations</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            padding-top: 50px;
+        }
+        img {
+            width: 200px;
+            margin: 20px 0;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎉 Congratulations! 🎉</h1>
+
+    <img src="image/congratulations.png" alt="Congratulations">
+
+    <h2 id="scoreText"></h2>
+
+    <button onclick="goNext()" style=" background: rgb(47, 47, 223); color: #fff; border: none; border-radius: 10px;">Continue to Next Questions</button>
+
+
+
+</body>
+
+<script>
+const currentModule = localStorage.getItem('currentModule');
+const score = localStorage.getItem(`${currentModule}_score`) || 0;
+
+document.getElementById('scoreText').textContent = `Your Score: ${score} / 5`;
+
+// Clear only AFTER showing
+localStorage.removeItem(`${currentModule}_score`);
+localStorage.removeItem(`${currentModule}_questionCount`);
+localStorage.removeItem('currentModule');
+
+function goNext() {
+    if (currentModule === 'anagramplug') {
+        window.location.href = "anagramplugintro.html";
+    } else if (currentModule === 'flipconnect') {
+        window.location.href = "flipconnectintro.html";
+    }
+}
+</script>
+
+</html>

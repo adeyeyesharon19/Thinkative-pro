@@ -1,44 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>lifeapp2</title>
 
-    <link rel="stylesheet" href="css/learning.css">
+    <link rel="stylesheet" href="css/lifeapp1.css
+    ">
 </head>
-
 <body>
-    <section>
+      <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
 
-        <span class="welcome-label" id="welcomeText">Welcome to your courses</span>
-    </section>
-
-    <section class="intro">
-        <video autoplay muted loop playsinline class="lighten-video">
-            <source src="video/anagram-hero.mp4" type="video/mp4">
-        </video>
-
-        <div class="overlay-text">
-            <h1><span>Anagram</span><br> <span class="intel">Intelligence</span></h1>
-            <p> Unlock the power of word transformation. From writers and marketers to puzzle enthusiasts —
-                learn to think outside the box and elevate your language skills.</p>
-        </div>
-    </section>
-
-    <section class="courses-wel">
-        <h4>Welcome To The Course</h4>
-        <p>Hi ! Thinkative is very happy to help you understand the core basics and advance interlect on Anagram
-            Intelligence.</p>
-        <p>This comprehensive course is designed for anyone looking to improve their linguistic skills, from writers and
-            marketers to puzzle enthusiasts and students. </p>
-        <p>Through a combination of interactive lessons, engaging exercises, and real-life applications, you'll learn
-            how to harness the power of anagrams to think outside the box and elevate your language skills.</p>
-
+        <!-- <span class="welcome-label" id="welcomeText">Welcome to your courses</span>  -->
     </section>
 
 
@@ -60,14 +36,15 @@
                         </summary>
                         <ul class="lesson-list">
                             <li id="L1"><a href="what ai.html"><span>▶</span> 1.1 What is Anagram Intelligence</a></li>
-                            <li id="L2"><a href="history ai.html"><span>▶</span> 1.2 History and cultural significance</a></li>
-            
+                            <li id="L2"><a href="history ai.html"><span>▶</span> 1.2 History and cultural
+                                    significance</a></li>
+                         
                             
                         </ul>
                     </details>
                 </div>
 
-                             <div class="course-container">
+                               <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
@@ -80,12 +57,12 @@
                         <ul class="lesson-list">
                             <li id="L1"><a href="lifeapp1.html"><span>▶</span> 2.1 Life Equation 1</a></li>
                             <li id="L2"><a href="lifeapp2.html"><span>▶</span> 2.2 Life Equation 2</a></li>
-                            
+                           
                         </ul>
                     </details>
                 </div>
 
-                 <div class="course-container">
+                <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
@@ -104,7 +81,7 @@
                     </details>
                 </div>
 
-                 <div class="course-container">
+                <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
@@ -124,31 +101,44 @@
                 </div>
             </div>
     </section>
-
     <div class="dash-overlay" id="dashOverlay"></div>
-    <!-- <div class="side-dashboard" id="sideDash">
-    <div class="dash-inner">
-        <header class="dash-nav-header">
-            <h2>My Learning</h2>
-            <button id="closeDash">&times;</button>
-        </header>
 
-        <div class="dash-stats">
-            <div class="mini-stat">
-                <span id="count-enrolled">0</span>
-                <label>Enrolled</label>
+    <main>
+        <section class="life">
+            <div class="one">
+                <h2>Life Equation One - AI Challenge</h2>
             </div>
-        </div> -->
 
-    <!-- <div id="enrolled-list" class="mini-course-grid">
+
+            <div class="solve">
+                <h6>Let's solve</h6>
+                <h5>The <span>HEART</span> is a <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></h5>
             </div>
-    </div>
-</div>
 
-<div class="dash-overlay" id="dashOverlay"></div> -->
+            <div class="plan">
+               <p class="option" data-answer="A"> A. Plant</p>
+               <p class="option"  data-answer="B">B. Planet</p>
+               <p class="option"  data-answer="C">C. Plate</p>
+               <p class="option"  data-answer="D">D. Plank</p>
+
+               <p id="result"></p>
+               <div id="explanation-container">
+                <p id="explanation"></p>
+               <img  id="image" src="image/complete.jpg" alt="explanationimage" ">
+               </div>
+            </div>
+
+            
+                <section class="next">
+                    <a href="history ai.html"><button class="pre">Previous</button></a>
+            <a href="lifeapp2.html" ><button class="pre">Next</button></a>
+        </section>
+
+        </section>
+    </main>
+
 </body>
-
-<script>
+    <script>
 
     document.addEventListener('DOMContentLoaded', () => {
         const sideDash = document.getElementById('sideDash');
@@ -157,6 +147,12 @@
         const overlay = document.getElementById('dashOverlay');
         const welcomeText = document.getElementById('welcomeText');
         const courseContainer = document.getElementById('enrolled-list');
+        const options = document.querySelectorAll('.option');
+        const result = document.getElementById('result');
+        const explanation = document.getElementById('explanation');
+        const correctAnswer = 'B';
+        const explanationContainer = document.getElementById('explanation-container');
+
 
         // --- 1. OPEN DASHBOARD ---
         openBtn.addEventListener('click', () => {
@@ -198,6 +194,39 @@
                 courseContainer.innerHTML = '<p>No courses yet.</p>';
             }
         }
+
+        options.forEach(option => {
+            option.addEventListener('click',() => {
+                const userAnswer = option.dataset.answer;
+                options.forEach(opt =>{
+                    opt.style.background ='';
+                    opt.style.color ='';
+                })
+                if (userAnswer === correctAnswer) {
+                result.textContent = 'Correct!';
+                explanation.textContent = ' (HEART - EARTH) What you cannot CONCEIVE in your HEART, you cannot CREATE on EARTH.   Your HEART is the production center of your life on EARTH.';
+                 document.getElementById('image').src = 'image/complete.jpg';
+                 document.getElementById('image').style.display = 'block';
+                option.style.background = 'blue';
+                 option.style.colour = 'white';
+                //  result.style.paddingBottom = '10px';
+                //  explanation.style.lineHeight = '23.5px';
+                } else{
+                    result.textContent = 'Incorrect';
+                    explanation.textContent = 'The correct answer is B (HEART - EARTH).      What you cannot CONCEIVE in your HEART, you cannot CREATE on EARTH.   Your HEART is the production center of your life on EARTH.';  
+                    option.style.background ='red';
+                    option.style.color = 'white';
+                    const correctOption = document.querySelector('[data-answer="${correctAnswer}"]');
+                    correctOption.style.background = 'blue';
+                    correctOption.style.color = 'white';
+                    
+                   
+              
+                }
+            
+                
+            } )
+        })
 
     });
 </script>

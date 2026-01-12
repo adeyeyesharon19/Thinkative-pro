@@ -55,6 +55,7 @@ body {
 } 
 
 
+/* courses */
 .roll{
     margin-left: 300px;
    margin-right: 100px;
@@ -67,30 +68,8 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
 }
-
-.en button {
-    justify-content: space-between;
-    border-radius: 20px;
-    /* border: 1px solid #ccc; */
-    border: none;
-    padding: 10px 8px;
-    margin: 10px;
-     margin-right: 20px;
-    text-align: center;
-
-}
-
-.tv{
-    color: #000;
-}
-
-.end{
-    background-color: rgb(33, 33, 78);
-    color: #fff;
-}
-
-
 
 .start{
       display: grid;
@@ -184,8 +163,4 @@ body {
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-}
-
-.course-grid{
-    margin-left: 230px;
 }

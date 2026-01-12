@@ -17,7 +17,7 @@ body {
     position: fixed;
     left: 0;
     top: 0;
-    height: 95%;
+    height: 100%;
     width: 230px;
     background-color: #fff;
     color: #000;
@@ -112,26 +112,26 @@ padding-top: -50px;
     border-color: #aaa;
 }
 
-/* Class to make the Bio field span all 3 columns */
+
 .full-width {
     grid-column: 1 / span 3;
 }
 
-/* Basic responsiveness for smaller screens */
+/* responsiveness for smaller screens */
 @media (max-width: 768px) {
     .profile-form {
-        /* Changes to 2 columns on screens up to 768px */
+        
         grid-template-columns: repeat(2, 1fr);
     }
     .full-width {
-        /* Bio spans 2 columns instead of 3 on smaller screens */
+        
         grid-column: 1 / span 2;
     }
 }
 
 @media (max-width: 480px) {
     .profile-form {
-        /* Changes to a single column on very small screens */
+        
         grid-template-columns: 1fr;
     }
     .full-width {

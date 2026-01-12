@@ -312,3 +312,31 @@ body{
 .price h4{
     font-size: 28px;
 }
+
+.back{
+       color: #fff;
+    background-color: #007bff;
+    border-radius: 15px;
+    border: none;
+    padding: 12px;
+    margin-top: 50px;
+   
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  gap: 8px;
+}
+
+.back img {
+  filter: invert(100%) brightness(200%);
+  width: 20px;
+  height: auto;
+}
+
+.home a{
+    color: #fff;
+    text-decoration: none;
+}
+.home a:hover{
+     text-decoration: underline;
+}
