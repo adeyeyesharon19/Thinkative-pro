@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/learning.css">
+</head>
+<body>
+    <div class="dash-trigger" id="openDash">
+    <img src="hugeicons-static-main/icons/menu-01.svg" alt="Menu" id="menuIcon">
+</div>
+
+<div class="side-dashboard" id="sideDash">
+    <div class="dash-inner">
+        <header class="dash-nav-header">
+            <h2>My Learning</h2>
+            <button id="closeDash">&times;</button>
+        </header>
+
+        <div class="dash-stats">
+            <div class="mini-stat">
+                <span id="count-enrolled">0</span>
+                <label>Enrolled</label>
+            </div>
+        </div>
+
+        <div id="enrolled-list" class="mini-course-grid">
+            </div>
+    </div>
+</div>
+
+<div class="dash-overlay" id="dashOverlay"></div>
+</body>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const sideDash = document.getElementById('sideDash');
+    const openBtn = document.getElementById('openDash');
+    const closeBtn = document.getElementById('closeDash');
+    const overlay = document.getElementById('dashOverlay');
+    const courseContainer = document.getElementById('enrolled-list');
+
+    // 1. Toggle Dashboard
+    openBtn.addEventListener('click', () => {
+        sideDash.classList.add('active');
+        overlay.classList.add('active');
+    });
+
+    const closeAll = () => {
+        sideDash.classList.remove('active');
+        overlay.classList.remove('active');
+    };
+
+    closeBtn.addEventListener('click', closeAll);
+    overlay.addEventListener('click', closeAll);
+
+    // 2. Load Courses into Sidebar
+    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+    
+    if (enrolledCourses.length > 0) {
+        courseContainer.innerHTML = ''; 
+        enrolledCourses.forEach(course => {
+            courseContainer.innerHTML += `
+                <div class="mini-course-card">
+                    <img src="${course.image}" alt="${course.title}">
+                    <h4 style="margin: 10px 0;">${course.title}</h4>
+                    <a href="learning-page.html" style="color: var(--primary); text-decoration: none; font-weight: 600;">Resume →</a>
+                </div>
+            `;
+        });
+    } else {
+        courseContainer.innerHTML = '<p style="color: #666;">No courses yet.</p>';
+    }
+});
+</script>
+</html>

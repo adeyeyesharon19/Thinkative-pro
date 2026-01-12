@@ -16,9 +16,10 @@
 
             <a href="dash.html" class=""> Home</a>
             <a href="profile.html">My Profile </a>
+                 <a href="courses.html"> Courses </a>
             <a href="enrolled.html">Enrolled courses
             </a>
-            <a href="#">My Certificate</a>
+            <a href="certificate.html">My Certificate</a>
             <a href="#">Reports</a>
             <a href="#"> Settings</a>
             <a href="#">Logout</a>
@@ -27,178 +28,67 @@
     </header>
 
 
-    <main>
-        <section class="roll">
-            <div class="arc">
-                <h2>Enrolled courses</h2>
-                <div class="en">
-                    <button class="end">Enrolled(0)</button>
-                    <button class="tv">Active(0)</button>
-                    <button class="tv">Completed(0)</button>
-                </div>
+   <main>
+    <section class="roll">
+        <div class="arc">
+            <h2>Enrolled courses</h2>
+            <div class="en">
+                <button class="end" id="count-enrolled">Enrolled (0)</button>
+                <button class="tv" id="count-active">Active (0)</button>
+                <button class="tv">Completed (0)</button>
             </div>
+        </div>
+    </section>
+
+    <section id="enrolled-list" class="course-grid">
         </section>
-
-        <section>
-            <div class="start">
-                <div class="sum">
-                    <img src="image/ai.jpeg" alt="sumlogo" width="210" height="180">
-                    <h4>Anagram Intelligence</h4>
-
-                    <div class="price-row">
-                        <p class="price">$100</p>
-                        <div class="view">
-                        <a href="#"><button>View courses <img src="hugeicons-static-main/icons/arrow-right-02.svg" alt=""></button></a>
-                        </div>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-                <div class="sum">
-                    <img src="image/llink lab.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Link lab</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
+</main>
+      
+    
 
 
-                <div class="sum">
-                    <img src="image/brand.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Brand Brain</h4>
 
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/splitdecision.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Split Decision</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/delete.jpg" alt="sumlogo" width="210" height="180">
-                    <h4> Delete Decision</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/supplyskill.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Supply skill</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="#"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/abc.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Alpha Wave</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>View courses</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/mind.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>Mind Bloom</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>Get started</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-                <div class="sum">
-                    <img src="image/first space.jpg" alt="sumlogo" width="210" height="180">
-                    <h4>First Space</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>Get started</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/fuel3.jpeg" alt="sumlogo" width="210" height="180">
-                    <h4>Think Forward</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>Get started</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-                <div class="sum">
-                    <img src="image/in.jpeg" alt="sumlogo" width="210" height="180">
-                    <h4> Hue Hack</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>Get started</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-                <div class="sum">
-                    <img src="image/in2.jpeg" alt="sumlogo" width="210" height="180">
-                    <h4>Digital Developer</h4>
-
-                    <div class="price-row">
-                        <p class="price">$300</p>
-                        <a href="info.html"><button>Get started</button></a>
-                    </div>
-                    <!-- <p>$300</p> -->
-                    <!-- <button>Get started▶️</button> -->
-                </div>
-
-
-            </div>
-        </section>
-    </main>
 </body>
+   <script>
+document.addEventListener('DOMContentLoaded', () => {
+    const courseContainer = document.getElementById('enrolled-list');
+    const enrolledCountBtn = document.getElementById('count-enrolled');
+    const activeCountBtn = document.getElementById('count-active');
+    
+    // Get data from localStorage
+    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
 
+    // Update the button numbers
+    enrolledCountBtn.textContent = `Enrolled (${enrolledCourses.length})`;
+    activeCountBtn.textContent = `Active (${enrolledCourses.length})`;
+
+    if (enrolledCourses.length === 0) {
+        courseContainer.innerHTML = `
+            <div style="padding: 20px; text-align: center; color: #666;">
+                <p>You haven't enrolled in any courses yet.</p>
+                <a href="courses.html" style="color: #007bff;">Browse Courses</a>
+            </div>`;
+    } else {
+        // Clear container first
+        courseContainer.innerHTML = ''; 
+        
+        enrolledCourses.forEach(course => {
+
+            const imageSrc = course.image || 'image/default-course.jpg';
+
+            const courseHTML = `
+                <div class="course-card" style="border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; width: 250px;">
+                    <img src="${course.image}" alt="${course.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px;">
+                    <h3 style="margin: 10px 0;">${course.title}</h3>
+                    <p style="color: green; font-weight: bold;">Status: Active</p>
+                    <a href="learning.html" style="text-decoration: none;">
+                    <button style="background: #007bff; color: white; border: none; padding: 8px; width: 100%; border-radius: 4px; cursor: pointer; margin-top:10px;">Continue Learning</button>
+                    </a>
+                </div>
+            `;
+            courseContainer.innerHTML += courseHTML;
+        });
+    }
+});
+</script>
 </html>

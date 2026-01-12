@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Reviews Section</title>
+    <link rel="stylesheet" href="css/review.css" />
+</head>
+
+<body>
+
+    <section class="reviews-section">
+        <!-- Header -->
+        <div class="reviews-header">
+            <h2>User Reviews</h2>
+            <p class="reviews-summary">⭐ 4.5 / 5 (Based on 120 reviews)</p>
+        </div>
+
+        <!-- Review Form -->
+        <div class="review-form-container">
+            <h3>Write a Review</h3>
+
+            <form class="review-form" id="reviewForm">
+                <input type="text" placeholder="Your Name" required />
+
+                <!-- <div class="rating">
+        <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+      </div>
+
+      <textarea placeholder="Write your review..." required></textarea> -->
+                <div class="rating" id="starRating">
+                    <span data-value="1">★</span>
+                    <span data-value="2">★</span>
+                    <span data-value="3">★</span>
+                    <span data-value="4">★</span>
+                    <span data-value="5">★</span>
+                </div>
+
+                <input type="hidden" id="ratingValue" name="rating" required />
+                <button type="submit">Submit Review</button>
+
+                <p id="reviewMessage" style="color:rgb(47, 47, 209); display: none; margin-top: 10px;">
+                    Thank you! Your review has been submitted.
+                </p>
+
+
+            </form>
+        </div>
+
+        <!-- Reviews List -->
+        <div class="reviews-list">
+
+            <div class="review-card">
+                <div class="review-top">
+                    <span class="stars">★★★★★</span>
+                
+                    <span class="name">John Doe</span>
+                </div>
+                <p class="review-text">
+                    Amazing service, very easy to use!
+                </p>
+                <span class="date">Jan 7, 2026</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <span class="stars">★★★★☆</span>
+                    <span class="name">Sarah Smith</span>
+                </div>
+                <p class="review-text">
+                    Good experience, but could be improved.
+                </p>
+                <span class="date">Jan 5, 2026</span>
+            </div>
+
+            <div class="review-card">
+                <div class="review-top">
+                    <span class="stars">★★★☆☆</span>
+                    <span class="name">Alex Johnson</span>
+                </div>
+                <p class="review-text">
+                    It's okay, does the job.
+                </p>
+                <span class="date">Jan 2, 2026</span>
+            </div>
+
+            <button class="load-more">Load More Reviews</button>
+
+
+
+            <!-- Hidden Reviews -->
+            <div class="review-card hidden-review">
+                <div class="review-top">
+                    <span class="stars">★★★★★</span>
+                    <span class="name">Emily Brown</span>
+                </div>
+                <p class="review-text">
+                    Loved it! Highly recommend.
+                </p>
+                <span class="date">Jan 1, 2026</span>
+            </div>
+
+            <div class="review-card hidden-review">
+                <div class="review-top">
+                    <span class="stars">★★★★☆</span>
+                    <span class="name">Michael Lee</span>
+                </div>
+                <p class="review-text">
+                    Good experience overall.
+                </p>
+                <span class="date">Dec 30, 2025</span>
+            </div>
+
+
+    </section>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // ----- Star rating -----
+        const stars = document.querySelectorAll("#starRating span");
+        const ratingInput = document.getElementById("ratingValue");
+        let selectedRating = 0;
+
+        function highlightStars(rating) {
+            stars.forEach((star, i) => {
+                star.classList.toggle("active", i < rating);
+            });
+        }
+
+        stars.forEach((star, index) => {
+            star.addEventListener("mouseover", () => highlightStars(index + 1));
+            star.addEventListener("mouseout", () => highlightStars(selectedRating));
+            star.addEventListener("click", () => {
+                selectedRating = index + 1;
+                ratingInput.value = selectedRating;
+                highlightStars(selectedRating);
+            });
+        });
+
+        // ----- Form submission -----
+        const reviewForm = document.getElementById("reviewForm");
+        const reviewMessage = document.getElementById("reviewMessage");
+
+        reviewForm.addEventListener("submit", function (e) {
+            e.preventDefault(); // prevent reload
+
+            // Ensure rating is selected
+            if (!ratingInput.value) {
+                alert("Please select a star rating!");
+                return;
+            }
+
+            // Show confirmation message
+            reviewMessage.style.display = "block";
+
+            // Hide after 3 seconds
+            setTimeout(() => {
+                reviewMessage.style.display = "none";
+            }, 3000);
+
+            // Reset form and stars
+            reviewForm.reset();
+            selectedRating = 0;
+            highlightStars(selectedRating);
+        });
+
+        // Load More Reviews functionality
+        const loadMoreBtn = document.querySelector(".load-more");
+        const hiddenReviews = document.querySelectorAll(".hidden-review");
+
+        loadMoreBtn.addEventListener("click", () => {
+            hiddenReviews.forEach(review => {
+                review.style.display = "block"; // Show hidden reviews
+            });
+            loadMoreBtn.style.display = "none"; // Hide the button
+        });
+
+    });
+</script>
+
+
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Courses</title>
+<link rel="stylesheet" href="css/courses.css">
+</head>
+
+<body>
+
+<header>
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="dash.html">Home</a>
+        <a href="profile.html">My Profile</a>
+        <a href="courses.html" class="active">Courses</a>
+        <a href="enrolled.html">Enrolled courses</a>
+        <a href="certificate.html">My Certificate</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+        <a href="#">Logout</a>
+    </div>
+</header>
+
+<main>
+    <section class="roll">
+        <div class="arc">
+            <h2>Courses</h2>
+        </div>
+    </section>
+
+    <section>
+        <div class="start">
+
+            <!-- Course Example -->
+            <div class="sum" data-name="Anagram Intelligence" data-price="$100">
+                <img src="image/ai.jpeg" alt="sumlogo" width="210" height="180">
+                <h4>Anagram Intelligence</h4>
+                <div class="price-row">
+                    <p class="price">$100</p>
+                    <a href="AI.html"><button class="get-started" id="payButton">Get Started</button></a>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Link Lab" data-price="$300">
+                <img src="image/llink lab.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Link Lab</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Brand Brain" data-price="$300">
+                <img src="image/brain3.jpeg" alt="sumlogo" width="210" height="180">
+                <h4>Brand Brain</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Split Decision" data-price="$300">
+                <img src="image/splitdecision.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Split Decision</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Delete Decision" data-price="$300">
+                <img src="image/delete.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Delete Decision</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Supply skill" data-price="$300">
+                <img src="image/supplyskill.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Supply skill</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Alpha Wave" data-price="$300">
+                <img src="image/abc.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Alpha Wave</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Mind Bloom" data-price="$300">
+                <img src="image/mind.jpg" alt="sumlogo" width="210" height="180">
+                <h4>Mind Bloom</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+
+            <div class="sum" data-name="First Space" data-price="$300">
+                <img src="image/first space.jpg" alt="sumlogo" width="210" height="180">
+                <h4>First Space</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Think Forward" data-price="$300">
+                <img src="image/fuel3.jpeg" alt="sumlogo" width="210" height="180">
+                <h4>Think Forward</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            <div class="sum" data-name="Hue Hack" data-price="$300">
+                <img src="image/in.jpeg" alt="sumlogo" width="210" height="180">
+                <h4>Hue Hack</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+
+            <div class="sum" data-name="Digital Developer" data-price="$300">
+                <img src="image/in2.jpeg" alt="sumlogo" width="210" height="180">
+                <h4>Digital Developer</h4>
+                <div class="price-row">
+                    <p class="price">$300</p>
+                    <button class="get-started">Get Started</button>
+                </div>
+            </div>
+
+            
+
+        </div>
+    </section>
+</main>
+<!-- 
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const buttons = document.querySelectorAll('.get-started');
+    const enrolledCounter = document.querySelector('.end');
+
+    // Load enrolled courses from localStorage
+    let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+    enrolledCounter.textContent = `Enrolled(${enrolledCourses.length})`;
+
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            const courseDiv = button.closest('.sum');
+            const courseName = courseDiv.dataset.name;
+            const coursePrice = courseDiv.dataset.price;
+
+            // Ensure both data attributes exist
+            if (!courseName || !coursePrice) {
+                alert("Course data missing!");
+                return;
+            }
+
+            // Simulate payment confirmation
+            const paid = confirm(`Do you want to pay ${coursePrice} for ${courseName}?`);
+            if (!paid) return;
+
+            // Check if already enrolled
+            if (!enrolledCourses.find(c => c.name === courseName)) {
+                enrolledCourses.push({ name: courseName, price: coursePrice });
+                localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+
+                alert(`You have successfully paid ${coursePrice} for ${courseName}. It will show on your Enrolled Courses.`);
+
+                // Update enrolled counter
+                enrolledCounter.textContent = `Enrolled(${enrolledCourses.length})`;
+            } else {
+                alert(`${courseName} is already in your Enrolled Courses.`);
+            }
+        });
+    });
+});
+</script> -->
+   <!-- <script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const payBtn = document.getElementById('payButton');
+
+    payBtn.addEventListener('click', () => {
+        // 1. Show the success message
+        alert('Payment Successful! "Mind Mosaic" has been added to your enrolled courses.');
+
+        // 2. Define the course data
+        const purchasedCourse = {
+            title: "Mind Mosaic",
+            price: "$300",
+            image: "image/carrot.jpg"
+        };
+
+        // 3. Get existing courses from localStorage or start a new list
+        let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+
+        // 4. Add the new course to the list
+        enrolledCourses.push(purchasedCourse);
+
+        // 5. Save back to localStorage
+        localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+
+        // 6. Optional: Redirect to the enrolled courses page
+        // window.location.href = "enrolled-courses.html";
+        
+        payBtn.disabled = true;
+        payBtn.textContent = 'Paid';
+    });
+});
+  </script> -->
+</body>
+</html>
