@@ -35,23 +35,43 @@
 </body>
 
 <script>
-const currentModule = localStorage.getItem('currentModule');
-const score = localStorage.getItem(`${currentModule}_score`) || 0;
+document.addEventListener('DOMContentLoaded', () => {
 
-document.getElementById('scoreText').textContent = `Your Score: ${score} / 5`;
+    const currentModule = localStorage.getItem('currentModule');
 
-// Clear only AFTER showing
-localStorage.removeItem(`${currentModule}_score`);
-localStorage.removeItem(`${currentModule}_questionCount`);
-localStorage.removeItem('currentModule');
-
-function goNext() {
-    if (currentModule === 'anagramplug') {
-        window.location.href = "anagramplugintro.html";
-    } else if (currentModule === 'flipconnect') {
-        window.location.href = "flipconnectintro.html";
+    // Safety fallback
+    if (!currentModule) {
+        document.getElementById('scoreText').textContent =
+            'Your Score: 0 / 5';
+        return;
     }
-}
+
+    const scoreKey = `${currentModule}_score`;
+    const countKey = `${currentModule}_questionCount`;
+
+    const score = parseInt(localStorage.getItem(scoreKey)) || 0;
+
+    const scoreText = document.getElementById('scoreText');
+    if (scoreText) {
+        scoreText.textContent = `Your Score: ${score} / 5`;
+    }
+
+    // Clear ONLY after displaying score
+    localStorage.removeItem(scoreKey);
+    localStorage.removeItem(countKey);
+    localStorage.removeItem('currentModule');
+
+    // Expose function globally for button click
+    window.goNext = function () {
+        if (currentModule === 'anagramplug') {
+            window.location.href = 'anagramplugintro.html';
+        } else if (currentModule === 'flipconnect') {
+            window.location.href = 'flipconnectintro.html';
+        }
+    };
+
+});
 </script>
+
 
 </html>
