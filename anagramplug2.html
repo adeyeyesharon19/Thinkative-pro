@@ -186,121 +186,99 @@
 </body>
 
 <script>
+document.addEventListener('DOMContentLoaded', () => {
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const sideDash = document.getElementById('sideDash');
-        const openBtn = document.getElementById('openDash');
-        const closeBtn = document.getElementById('closeDash');
-        const overlay = document.getElementById('dashOverlay');
-        const welcomeText = document.getElementById('welcomeText');
-        const courseContainer = document.getElementById('enrolled-list');
-        
-        const currentModule = 'flipconnect'; // use 'flipconnect' for the second set
-    localStorage.setItem('currentModule', currentModule);
+    /* ================= DASHBOARD ================= */
+    const sideDash = document.getElementById('sideDash');
+    const openBtn = document.getElementById('openDash');
+    const closeBtn = document.getElementById('closeDash');
+    const overlay = document.getElementById('dashOverlay');
+    const welcomeText = document.getElementById('welcomeText');
 
-    let questionCount = parseInt(localStorage.getItem(`${currentModule}_questionCount`)) || 0;
-    let score = parseInt(localStorage.getItem(`${currentModule}_score`)) || 0;
-
-        const options = document.querySelectorAll('.option');
-        const result = document.getElementById('result');
-        const explanation = document.getElementById('explanation');
-        const correctAnswer = 'A';
-        const explanationContainer = document.getElementById('explanation-container');
-        let answered = false;
-
-        // --- 1. OPEN DASHBOARD ---
+    if (openBtn) {
         openBtn.addEventListener('click', () => {
             sideDash.classList.add('active');
             overlay.classList.add('active');
-
-            // Hide the text label
-            if (welcomeText) {
-                welcomeText.classList.add('hidden');
-            }
+            if (welcomeText) welcomeText.classList.add('hidden');
         });
+    }
 
-        // --- 2. CLOSE DASHBOARD ---
-        const closeAll = () => {
-            sideDash.classList.remove('active');
-            overlay.classList.remove('active');
+    const closeAll = () => {
+        sideDash.classList.remove('active');
+        overlay.classList.remove('active');
+        if (welcomeText) welcomeText.classList.remove('hidden');
+    };
 
-            // Show the text label again
-            if (welcomeText) {
-                welcomeText.classList.remove('hidden');
-            }
-        };
+    if (closeBtn) closeBtn.addEventListener('click', closeAll);
+    if (overlay) overlay.addEventListener('click', closeAll);
 
-        if (closeBtn) closeBtn.addEventListener('click', closeAll);
-        if (overlay) overlay.addEventListener('click', closeAll);
+    /* ================= QUIZ SETUP ================= */
+    const currentModule = 'flipconnect';
+    localStorage.setItem('currentModule', currentModule);
 
-        // --- 3. LOAD COURSES ---
-        const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-        if (courseContainer) {
-            if (enrolledCourses.length > 0) {
-                courseContainer.innerHTML = enrolledCourses.map(course => `
-                <div class="mini-course-card">
-                    <img src="${course.image}" alt="${course.title}">
-                    <h4>${course.title}</h4>
-                    <a href="learning-page.html">Resume →</a>
-                </div>
-            `).join('');
+    const scoreKey = `${currentModule}_score`;
+    const countKey = `${currentModule}_questionCount`;
+
+    // Initialize ONLY once (important)
+    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
+    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
+
+    const options = document.querySelectorAll('.option');
+    const result = document.getElementById('result');
+    const correctAnswer = 'A';
+
+    let answered = false;
+
+    /* ================= QUIZ LOGIC ================= */
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+
+            if (answered) return;
+            answered = true;
+
+            let score = parseInt(localStorage.getItem(scoreKey));
+            let questionCount = parseInt(localStorage.getItem(countKey));
+
+            // Increment ONCE
+            questionCount++;
+
+            // Disable options
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            if (option.dataset.answer === correctAnswer) {
+                score++;
+                result.textContent = 'Correct!';
+                option.style.background = 'blue';
+                option.style.color = 'white';
             } else {
-                courseContainer.innerHTML = '<p>No courses yet.</p>';
-            }
-        }
+                result.textContent = 'Incorrect';
+                option.style.background = 'red';
+                option.style.color = 'white';
 
-        if (!localStorage.getItem('score')) localStorage.setItem('score', 0);
-        if (!localStorage.getItem('questionCount')) localStorage.setItem('questionCount', 0);
-
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-                if (answered) return; // Lock after first click
-                answered = true;
-
-                const userAnswer = option.dataset.answer;
-                let score = parseInt(localStorage.getItem('score'));
-                let questionCount = parseInt(localStorage.getItem('questionCount'));
-
-                questionCount += 1;
-
-                // Disable all options visually and functionally
-                options.forEach(opt => {
-                    opt.style.pointerEvents = 'none';
-                });
-
-                if (userAnswer === correctAnswer) {
-                    score += 1;
-                    result.textContent = 'Correct!';
-                    option.style.background = 'blue';
-                    option.style.color = 'white';
-                } else {
-                    result.textContent = 'Incorrect';
-                    option.style.background = 'red';
-                    option.style.color = 'white';
-
-                    const correctOption = document.querySelector(`[data-answer="${correctAnswer}"]`);
-                    if (correctOption) {
-                        correctOption.style.background = 'blue';
-                        correctOption.style.color = 'white';
-                    }
+                const correctOpt = document.querySelector(
+                    `[data-answer="${correctAnswer}"]`
+                );
+                if (correctOpt) {
+                    correctOpt.style.background = 'blue';
+                    correctOpt.style.color = 'white';
                 }
+            }
 
-             questionCount += 1;
+            // Save progress
+            localStorage.setItem(scoreKey, score);
+            localStorage.setItem(countKey, questionCount);
 
-            localStorage.setItem(`${currentModule}_questionCount`, questionCount);
-            localStorage.setItem(`${currentModule}_score`, score);
-
-            // go to congrat page after 5th question
-            if (questionCount === 5) {
+            // Redirect after final question
+            if (questionCount >= 5) {
                 setTimeout(() => {
-                    window.location.href = "congrat.html";
+                    window.location.href = 'congrat.html';
                 }, 800);
             }
 
-            });
         });
-
     });
+
+});
 </script>
 
 </html>

@@ -179,7 +179,7 @@
 
 
             <section class="next">
-                <a href="backtofront2.html"><button class="pre">Previous</button></a>
+                <a href="backtofront3.html"><button class="pre">Previous</button></a>
                 <!-- <a href="congrat.html"><button class="pre">Next</button></a> -->
             </section>
 
@@ -191,24 +191,13 @@
 <script>
 document.addEventListener('DOMContentLoaded', () => {
 
-    /* ---------------- BASIC SETUP ---------------- */
+    /* ================= DASHBOARD ================= */
     const sideDash = document.getElementById('sideDash');
     const openBtn = document.getElementById('openDash');
     const closeBtn = document.getElementById('closeDash');
     const overlay = document.getElementById('dashOverlay');
     const welcomeText = document.getElementById('welcomeText');
-    const courseContainer = document.getElementById('enrolled-list');
 
-    const currentModule = 'anagramplug';
-    localStorage.setItem('currentModule', currentModule);
-
-    const options = document.querySelectorAll('.option');
-    const result = document.getElementById('result');
-    const correctAnswer = 'B';
-
-    let answered = false;
-
-    /* ---------------- DASHBOARD ---------------- */
     if (openBtn) {
         openBtn.addEventListener('click', () => {
             sideDash.classList.add('active');
@@ -226,29 +215,24 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) closeBtn.addEventListener('click', closeAll);
     if (overlay) overlay.addEventListener('click', closeAll);
 
-    /* ---------------- LOAD COURSES ---------------- */
-    const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+    /* ================= QUIZ SETUP ================= */
+    const currentModule = 'anagramplug';
+    localStorage.setItem('currentModule', currentModule);
 
-    if (courseContainer) {
-        courseContainer.innerHTML = enrolledCourses.length
-            ? enrolledCourses.map(course => `
-                <div class="mini-course-card">
-                    <img src="${course.image}" alt="${course.title}">
-                    <h4>${course.title}</h4>
-                    <a href="learning-page.html">Resume →</a>
-                </div>
-            `).join('')
-            : '<p>No courses yet.</p>';
-    }
-
-    /* ---------------- INIT STORAGE ---------------- */
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
 
+    // Initialize ONLY once (important)
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
-    /* ---------------- QUIZ LOGIC ---------------- */
+    const options = document.querySelectorAll('.option');
+    const result = document.getElementById('result');
+    const correctAnswer = 'B';
+
+    let answered = false;
+
+    /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
         option.addEventListener('click', () => {
 
@@ -258,8 +242,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let score = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
+            // Increment ONCE
             questionCount++;
 
+            // Disable options
             options.forEach(opt => opt.style.pointerEvents = 'none');
 
             if (option.dataset.answer === correctAnswer) {
@@ -281,11 +267,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
+            // Save progress
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
-            /* ---------------- REDIRECT AFTER 5 ---------------- */
-            if (questionCount === 5) {
+            // Redirect after final question
+            if (questionCount >= 5) {
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
                 }, 800);
