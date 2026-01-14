@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 2</title>
+    <title>MeaningMatch 5</title>
 
-<link rel="stylesheet" href="css/backtofront.css">
+    <link rel="stylesheet" href="css/backtofront.css">
 </head>
+
 <body>
-      <section>
+    <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
@@ -79,7 +81,7 @@
                                     </summary>
 
                                     <ul class="sub-lesson-list">
-                                          <li><a href="sparkintro.html">Introduction</a></li>
+                                        <li><a href="sparkintro.html">Introduction</a></li>
                                         <li><a href="spark.html">Question 1</a></li>
                                         <li><a href="backtofront1.html">Question 2</a></li>
                                         <li><a href="backtofront2.html">Question 3</a></li>
@@ -89,7 +91,7 @@
                                 </details>
                             </li>
 
-                           <li id="L2">
+                            <li id="L2">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 3.1 AnagramPlug Test
@@ -101,23 +103,22 @@
                                         <li><a href="anagramplug2.html">Question 2</a></li>
                                         <li><a href="anagramplug3.html">Question 3</a></li>
                                         <li><a href="anagramplug4.html">Question 4</a></li>
-                                        <li><a href="anagramplug5.html">Question 5</a></li>
+                                        <li><a href="#">Question 5</a></li>
                                     </ul>
                                 </details>
                             </li>
-                           <li id="L3" class="active">
+                            <li id="L3" class="active">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
-                                        <span>▶</span> 3.1 FlipConnect Test
+                                        <span>▶</span> 3.1 AnagramPlug Test
                                     </summary>
 
                                     <ul class="sub-lesson-list">
-                                         <li><a href="flipconnectintro.html">Introduction</a></li>
-                                        <li><a href="flipconnect1.html">Question 1</a></li>
-                                        <li><a href="flipconnect2.html">Question 2</a></li>
-                                        <li><a href="flipconnect3.html">Question 3</a></li>
-                                        <li><a href="flipconnect4.html">Question 4</a></li>
-                                        <li><a href="flipconnect5.html">Question 5</a></li>
+                                        <li><a href="#">Question 1</a></li>
+                                        <li><a href="#">Question 2</a></li>
+                                        <li><a href="#">Question 3</a></li>
+                                        <li><a href="#">Question 4</a></li>
+                                        <li><a href="#">Question 5</a></li>
                                     </ul>
                                 </details>
                             </li>
@@ -132,7 +133,7 @@
                             <div class="header-info">
                                 <span class="icon"></span>
                                 <span class="title">
-                                    Flame</span>
+                                    Anagram Intelligence creation mastery</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
@@ -151,20 +152,19 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame Two - SmartPhrase Scramble Test </h2>
+                <h2>Flame Five - MeaningMatch Test </h2>
             </div>
 
-
-           <div class="solve">
+<div class="solve">
                 
-                <h5><span>An  answer to</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(creation)</span></h5>
+                <h5><span>Join together</span><span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(untie)</span></h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. Reaction</p>
-               <p class="option"  data-answer="B">B. Orcation</p>
-               <p class="option"  data-answer="C">C. Cortinae</p>
-               <p class="option"  data-answer="C">D. Atonicer</p>
+               <p class="option" data-answer="A"> A. Uniet</p>
+               <p class="option"  data-answer="B">B. Unite</p>
+               <p class="option"  data-answer="C">C. Nuite</p>
+               <p class="option"  data-answer="C">D. Tinue</p>
              
                
 
@@ -176,20 +176,19 @@
             </div>
 
 
-          
 
-            
-                <section class="next">
-                    <a href="smartphrase1.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase3.html" ><button class="pre">Next</button></a>
+
+            <section class="next">
+                <a href="smartphrase4.html"><button class="pre">Previous</button></a>
+                <!-- <a href="anagramplug5.html"><button class="pre">Next</button></a> -->
+            </section>
+
         </section>
 
-        </section>
-    
     </main>
 </body>
 
- <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ================= DASHBOARD ================= */
@@ -216,27 +215,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) closeBtn.addEventListener('click', closeAll);
     if (overlay) overlay.addEventListener('click', closeAll);
 
-
     /* ================= QUIZ SETUP ================= */
     const currentModule = 'meaningmath';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // Initialize once
+    // Initialize ONLY once (important)
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
-
-    // 🔴 CHANGE THIS PER QUESTION
-    const correctAnswer = 'A';
+    const correctAnswer = 'B';
 
     let answered = false;
-
 
     /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
@@ -248,6 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let score = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
+            // Increment ONCE
             questionCount++;
 
             // Disable options
@@ -276,28 +271,18 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
-
-            /* ===== AFTER EVERY 5 QUESTIONS ===== */
-            if (questionCount % 5 === 0) {
-
-                // Show score out of 5
-                result.textContent = `Your score: ${score} / 5`;
-
-                // Save last set score
-                localStorage.setItem(lastSetKey, score);
-
-                // Reset for next set
-                localStorage.setItem(scoreKey, 0);
-                localStorage.setItem(countKey, 0);
-
+            // Redirect after final question
+            if (questionCount >= 5) {
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
-                }, 1200);
+                }, 800);
             }
+
         });
     });
 
 });
 </script>
+
 
 </html>

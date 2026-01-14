@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 2</title>
+    <title>meaningmatch 3</title>
 
 <link rel="stylesheet" href="css/backtofront.css">
 </head>
@@ -151,20 +151,20 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame Two - SmartPhrase Scramble Test </h2>
+                <h2>Blaze Three - MeaningMatch Test </h2>
             </div>
 
 
            <div class="solve">
                 
-                <h5><span>An  answer to</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(creation)</span></h5>
+                <h5><span>Platform</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>[said]</span></h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. Reaction</p>
-               <p class="option"  data-answer="B">B. Orcation</p>
-               <p class="option"  data-answer="C">C. Cortinae</p>
-               <p class="option"  data-answer="C">D. Atonicer</p>
+               <p class="option" data-answer="A"> A. Aids</p>
+               <p class="option"  data-answer="B">B. Adis</p>
+               <p class="option"  data-answer="C">C. Siad</p>
+               <p class="option"  data-answer="C">D. Dais</p>
              
                
 
@@ -180,8 +180,8 @@
 
             
                 <section class="next">
-                    <a href="smartphrase1.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase3.html" ><button class="pre">Next</button></a>
+                    <a href="meaningmatch2.html"><button class="pre">Previous</button></a>
+            <a href="meaningmatch4.html" ><button class="pre">Next</button></a>
         </section>
 
         </section>
@@ -189,7 +189,7 @@
     </main>
 </body>
 
- <script>
+   <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ================= DASHBOARD ================= */
@@ -216,27 +216,22 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) closeBtn.addEventListener('click', closeAll);
     if (overlay) overlay.addEventListener('click', closeAll);
 
-
     /* ================= QUIZ SETUP ================= */
     const currentModule = 'meaningmath';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // Initialize once
+    // Initialize ONLY once (important)
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
-
-    // 🔴 CHANGE THIS PER QUESTION
-    const correctAnswer = 'A';
+    const correctAnswer = 'D';
 
     let answered = false;
-
 
     /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
@@ -248,6 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let score = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
+            // Increment ONCE
             questionCount++;
 
             // Disable options
@@ -276,28 +272,16 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
-
-            /* ===== AFTER EVERY 5 QUESTIONS ===== */
-            if (questionCount % 5 === 0) {
-
-                // Show score out of 5
-                result.textContent = `Your score: ${score} / 5`;
-
-                // Save last set score
-                localStorage.setItem(lastSetKey, score);
-
-                // Reset for next set
-                localStorage.setItem(scoreKey, 0);
-                localStorage.setItem(countKey, 0);
-
+            // Redirect after final question
+            if (questionCount >= 5) {
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
-                }, 1200);
+                }, 800);
             }
+
         });
     });
 
 });
 </script>
-
 </html>

@@ -215,22 +215,27 @@ document.addEventListener('DOMContentLoaded', () => {
     if (closeBtn) closeBtn.addEventListener('click', closeAll);
     if (overlay) overlay.addEventListener('click', closeAll);
 
+
     /* ================= QUIZ SETUP ================= */
     const currentModule = 'meaningmath';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
+    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // Initialize ONLY once (important)
+    // Initialize once
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
+
+    // 🔴 CHANGE THIS PER QUESTION
     const correctAnswer = 'B';
 
     let answered = false;
+
 
     /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
@@ -242,7 +247,6 @@ document.addEventListener('DOMContentLoaded', () => {
             let score = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
-            // Increment ONCE
             questionCount++;
 
             // Disable options
@@ -271,18 +275,28 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
-            // Redirect after final question
-            if (questionCount >= 5) {
+
+            /* ===== AFTER EVERY 5 QUESTIONS ===== */
+            if (questionCount % 5 === 0) {
+
+                // Show score out of 5
+                result.textContent = `Your score: ${score} / 5`;
+
+                // Save last set score
+                localStorage.setItem(lastSetKey, score);
+
+                // Reset for next set
+                localStorage.setItem(scoreKey, 0);
+                localStorage.setItem(countKey, 0);
+
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
-                }, 800);
+                }, 1200);
             }
-
         });
     });
 
 });
 </script>
-
 
 </html>
