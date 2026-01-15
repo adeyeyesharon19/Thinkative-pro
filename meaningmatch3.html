@@ -164,7 +164,7 @@
                <p class="option" data-answer="A"> A. Aids</p>
                <p class="option"  data-answer="B">B. Adis</p>
                <p class="option"  data-answer="C">C. Siad</p>
-               <p class="option"  data-answer="C">D. Dais</p>
+               <p class="option"  data-answer="D">D. Dais</p>
              
                
 
@@ -188,50 +188,46 @@
     
     </main>
 </body>
-
-   <script>
+ <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ================= DASHBOARD ================= */
     const sideDash = document.getElementById('sideDash');
     const openBtn = document.getElementById('openDash');
-    const closeBtn = document.getElementById('closeDash');
     const overlay = document.getElementById('dashOverlay');
-    const welcomeText = document.getElementById('welcomeText');
 
     if (openBtn) {
         openBtn.addEventListener('click', () => {
             sideDash.classList.add('active');
             overlay.classList.add('active');
-            if (welcomeText) welcomeText.classList.add('hidden');
         });
     }
 
     const closeAll = () => {
         sideDash.classList.remove('active');
         overlay.classList.remove('active');
-        if (welcomeText) welcomeText.classList.remove('hidden');
     };
 
-    if (closeBtn) closeBtn.addEventListener('click', closeAll);
     if (overlay) overlay.addEventListener('click', closeAll);
 
+
     /* ================= QUIZ SETUP ================= */
-    const currentModule = 'meaningmath';
+    const currentModule = 'splitanagram';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
+    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // Initialize ONLY once (important)
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
-    const correctAnswer = 'D';
 
+    const correctAnswer = 'D'; // ✔ correct answer
     let answered = false;
+
 
     /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
@@ -243,10 +239,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let score = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
-            // Increment ONCE
             questionCount++;
 
-            // Disable options
+            // Disable all options
             options.forEach(opt => opt.style.pointerEvents = 'none');
 
             if (option.dataset.answer === correctAnswer) {
@@ -259,29 +254,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 option.style.background = 'red';
                 option.style.color = 'white';
 
-                const correctOpt = document.querySelector(
-                    `[data-answer="${correctAnswer}"]`
-                );
-                if (correctOpt) {
-                    correctOpt.style.background = 'blue';
-                    correctOpt.style.color = 'white';
-                }
+                // ✅ ALWAYS show the correct answer in blue
+                options.forEach(opt => {
+                    if (opt.dataset.answer === correctAnswer) {
+                        opt.style.background = 'blue';
+                        opt.style.color = 'white';
+                    }
+                });
             }
 
-            // Save progress
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
-            // Redirect after final question
-            if (questionCount >= 5) {
+            /* ===== AFTER 5 QUESTIONS ===== */
+            if (questionCount % 5 === 0) {
+
+                // Save final score for congrat page
+                localStorage.setItem(lastSetKey, score);
+
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
-                }, 800);
+                }, 1200);
             }
-
         });
     });
 
 });
 </script>
+
 </html>
