@@ -36,7 +36,7 @@
             <div class="en">
                 <button class="end" id="count-enrolled">Enrolled (0)</button>
                 <button class="tv" id="count-active">Active (0)</button>
-                <button class="tv">Completed (0)</button>
+                <button class="tv" id="count-completed">Completed (0)</button>
             </div>
         </div>
     </section>
@@ -50,18 +50,22 @@
 
 
 </body>
-   <script>
+<script>
 document.addEventListener('DOMContentLoaded', () => {
     const courseContainer = document.getElementById('enrolled-list');
     const enrolledCountBtn = document.getElementById('count-enrolled');
     const activeCountBtn = document.getElementById('count-active');
+    const completedCountBtn = document.getElementById('count-completed');
     
-    // Get data from localStorage
     const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
 
-    // Update the button numbers
     enrolledCountBtn.textContent = `Enrolled (${enrolledCourses.length})`;
-    activeCountBtn.textContent = `Active (${enrolledCourses.length})`;
+    
+    const activeCount = enrolledCourses.filter(c => !c.isCompleted).length;
+    activeCountBtn.textContent = `Active (${activeCount})`;
+
+    const completedCount = enrolledCourses.filter(c => c.isCompleted === true).length;
+    completedCountBtn.textContent = `Completed (${completedCount})`;
 
     if (enrolledCourses.length === 0) {
         courseContainer.innerHTML = `
@@ -70,20 +74,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 <a href="courses.html" style="color: #007bff;">Browse Courses</a>
             </div>`;
     } else {
-        // Clear container first
         courseContainer.innerHTML = ''; 
         
         enrolledCourses.forEach(course => {
-
             const imageSrc = course.image || 'image/default-course.jpg';
+
+            // --- LOGIC FOR COMPLETION ---
+            const isFinished = course.isCompleted === true;
+            const buttonText = isFinished ? "Completed" : "Continue Learning";
+            const buttonColor = isFinished ? "#28a745" : "#007bff"; 
+            const statusLabel = isFinished ? "Completed" : "Active";
+            const statusColor = isFinished ? "blue" : "green";
+
+            // --- NEW LOGIC FOR MULTIPLE LINKS ---
+            // This checks the title and assigns the correct page
+            let coursePage = "learning.html"; // Default page
+
+            if (course.title === "Brand Brain") {
+                coursePage = "learning brand.html"; // Change this to your actual brand brain filename
+            } else if (course.title === "Anagram Intelligence") {
+                coursePage = "learning.html";
+            }
 
             const courseHTML = `
                 <div class="course-card" style="border: 1px solid #ddd; padding: 15px; margin: 10px; border-radius: 8px; display: inline-block; width: 250px;">
-                    <img src="${course.image}" alt="${course.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px;">
+                    <img src="${imageSrc}" alt="${course.title}" style="width: 100%; height: 150px; object-fit: cover; border-radius: 5px;">
                     <h3 style="margin: 10px 0;">${course.title}</h3>
-                    <p style="color: green; font-weight: bold;">Status: Active</p>
-                    <a href="learning.html" style="text-decoration: none;">
-                    <button style="background: #007bff; color: white; border: none; padding: 8px; width: 100%; border-radius: 4px; cursor: pointer; margin-top:10px;">Continue Learning</button>
+                    <p style="color: ${statusColor}; font-weight: bold;">Status: ${statusLabel}</p>
+                    <a href="${coursePage}" style="text-decoration: none;">
+                        <button style="background: ${buttonColor}; color: white; border: none; padding: 8px; width: 100%; border-radius: 4px; cursor: pointer; margin-top:10px;">${buttonText}</button>
                     </a>
                 </div>
             `;
