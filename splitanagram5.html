@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 1</title>
+    <title>splitanagram 5</title>
 
-<link rel="stylesheet" href="css/backtofront.css">
+    <link rel="stylesheet" href="css/backtofront.css">
 </head>
+
 <body>
-      <section>
+    <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
@@ -16,8 +18,7 @@
         <!-- <span class="welcome-label" id="welcomeText">Welcome to your courses</span>  -->
     </section>
 
-
-  <section>
+<section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
                 <header class="dash-nav-header">
@@ -264,20 +265,19 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame  One - SmartPhrase Scramble Test </h2>
+                <h2>Blaze Five - Splitanagram Test </h2>
             </div>
 
-
-           <div class="solve">
+<div class="solve">
                 
-                <h5><span>A Formal reward</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(remit)</span></h5>
+                <h5> Which word, when rearranged, becomes <span> "eleven plus two"? </span>  </h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. Timer</p>
-               <p class="option"  data-answer="B">B. Miter</p>
-               <p class="option"  data-answer="C">C. Trime</p>
-               <p class="option"  data-answer="D">D. Merit</p>
+               <p class="option" data-answer="A"> A. Elevenplustwo </p>
+               <p class="option"  data-answer="B">B. Twelveoneplus </p>
+               <p class="option"  data-answer="C">C. Twelveplusone</p>
+               <p class="option"  data-answer="D">D.  Plustwoeleven  </p>
              
                
 
@@ -289,20 +289,19 @@
             </div>
 
 
-          
 
-            
-                <section class="next">
-                    <a href="smartphraseintro.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase2.html" ><button class="pre">Next</button></a>
+
+            <section class="next">
+                <a href="meaningmatch4.html"><button class="pre">Previous</button></a>
+                <!-- <a href="anagramplug5.html"><button class="pre">Next</button></a> -->
+            </section>
+
         </section>
 
-        </section>
-    
     </main>
 </body>
 
-  <script>
+ <script>
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ================= DASHBOARD ================= */
@@ -326,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ================= QUIZ SETUP ================= */
-    const currentModule = 'meaningmath';
+    const currentModule = 'riddlegram';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
@@ -339,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
 
-    const correctAnswer = 'D'; // ✔ correct answer
+    const correctAnswer = 'C'; // ✔ correct answer
     let answered = false;
 
 
@@ -395,5 +394,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 </script>
+
 
 </html>

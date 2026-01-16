@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 1</title>
+    <title>splitanagramintro</title>
 
-<link rel="stylesheet" href="css/backtofront.css">
+    <link rel="stylesheet" href="css/sparkintro.css">
 </head>
+
 <body>
-      <section>
+    <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
@@ -17,7 +19,7 @@
     </section>
 
 
-  <section>
+   <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
                 <header class="dash-nav-header">
@@ -264,136 +266,97 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame  One - SmartPhrase Scramble Test </h2>
+                <h2>Blaze - Riddlegram Test </h2>
             </div>
 
 
-           <div class="solve">
-                
-                <h5><span>A Formal reward</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(remit)</span></h5>
+            <div class="back">
+                <h4 style="line-height: 25.5px;">Riddlegram is a wordplay-based concept where two words are anagrams of
+                    each other and hidden within a riddle. Learners must decode the riddle and select the correct
+                    anagram pair from multiple-choice options.
+                </h4>
+                <h5 style="line-height: 35.5px;"><span>Example:</span>
+                    <br>
+                    I stay the same, unmoved and still. Rearranged, I step in to help with skill.
+                    <br>
+                    Which pair fits this clue?
+                    <br>
+                    A. Rescue – Secure <br>
+                    B. Stasis – Assist <br>
+                    C. Sister – Resist <br>
+                    D. Affair – Raffia
+
+                    <br>
+                    Answer: B. Stasis – Assist
+
+                </h5>
             </div>
 
-            <div class="plan">
-               <p class="option" data-answer="A"> A. Timer</p>
-               <p class="option"  data-answer="B">B. Miter</p>
-               <p class="option"  data-answer="C">C. Trime</p>
-               <p class="option"  data-answer="D">D. Merit</p>
-             
-               
-
-               <p id="result"></p>
-               <!-- <div id="explanation-container">
-                <p id="explanation"></p> -->
-               <!-- <img  id="image" src="image/complete.jpg" alt="explanationimage" ">
-               </div> -->
-            </div>
 
 
-          
 
-            
-                <section class="next">
-                    <a href="smartphraseintro.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase2.html" ><button class="pre">Next</button></a>
+
+
+            <section class="next">
+                <a href="splitanagram5.html"><button class="pre">Previous</button></a>
+                <a href="riddlegram1.html"><button class="pre">Next</button></a>
+            </section>
+
         </section>
-
-        </section>
-    
     </main>
 </body>
+<script>
 
-  <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
+        const sideDash = document.getElementById('sideDash');
+        const openBtn = document.getElementById('openDash');
+        const closeBtn = document.getElementById('closeDash');
+        const overlay = document.getElementById('dashOverlay');
+        const welcomeText = document.getElementById('welcomeText');
+        const courseContainer = document.getElementById('enrolled-list');
 
-    /* ================= DASHBOARD ================= */
-    const sideDash = document.getElementById('sideDash');
-    const openBtn = document.getElementById('openDash');
-    const overlay = document.getElementById('dashOverlay');
-
-    if (openBtn) {
+        // --- 1. OPEN DASHBOARD ---
         openBtn.addEventListener('click', () => {
             sideDash.classList.add('active');
             overlay.classList.add('active');
+
+            // Hide the text label
+            if (welcomeText) {
+                welcomeText.classList.add('hidden');
+            }
         });
-    }
 
-    const closeAll = () => {
-        sideDash.classList.remove('active');
-        overlay.classList.remove('active');
-    };
+        // --- 2. CLOSE DASHBOARD ---
+        const closeAll = () => {
+            sideDash.classList.remove('active');
+            overlay.classList.remove('active');
 
-    if (overlay) overlay.addEventListener('click', closeAll);
+            // Show the text label again
+            if (welcomeText) {
+                welcomeText.classList.remove('hidden');
+            }
+        };
 
+        if (closeBtn) closeBtn.addEventListener('click', closeAll);
+        if (overlay) overlay.addEventListener('click', closeAll);
 
-    /* ================= QUIZ SETUP ================= */
-    const currentModule = 'meaningmath';
-    localStorage.setItem('currentModule', currentModule);
-
-    const scoreKey = `${currentModule}_score`;
-    const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
-
-    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
-    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
-
-    const options = document.querySelectorAll('.option');
-    const result = document.getElementById('result');
-
-    const correctAnswer = 'D'; // ✔ correct answer
-    let answered = false;
-
-
-    /* ================= QUIZ LOGIC ================= */
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-
-            if (answered) return;
-            answered = true;
-
-            let score = parseInt(localStorage.getItem(scoreKey));
-            let questionCount = parseInt(localStorage.getItem(countKey));
-
-            questionCount++;
-
-            // Disable all options
-            options.forEach(opt => opt.style.pointerEvents = 'none');
-
-            if (option.dataset.answer === correctAnswer) {
-                score++;
-                result.textContent = 'Correct!';
-                option.style.background = 'blue';
-                option.style.color = 'white';
+        // --- 3. LOAD COURSES ---
+        const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+        if (courseContainer) {
+            if (enrolledCourses.length > 0) {
+                courseContainer.innerHTML = enrolledCourses.map(course => `
+                <div class="mini-course-card">
+                    <img src="${course.image}" alt="${course.title}">
+                    <h4>${course.title}</h4>
+                    <a href="learning-page.html">Resume →</a>
+                </div>
+            `).join('');
             } else {
-                result.textContent = 'Incorrect';
-                option.style.background = 'red';
-                option.style.color = 'white';
-
-                // ✅ ALWAYS show the correct answer in blue
-                options.forEach(opt => {
-                    if (opt.dataset.answer === correctAnswer) {
-                        opt.style.background = 'blue';
-                        opt.style.color = 'white';
-                    }
-                });
+                courseContainer.innerHTML = '<p>No courses yet.</p>';
             }
+        }
 
-            localStorage.setItem(scoreKey, score);
-            localStorage.setItem(countKey, questionCount);
-
-            /* ===== AFTER 5 QUESTIONS ===== */
-            if (questionCount % 5 === 0) {
-
-                // Save final score for congrat page
-                localStorage.setItem(lastSetKey, score);
-
-                setTimeout(() => {
-                    window.location.href = 'congrat.html';
-                }, 1200);
-            }
-        });
     });
-
-});
 </script>
 
 </html>

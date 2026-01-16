@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 1</title>
+    <title>splitanagram 1</title>
 
 <link rel="stylesheet" href="css/backtofront.css">
 </head>
@@ -17,7 +17,7 @@
     </section>
 
 
-  <section>
+   <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
                 <header class="dash-nav-header">
@@ -258,26 +258,25 @@
                 
             </div>
     </section>
-
     <div class="dash-overlay" id="dashOverlay"></div>
 
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame  One - SmartPhrase Scramble Test </h2>
+                <h2>Blaze Four - Splitanagram Test </h2>
             </div>
 
 
            <div class="solve">
                 
-                <h5><span>A Formal reward</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(remit)</span></h5>
+                <h5>What word can be rearranged to form <span>“hate drug”</span> </h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. Timer</p>
-               <p class="option"  data-answer="B">B. Miter</p>
-               <p class="option"  data-answer="C">C. Trime</p>
-               <p class="option"  data-answer="D">D. Merit</p>
+               <p class="option" data-answer="A"> A.  Dateguru    </p>
+               <p class="option"  data-answer="B">B.  Daughter</p>
+               <p class="option"  data-answer="C">C.  Hurtrade  </p>
+               <p class="option"  data-answer="D">D. Dragouth</p>
              
                
 
@@ -293,8 +292,8 @@
 
             
                 <section class="next">
-                    <a href="smartphraseintro.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase2.html" ><button class="pre">Next</button></a>
+                    <a href="splitanagram3.html"><button class="pre">Previous</button></a>
+            <a href="splitanagram5.html" ><button class="pre">Next</button></a>
         </section>
 
         </section>
@@ -326,7 +325,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ================= QUIZ SETUP ================= */
-    const currentModule = 'meaningmath';
+    const currentModule = 'riddlegram';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
@@ -339,7 +338,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const options = document.querySelectorAll('.option');
     const result = document.getElementById('result');
 
-    const correctAnswer = 'D'; // ✔ correct answer
+    const correctAnswer = 'B'; // ✔ correct answer
     let answered = false;
 
 
@@ -360,7 +359,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (option.dataset.answer === correctAnswer) {
                 score++;
-                result.textContent = 'Correct!';
+                result.textContent = 'Correct! ';
                 option.style.background = 'blue';
                 option.style.color = 'white';
             } else {

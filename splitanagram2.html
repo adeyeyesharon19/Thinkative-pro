@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>smartphrasescramble 1</title>
+    <title>splitanagram 1</title>
 
 <link rel="stylesheet" href="css/backtofront.css">
 </head>
@@ -17,7 +17,7 @@
     </section>
 
 
-  <section>
+   <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
                 <header class="dash-nav-header">
@@ -264,20 +264,20 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Flame  One - SmartPhrase Scramble Test </h2>
+                <h2>Blaze Two - Splitanagram Test </h2>
             </div>
 
 
            <div class="solve">
                 
-                <h5><span>A Formal reward</span> <span class="dash">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span>(remit)</span></h5>
+                <h5>Which word is an anagram of the phrase <span>“dirty room”? </span> </h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. Timer</p>
-               <p class="option"  data-answer="B">B. Miter</p>
-               <p class="option"  data-answer="C">C. Trime</p>
-               <p class="option"  data-answer="D">D. Merit</p>
+               <p class="option" data-answer="A"> A.  Territory   </p>
+               <p class="option"  data-answer="B">B. Morality   </p>
+               <p class="option"  data-answer="C">C.  Directory </p>
+               <p class="option"  data-answer="D">D. Dormitory</p>
              
                
 
@@ -293,8 +293,8 @@
 
             
                 <section class="next">
-                    <a href="smartphraseintro.html"><button class="pre">Previous</button></a>
-            <a href="smartphrase2.html" ><button class="pre">Next</button></a>
+                    <a href="splitanagram1.html"><button class="pre">Previous</button></a>
+            <a href="splitanagram3.html" ><button class="pre">Next</button></a>
         </section>
 
         </section>
@@ -326,7 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ================= QUIZ SETUP ================= */
-    const currentModule = 'meaningmath';
+    const currentModule = 'riddlegram';
     localStorage.setItem('currentModule', currentModule);
 
     const scoreKey = `${currentModule}_score`;
@@ -360,7 +360,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (option.dataset.answer === correctAnswer) {
                 score++;
-                result.textContent = 'Correct!';
+                result.textContent = 'Correct! ';
                 option.style.background = 'blue';
                 option.style.color = 'white';
             } else {

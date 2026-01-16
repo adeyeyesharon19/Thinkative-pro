@@ -212,7 +212,67 @@ summary::-webkit-details-marker { display: none; }
 .lesson-list li:target a {
   color: hsl(var(--primary-blue));
   font-weight: bold;
+}/* :root {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --text-dark: #111827;
+    --text-muted: #6b7280;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+} */
+
+
+
+
+
+
+/* Dropdown lesson summary */
+.lesson-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 12px 44px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: hsl(var(--text-dark));
+  transition: all 0.2s;
 }
+
+.lesson-summary:hover {
+  color: hsl(var(--primary-blue));
+  background-color: hsl(var(--bg-light));
+}
+
+/* Remove default marker */
+.lesson-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Rotate arrow when open */
+.lesson-dropdown[open] .lesson-summary span {
+  transform: rotate(90deg);
+  transition: transform 0.2s;
+}
+
+/* Sub-lessons */
+.sub-lesson-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-lesson-list li a {
+  padding: 10px 16px 10px 64px; /* extra indent */
+  font-size: 0.85rem;
+  display: block;
+  color: hsl(var(--text-dark));
+}
+
+.sub-lesson-list li a:hover {
+  color: hsl(var(--primary-blue));
+  background-color: hsl(var(--bg-light));
+}
+
 
 
 
