@@ -1,0 +1,395 @@
+/* :root {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --text-dark: #111827;
+    --text-muted: #6b7280;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+} */
+
+
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 400;
+}
+
+body {
+    color: black;
+    background-color:white;
+    font-weight: 400;
+}
+
+
+:root {
+    --primary: #4f46e5;
+    --sidebar-bg: #ffffff;
+    --text-main: #1f2937;
+}
+
+/* Keep the icon a perfect circle */
+.dash-trigger {
+    position: fixed;
+    top: 25px;
+    left: 25px;
+    width: 50px;
+    height: 50px;
+    background: var(--primary);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999;
+}
+
+/* Standalone label position */
+.welcome-label {
+    position: fixed;
+    top: 38px;
+    left: 85px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    z-index: 1000;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* THE FIX: This class hides the text */
+.hidden {
+    display: none !important;
+}
+.dash-trigger:hover { 
+    transform: scale(1.05); 
+}
+
+.dash-trigger img { 
+    width: 24px; 
+    filter: invert(1); 
+}
+
+/* Hidden Dashboard Panel */
+.side-dashboard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 350px; 
+    height: 100vh;
+    background: var(--sidebar-bg);
+    z-index: 2000;
+    transform: translateX(-100%); 
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 30px 20px;
+    overflow-y: auto;
+}
+
+.side-dashboard.active { transform: translateX(0); }
+
+/* Overlay Background */
+.dash-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
+    display: none;
+    z-index: 1500;
+}
+.dash-overlay.active { display: block; }
+
+/* .mini-course-card {
+    background: #f9fafb;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #e5e7eb;
+}
+
+.mini-course-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+} */
+
+.dash-nav-header  h2{
+    border-bottom: 1px solid  #42B3F4 ;
+    padding-bottom: 20px;
+    margin: 0
+}
+:root {
+  --bg-light: 210 35% 92%;      /* Your Background Color */
+  --text-dark: 215 50% 15%;     /* Your Foreground Color */
+  --primary-blue: 210 80% 50%;  /* Your Primary Color */
+}
+
+
+.course-container {
+  width: 100%;
+  max-width: 350px;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 20px rgba(0,0,0,0.05);
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+
+summary { list-style: none; }
+summary::-webkit-details-marker { display: none; }
+
+.module {
+  border-bottom: 1px solid hsl(var(--bg-light));
+}
+
+.module-header {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  background-color: white;
+  color: hsl(var(--text-dark));
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.module-header:hover {
+  background-color: hsl(var(--bg-light));
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.module[open] .chevron {
+  transform: rotate(180deg);
+}
+
+.lesson-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background-color: #fafbfc;
+}
+
+.lesson-list li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 12px 44px; 
+  text-decoration: none;
+  color: hsl(var(--text-dark));
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.lesson-list li a:hover {
+  color: hsl(var(--primary-blue));
+  background-color: hsl(var(--bg-light));
+}
+
+/* Highlight for the currently playing lesson */
+/* .lesson-list li.active a {
+  background-color: hsla(210, 80%, 50%, 0.1);
+  color: hsl(var(--primary-blue));
+  border-left: 4px solid hsl(var(--primary-blue));
+} */
+
+
+.lesson-list li:target {
+  background-color: hsla(210, 80%, 50%, 0.15); /* Light blue tint */
+  border-left: 4px solid hsl(var(--primary-blue));
+}
+
+.lesson-list li:target a {
+  color: hsl(var(--primary-blue));
+  font-weight: bold;
+}/* :root {
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --primary: #4f46e5;
+    --text-dark: #111827;
+    --text-muted: #6b7280;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+} */
+
+
+
+
+
+
+/* Dropdown lesson summary */
+.lesson-summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px 12px 44px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: hsl(var(--text-dark));
+  transition: all 0.2s;
+}
+
+.lesson-summary:hover {
+  color: hsl(var(--primary-blue));
+  background-color: hsl(var(--bg-light));
+}
+
+/* Remove default marker */
+.lesson-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Rotate arrow when open */
+.lesson-dropdown[open] .lesson-summary span {
+  transform: rotate(90deg);
+  transition: transform 0.2s;
+}
+
+/* Sub-lessons */
+.sub-lesson-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sub-lesson-list li a {
+  padding: 10px 16px 10px 64px; /* extra indent */
+  font-size: 0.85rem;
+  display: block;
+  color: hsl(var(--text-dark));
+}
+
+.sub-lesson-list li a:hover {
+  color: hsl(var(--primary-blue));
+  background-color: hsl(var(--bg-light));
+}
+
+/* brand purpose */
+
+.brand {
+    width: 80%;
+    box-shadow: 0 2px 10px rgba(19, 1, 82, 0.1);
+    margin-left: 130px;
+    border-radius: 20px;
+    margin-top: 150px;
+}
+
+.work {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.work h2 {
+    font-size: 35px;
+    font-weight: 400;
+    position: relative;
+    color: #000;
+    padding-top: 30px;
+}
+
+.work h2::after {
+    content: "";
+    width: 90px;
+    height: 4px;
+    background: #4f46e5;
+    display: block;
+    margin: 1rem auto 0;
+    border-radius: 2px;
+}
+
+.flame {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3.5rem;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.pur {
+    background: #ffffff;
+    padding: 2.2rem;
+    border-radius: 16px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.35s ease;
+    border-top: 5px solid #4f46e5;
+}
+
+.pur:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+}
+
+
+.pur h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: #4338ca;
+    font-weight: 600;
+}
+
+.pur p {
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #4b5563;
+    margin-bottom: 0.9rem;
+}
+
+
+.pur p:last-child {
+    white-space: pre-line;
+}
+
+.key {
+    background: #ffffff;
+    padding: 2.8rem;
+    border-radius: 18px;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.key h3 {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+    color: #1f2933;
+    text-align: center;
+}
+
+.key p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #374151;
+    white-space: pre-line;
+    text-align: center;
+}
+
+.next{
+  display: flex;
+   align-items: center;
+   justify-content: space-between;
+
+}
+
+
+.pre{
+     background: rgb(47, 47, 223);
+  color: white;
+  padding: 15px 35px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  /* margin-right: 850px; */
+  margin-top: 20px;
+  margin-bottom: 15px;
+  margin: 40px;
+} 

@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>learning brand</title>
+    <meta name="viewport" content="width=
+    , initial-scale=1.0">
+    <title>what brand brain</title>
 
-    <link rel="stylesheet" href="css/learning brand.css">
+    <link rel="stylesheet" href="css/whatbrand.css">
 </head>
 
 <body>
+
     <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
@@ -264,20 +266,45 @@
 
     <div class="dash-overlay" id="dashOverlay"></div>
 
-    <div id="welcome-overlay" class="brand-welcome">
-        <div class="welcome-content">
-            <div class="brain-icon">🧠</div>
-            <h1 class="typing-text">Initializing Brand Brain...</h1>
-            <p class="fade-in-text">Prepare to unlock your creative intelligence.</p>
-            <button class="start-btn" onclick="closeWelcome()">ACCESS CLASSROOM</button>
-        </div>
-        <div class="scan-line"></div>
-    </div>
+    <main>
+        <section class="brand">
+            <div class="defi">
+                <h2>Definition of Brand Naming</h2>
+                <p>Brand naming is the strategic process of creating a distinctive and meaningful name for a product,
+                    service, or organization. A brand name serves as the first point of contact between a business and
+                    its audience. It communicates identity, personality, values, and purpose, while also shaping
+                    perception and emotional connection. An effective brand name is memorable, relevant, scalable, and
+                    capable of standing out in a competitive marketplace.</p>
+                <div class="brand-img">
+                    <img src="image/companybrand.jpg" alt="company-brands" width="600" height="400">
+                </div>
+            </div>
 
+            <div class="impo">
+                <div class="bis">
+                <h2>Importance of Brand Naming in the World of Business</h2>
+                <p>A brand name is one of the most valuable assets of a business. It plays a critical role in:
+                </p>
+                </div>
+                <div class="boxes">
+                    <p class="box1">Creating first impressions and brand recognition</p>
+                    <p class="box1">Differentiating a business from competitors</p>
+                    <p class="box1">Building trust and credibility with customers </p>
+                    <p class="box1">Influencing purchasing decisions </p>
+                    <p class="box1">Supporting marketing, advertising, and storytelling </p>
+                    <p class="box1">Enhancing brand loyalty and long-term growth </p>
+                    
+                </div>
+            </div>
+
+                <section class="next">
+                <a href="historybrand.html"><button class="pre">Next</button></a>
+            </section>
+        </section>
+    </main>
 
 </body>
-
-<script>
+   <script>
 
     document.addEventListener('DOMContentLoaded', () => {
         const sideDash = document.getElementById('sideDash');
@@ -328,49 +355,6 @@
             }
         }
 
-
-        const hasVisited = localStorage.getItem('visitedBrandBrain');
-
-        if (!hasVisited) {
-            // Show your Welcome Design/Overlay
-            document.getElementById('welcome-overlay').style.display = 'block';
-
-            // Mark as visited so they don't see it every time they refresh
-            localStorage.setItem('visitedBrandBrain', 'true');
-        }
-
-        // Check for first visit
-        window.onload = function () {
-            const hasVisited = localStorage.getItem('visitedBrandBrain');
-
-            if (!hasVisited) {
-                // Show the Welcome Box
-                document.querySelector('.brand-welcome').style.display = 'flex';
-
-                // Trigger the blur overlay behind/over it
-                const overlay = document.querySelector('.dash-overlay');
-                overlay.style.display = 'block';
-                overlay.classList.add('active');
-
-                localStorage.setItem('visitedBrandBrain', 'true');
-            }
-        };
-
-        // Update your Close function to hide both
-        function closeWelcome() {
-            document.querySelector('.brand-welcome').style.display = 'none';
-
-            // Only remove the blur if the sidebar isn't open
-            const sideDash = document.querySelector('.side-dashboard');
-            if (!sideDash.classList.contains('active')) {
-                const overlay = document.querySelector('.dash-overlay');
-                overlay.style.display = 'none';
-                overlay.classList.remove('active');
-            }
-        }
     });
-
-
 </script>
-
 </html>

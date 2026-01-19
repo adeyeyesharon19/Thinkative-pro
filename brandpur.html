@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>learning brand</title>
+    <title>brand purpose and m/v</title>
 
-    <link rel="stylesheet" href="css/learning brand.css">
+    <link rel="stylesheet" href="css/brandpur.css">
 </head>
 
 <body>
@@ -38,7 +38,7 @@
                             <li id="L1"><a href="whatbrand.html"><span>▶</span> 1.1 What is Brand Naming</a></li>
                             <li id="L2"><a href="historybrand.html"><span>▶</span> 1.2 History behind Brand Naming </a>
                             </li>
-                            <li id="L2"><a href="brandpur.html"><span>▶</span> 1.2 Brand Naming Purpose, Vision &
+                            <li id="L2"><a href="brandpur.html"><span>▶</span> 1.3 Brand Naming Purpose, Vision &
                                     Mission </a></li>
 
                         </ul>
@@ -56,7 +56,7 @@
                             <span class="chevron"></span>
                         </summary>
                         <ul class="lesson-list">
-                            <li id="L1"><a href="lifeapp1.html"><span>▶</span> 2.1 Life Equation 1</a></li>
+                            <li id="L1"><a href="brandlifeapp1.html"><span>▶</span> 2.1 Life Equation 1</a></li>
 
                             <li id="L2"><a href="lifeapp2.html"><span>▶</span> 2.2 Life Equation 2</a></li>
 
@@ -264,16 +264,56 @@
 
     <div class="dash-overlay" id="dashOverlay"></div>
 
-    <div id="welcome-overlay" class="brand-welcome">
-        <div class="welcome-content">
-            <div class="brain-icon">🧠</div>
-            <h1 class="typing-text">Initializing Brand Brain...</h1>
-            <p class="fade-in-text">Prepare to unlock your creative intelligence.</p>
-            <button class="start-btn" onclick="closeWelcome()">ACCESS CLASSROOM</button>
-        </div>
-        <div class="scan-line"></div>
-    </div>
+    <main>
+        <section class="brand">
+            <div class="work">
+                <h2>Brand Naming Framework</h2>
+            </div>
 
+            <div class="flame">
+                <div class="pur">
+                    <h3>Purpose</h3>
+                    <p>The purpose of brand naming is to create a unique identity that resonates with your target
+                        audience and sets you apart from competitors. A well-crafted brand name can:</p>
+                    <p>- Communicate your brand's values and mission
+                        - Build recognition and trust
+                        - Differentiate your brand in a crowded market</p>
+                </div>
+
+                <div class="pur">
+                    <h3>Vision</h3>
+                    <p>A brand naming vision focuses on the desired outcome – what you want your brand name to achieve.
+                        For example:</p>
+                    <p>- Create a name that evokes emotions and connections
+                        - Develop a name that's memorable and easy to pronounce
+                        - Establish a name that adapts to your brand's growth
+                    </p>
+                </div>
+
+                <div class="pur">
+                    <h3>Mission</h3>
+                    <p>A brand naming mission outlines the approach to achieving the vision. For example:</p>
+                    <p>- Research and analyze target audience preferences
+                        - Generate a list of potential names that fit the brand's identity
+                        - Test and refine the name to ensure it resonates with the audience
+                    </p>
+                </div>
+            </div>
+            <div class="key">
+                <h3>Key considerations for brand naming</h3>
+                <p>- Uniqueness: Stand out from competitors
+                    - Relevance: Reflect your brand's purpose and values
+                    - Memorability: Easy to remember and pronounce
+                    - Scalability: Adapt to your brand's growth</p>
+            </div>
+
+                   <section class="next">
+                <a href="historybrand.html"><button class="pre">Previous</button></a>
+                <a href="brandlifeapp1.html"><button class="pre">Next</button></a>
+            </section>
+
+        </section>
+    </main>
 
 </body>
 
@@ -328,49 +368,7 @@
             }
         }
 
-
-        const hasVisited = localStorage.getItem('visitedBrandBrain');
-
-        if (!hasVisited) {
-            // Show your Welcome Design/Overlay
-            document.getElementById('welcome-overlay').style.display = 'block';
-
-            // Mark as visited so they don't see it every time they refresh
-            localStorage.setItem('visitedBrandBrain', 'true');
-        }
-
-        // Check for first visit
-        window.onload = function () {
-            const hasVisited = localStorage.getItem('visitedBrandBrain');
-
-            if (!hasVisited) {
-                // Show the Welcome Box
-                document.querySelector('.brand-welcome').style.display = 'flex';
-
-                // Trigger the blur overlay behind/over it
-                const overlay = document.querySelector('.dash-overlay');
-                overlay.style.display = 'block';
-                overlay.classList.add('active');
-
-                localStorage.setItem('visitedBrandBrain', 'true');
-            }
-        };
-
-        // Update your Close function to hide both
-        function closeWelcome() {
-            document.querySelector('.brand-welcome').style.display = 'none';
-
-            // Only remove the blur if the sidebar isn't open
-            const sideDash = document.querySelector('.side-dashboard');
-            if (!sideDash.classList.contains('active')) {
-                const overlay = document.querySelector('.dash-overlay');
-                overlay.style.display = 'none';
-                overlay.classList.remove('active');
-            }
-        }
     });
-
-
 </script>
 
 </html>
