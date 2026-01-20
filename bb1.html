@@ -303,103 +303,95 @@
 </body>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
-        /* ================= DASHBOARD ================= */
-        const sideDash = document.getElementById('sideDash');
-        const openBtn = document.getElementById('openDash');
-        const overlay = document.getElementById('dashOverlay');
+    /* ================= DASHBOARD ================= */
+    const sideDash = document.getElementById('sideDash');
+    const openBtn = document.getElementById('openDash');
+    const overlay = document.getElementById('dashOverlay');
 
-        if (openBtn) {
-            openBtn.addEventListener('click', () => {
-                sideDash.classList.add('active');
-                overlay.classList.add('active');
-            });
-        }
-
-        const closeAll = () => {
-            sideDash.classList.remove('active');
-            overlay.classList.remove('active');
-        };
-
-        if (overlay) overlay.addEventListener('click', closeAll);
-
-
-        /* ================= QUIZ SETUP ================= */
-        const currentModule = '';
-        localStorage.setItem('currentModule', currentModule);
-
-        const scoreKey = `${currentModule}_score`;
-        const countKey = `${currentModule}_questionCount`;
-        const lastSetKey = `${currentModule}_lastSetScore`;
-
-        if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
-        if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
-
-        const options = document.querySelectorAll('.option');
-        const result = document.getElementById('result');
-
-        const correctAnswer = 'C'; // ✔ correct answer
-        const explanationText = 'Correct Answer: C (ONNET)'; // This is what the user SEES
-        let answered = false;
-
-        /* ================= QUIZ LOGIC ================= */
-        options.forEach(option => {
-            option.addEventListener('click', () => {
-
-                if (answered) return;
-                answered = true;
-
-                let score = parseInt(localStorage.getItem(scoreKey));
-                let questionCount = parseInt(localStorage.getItem(countKey));
-
-                questionCount++;
-
-                // Disable all options
-                options.forEach(opt => opt.style.pointerEvents = 'none');
-
-                // 1. Find the explanation element
-                const explanationElement = document.getElementById('explanation');
-
-                if (option.dataset.answer === correctAnswer) {
-                    score++;
-                    result.textContent = 'Correct!';
-                    // 2. SHOW THE EXPLANATION TEXT
-                    explanationElement.textContent = explanationText;
-
-                    option.style.background = 'blue';
-                    option.style.color = 'white';
-                } else {
-                    result.textContent = 'Incorrect';
-                    // 2. SHOW THE EXPLANATION TEXT EVEN IF WRONG
-                    explanationElement.textContent = explanationText;
-
-                    option.style.background = 'red';
-                    option.style.color = 'white';
-
-                    // ALWAYS show the correct answer in blue
-                    options.forEach(opt => {
-                        if (opt.dataset.answer === correctAnswer) {
-                            opt.style.background = 'blue';
-                            opt.style.color = 'white';
-                        }
-                    });
-                }
-
-                localStorage.setItem(scoreKey, score);
-                localStorage.setItem(countKey, questionCount);
-
-                /* ===== AFTER 5 QUESTIONS ===== */
-                if (questionCount % 5 === 0) {
-                    localStorage.setItem(lastSetKey, score);
-                    setTimeout(() => {
-                        window.location.href = '';
-                    }, 1200);
-                }
-            });
+    if (openBtn) {
+        openBtn.addEventListener('click', () => {
+            sideDash.classList.add('active');
+            overlay.classList.add('active');
         });
+    }
 
+    const closeAll = () => {
+        sideDash.classList.remove('active');
+        overlay.classList.remove('active');
+    };
+
+    if (overlay) overlay.addEventListener('click', closeAll);
+
+    /* ================= QUIZ SETUP ================= */
+    const currentModule = 'first5'; // unique module
+    const scoreKey = `${currentModule}_score`;
+    const countKey = `${currentModule}_questionCount`;
+    const lastSetKey = `${currentModule}_lastSetScore`;
+
+    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
+    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
+
+    const options = document.querySelectorAll('.option');
+    const result = document.getElementById('result');
+    const explanationElement = document.getElementById('explanation');
+
+    const correctAnswer = 'C'; // correct answer for this question
+    const explanationText = 'Correct Answer: C'; 
+
+    let answered = false;
+
+    /* ================= QUIZ LOGIC ================= */
+    options.forEach(option => {
+        option.addEventListener('click', () => {
+            if (answered) return;
+            answered = true;
+
+            let score = parseInt(localStorage.getItem(scoreKey));
+            let questionCount = parseInt(localStorage.getItem(countKey));
+            questionCount++;
+
+            // Disable all options
+            options.forEach(opt => opt.style.pointerEvents = 'none');
+
+            // Highlight correct answer immediately
+            options.forEach(opt => {
+                if (opt.dataset.answer === correctAnswer) {
+                    opt.classList.add('correct'); // correct = blue
+                }
+            });
+
+            // If clicked option is wrong, mark it red
+            if (option.dataset.answer !== correctAnswer) {
+                option.classList.add('wrong'); // wrong = red
+                result.textContent = 'Incorrect';
+            } else {
+                // If correct
+                score++;
+                result.textContent = 'Correct!';
+            }
+
+            // Show explanation
+            explanationElement.textContent = explanationText;
+
+            // Save score and question count
+            localStorage.setItem(scoreKey, score);
+            localStorage.setItem(countKey, questionCount);
+
+            /* ===== AFTER 5 QUESTIONS ===== */
+            if (questionCount % 5 === 0) {
+                const lastSetScore = score - (questionCount - 5); // last set score
+                localStorage.setItem(lastSetKey, lastSetScore);
+                localStorage.setItem(countKey, 0); // reset for next set
+                setTimeout(() => {
+                    window.location.href = 'congratbrand.html';
+                }, 1200);
+            }
+        });
     });
+});
 </script>
+
 
 </html>

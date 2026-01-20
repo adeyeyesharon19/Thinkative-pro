@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Congratulations!</title>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: radial-gradient(circle at top, #ffafbd, #ffc3a0, #2193b0, #6dd5ed);
+        overflow: hidden;
+        font-family: 'Fredoka One', cursive;
+    }
+    .container {
+        background: rgba(0,0,0,0.6);
+        padding: 60px;
+        border-radius: 25px;
+        text-align: center;
+        color: #fff;
+        box-shadow: 0 0 30px rgba(255,255,255,0.2);
+        position: relative;
+        z-index: 1;
+    }
+    h1 { font-size: 60px; color: #fffa65; text-shadow: 2px 2px 10px #ff4b5c; margin-bottom: 20px; }
+    p { font-size: 28px; margin-bottom: 20px; }
+    .score { font-size: 50px; color: #00ffe7; text-shadow: 1px 1px 5px #00bfff; }
+    button {
+        margin-top: 30px;
+        padding: 15px 35px;
+        font-size: 20px;
+        border: none;
+        border-radius: 12px;
+        background: linear-gradient(45deg, #ff4b5c, #ffac41);
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        transition: transform 0.2s;
+    }
+    button:hover { transform: scale(1.1); }
+    .confetti {
+        position: absolute;
+        width: 10px; height: 10px; top: 0;
+        animation: fall 3s linear infinite;
+        opacity: 0.7; z-index: 0;
+    }
+    @keyframes fall { 0% { transform: translateY(0) rotate(0deg); } 100% { transform: translateY(100vh) rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🎉 Congratulations! 🎉</h1>
+    <p>You completed 5 questions!</p>
+    <div class="score" id="score">Score: 0/5</div>
+    <button onclick="continueQuiz()">Continue</button>
+</div>
+
+<script>
+    const lastSetScore = localStorage.getItem('first5_lastSetScore') || 0;
+    document.getElementById('score').innerText = `Score: ${lastSetScore}/5`;
+
+    function continueQuiz() {
+        // Go to next set or another page
+        alert("Load next set of questions...");
+        // Example: window.location.href = 'next5questions.html';
+    }
+
+    // Generate confetti
+    for(let i = 0; i < 100; i++){
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        confetti.style.animationDuration = 2 + Math.random() * 3 + 's';
+        confetti.style.width = 5 + Math.random() * 10 + 'px';
+        confetti.style.height = 5 + Math.random() * 10 + 'px';
+        document.body.appendChild(confetti);
+    }
+</script>
+
+</body>
+</html>
+

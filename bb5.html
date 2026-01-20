@@ -300,49 +300,49 @@
 
 </body>
 
- <script>
-document.addEventListener('DOMContentLoaded', () => {
 
-    /* ================= DASHBOARD ================= */
-    const sideDash = document.getElementById('sideDash');
-    const openBtn = document.getElementById('openDash');
-    const overlay = document.getElementById('dashOverlay');
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
 
-    if (openBtn) {
-        openBtn.addEventListener('click', () => {
-            sideDash.classList.add('active');
-            overlay.classList.add('active');
-        });
-    }
+        /* ================= DASHBOARD ================= */
+        const sideDash = document.getElementById('sideDash');
+        const openBtn = document.getElementById('openDash');
+        const overlay = document.getElementById('dashOverlay');
 
-    const closeAll = () => {
-        sideDash.classList.remove('active');
-        overlay.classList.remove('active');
-    };
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                sideDash.classList.add('active');
+                overlay.classList.add('active');
+            });
+        }
 
-    if (overlay) overlay.addEventListener('click', closeAll);
+        const closeAll = () => {
+            sideDash.classList.remove('active');
+            overlay.classList.remove('active');
+        };
 
-
-    /* ================= QUIZ SETUP ================= */
-    const currentModule = '';
-    localStorage.setItem('currentModule', currentModule);
-
-    const scoreKey = `${currentModule}_score`;
-    const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
-
-    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
-    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
-
-    const options = document.querySelectorAll('.option');
-    const result = document.getElementById('result');
-
-    const correctAnswer = 'D '; // ✔ correct answer
-     const explanationText = 'Correct Answer: D (MALLCIOUS)  '; // This is what the user SEES
-    let answered = false;
+        if (overlay) overlay.addEventListener('click', closeAll);
 
 
-    /* ================= QUIZ LOGIC ================= */
+        /* ================= QUIZ SETUP ================= */
+        const currentModule = '';
+        localStorage.setItem('currentModule', currentModule);
+
+        const scoreKey = `${currentModule}_score`;
+        const countKey = `${currentModule}_questionCount`;
+        const lastSetKey = `${currentModule}_lastSetScore`;
+
+        if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
+        if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
+
+        const options = document.querySelectorAll('.option');
+        const result = document.getElementById('result');
+
+        const correctAnswer = 'D'; // ✔ correct answer
+        const explanationText = 'Correct Answer: D (MALLCIOUS)'; // This is what the user SEES
+        let answered = false;
+
+        /* ================= QUIZ LOGIC ================= */
         options.forEach(option => {
             option.addEventListener('click', () => {
 
@@ -392,11 +392,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (questionCount % 5 === 0) {
                     localStorage.setItem(lastSetKey, score);
                     setTimeout(() => {
-                        window.location.href = '';
+                        window.location.href = 'congratbrand.html';
                     }, 1200);
                 }
             });
         });
-});
+
+    });
 </script>
 </html>
