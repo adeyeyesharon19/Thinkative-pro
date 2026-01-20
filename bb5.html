@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
 
     <link rel="stylesheet" href="css/backtofront.css">
 </head>
+
 <body>
-     <section>
+    <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
@@ -260,42 +262,42 @@
     <div class="dash-overlay" id="dashOverlay"></div>
 
     <main>
-          <section class="life">
+        <section class="life">
             <div class="one">
                 <h2>Spark Five - Before & Brand Test
- </h2>
+                </h2>
             </div>
 
 
             <div class="solve">
-                
-                <h5>MAL(I)CIOUS: For Supermarkets<br><br>Replace  <span>I</span> with:</h5>
+
+                <h5>MAL(I)CIOUS: For Supermarkets<br><br>Replace <span>I</span> with:</h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. C  </p>
-               <p class="option"  data-answer="B">B. I </p>
-               <p class="option"  data-answer="C">C. T  </p>
-               <p class="option"  data-answer="D">D. L </p>
-             
-               
+                <p class="option" data-answer="A"> A. C </p>
+                <p class="option" data-answer="B">B. I </p>
+                <p class="option" data-answer="C">C. T </p>
+                <p class="option" data-answer="D">D. L </p>
 
-               <p id="result"></p>
-            
-                <p id="explanation"></p> 
-            
+
+
+                <p id="result"></p>
+
+                <p id="explanation"></p>
+
             </div>
 
-          
 
-            
-                <section class="next">
-                    <a href="bb4.html"><button class="pre">Previous</button></a>
-            <a href="bb5.html" ><button class="pre">Next</button></a>
+
+
+            <section class="next">
+                <a href="bb4.html"><button class="pre">Previous</button></a>
+                <a href="bb5.html"><button class="pre">Next</button></a>
+            </section>
+
         </section>
 
-        </section>
-    
     </main>
 
 </body>
@@ -323,81 +325,82 @@
 
         if (overlay) overlay.addEventListener('click', closeAll);
 
-
         /* ================= QUIZ SETUP ================= */
-        const currentModule = '';
-        localStorage.setItem('currentModule', currentModule);
-
+        const currentModule = 'first5';
         const scoreKey = `${currentModule}_score`;
         const countKey = `${currentModule}_questionCount`;
         const lastSetKey = `${currentModule}_lastSetScore`;
 
+        // Initialize storage if empty
         if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
         if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
         const options = document.querySelectorAll('.option');
         const result = document.getElementById('result');
+        const explanationElement = document.getElementById('explanation');
 
-        const correctAnswer = 'D'; // ✔ correct answer
-        const explanationText = 'Correct Answer: D (MALLCIOUS)'; // This is what the user SEES
+        const correctAnswer = 'D'; // The correct choice ID
+        const explanationText = 'Correct Answer: D — BN:  MALLCIOUS ';
+
         let answered = false;
 
-        /* ================= QUIZ LOGIC ================= */
+        /* ================= QUIZ LOGIC (FOR BB5.HTML ONLY) ================= */
         options.forEach(option => {
             option.addEventListener('click', () => {
-
                 if (answered) return;
                 answered = true;
 
-                let score = parseInt(localStorage.getItem(scoreKey));
-                let questionCount = parseInt(localStorage.getItem(countKey));
+                // 1. Get current data
+                let score = parseInt(localStorage.getItem(scoreKey)) || 0;
+                let questionCount = parseInt(localStorage.getItem(countKey)) || 0;
 
-                questionCount++;
-
-                // Disable all options
+                // 2. Disable all options
                 options.forEach(opt => opt.style.pointerEvents = 'none');
 
-                // 1. Find the explanation element
-                const explanationElement = document.getElementById('explanation');
+                const userChoice = option.dataset.answer;
 
-                if (option.dataset.answer === correctAnswer) {
-                    score++;
+                // 3. Check answer and update UI colors
+                if (userChoice === correctAnswer) {
+                    option.style.backgroundColor = 'blue'; // Blue
+                    option.style.color = 'white';
                     result.textContent = 'Correct!';
-                    // 2. SHOW THE EXPLANATION TEXT
-                    explanationElement.textContent = explanationText;
-
-                    option.style.background = 'blue';
-                    option.style.color = 'white';
+                    score++; // Update the local score variable
                 } else {
-                    result.textContent = 'Incorrect';
-                    // 2. SHOW THE EXPLANATION TEXT EVEN IF WRONG
-                    explanationElement.textContent = explanationText;
-
-                    option.style.background = 'red';
+                    option.style.backgroundColor = 'red'; // Red
                     option.style.color = 'white';
-
-                    // ALWAYS show the correct answer in blue
+                    result.textContent = 'Incorrect';
+                    // Highlight the correct one so they learn
                     options.forEach(opt => {
                         if (opt.dataset.answer === correctAnswer) {
-                            opt.style.background = 'blue';
+                            opt.style.backgroundColor = 'blue';
                             opt.style.color = 'white';
                         }
                     });
                 }
 
+                // 4. Update the count
+                questionCount++;
+
+                // 5. SAVE EVERYTHING TO LOCAL STORAGE
                 localStorage.setItem(scoreKey, score);
                 localStorage.setItem(countKey, questionCount);
 
-                /* ===== AFTER 5 QUESTIONS ===== */
-                if (questionCount % 5 === 0) {
-                    localStorage.setItem(lastSetKey, score);
-                    setTimeout(() => {
-                        window.location.href = 'congratbrand.html';
-                    }, 1200);
-                }
+                // This is the important part for the Congratulation Page:
+                localStorage.setItem(lastSetKey, score); // Saves final score (e.g., 4/5)
+                localStorage.setItem('quiz_stage', '1'); // Tells Congrat page we finished BB5
+
+                // Show explanation
+                explanationElement.textContent = explanationText;
+
+                // 6. REDIRECT IMMEDIATELY (since this is the last question)
+                setTimeout(() => {
+                    window.location.href = 'congratbrand.html';
+                }, 1500); // 1.5 seconds so they can see the color change
             });
         });
-
     });
+
+
 </script>
+
 </html>

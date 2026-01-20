@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
 
     <link rel="stylesheet" href="css/backtofront.css">
 </head>
+
 <body>
-     <section>
+    <section>
         <div class="dash-trigger" id="openDash">
             <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
         </div>
@@ -77,12 +79,12 @@
                                     </summary>
 
                                     <ul class="sub-lesson-list">
-                                        <li><a href="sparkintro.html">Introduction</a></li>
-                                        <li><a href="spark.html">Question 1</a></li>
-                                        <li><a href="backtofront1.html">Question 2</a></li>
-                                        <li><a href="backtofront2.html">Question 3</a></li>
-                                        <li><a href="backtofront3.html">Question 4</a></li>
-                                        <li><a href="backtofront4.html">Question 5</a></li>
+                                        <li><a href="bbintro.html">Introduction</a></li>
+                                        <li><a href="bb1.html">Question 1</a></li>
+                                        <li><a href="bb2.html">Question 2</a></li>
+                                        <li><a href="bb3.html">Question 3</a></li>
+                                        <li><a href="bb4.html">Question 4</a></li>
+                                        <li><a href="bb5.html">Question 5</a></li>
                                     </ul>
                                 </details>
                             </li>
@@ -90,23 +92,23 @@
                             <li id="L2">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
-                                        <span>▶</span> 3.2
+                                        <span>▶</span> 3.2 Brand Anagram
                                     </summary>
 
                                     <ul class="sub-lesson-list">
-                                        <li><a href="anagramplugintro.html">Introduction</a></li>
-                                        <li><a href="anagramplug1.html">Question 1</a></li>
-                                        <li><a href="anagramplug2.html">Question 2</a></li>
-                                        <li><a href="anagramplug3.html">Question 3</a></li>
-                                        <li><a href="anagramplug4.html">Question 4</a></li>
-                                        <li><a href="anagramplug5.html">Question 5</a></li>
+                                        <li><a href="brandanaintro.html">Introduction</a></li>
+                                        <li><a href="brandana1.html">Question 1</a></li>
+                                        <li><a href="brandana2.html">Question 2</a></li>
+                                        <li><a href="brandana3.html">Question 3</a></li>
+                                        <li><a href="brandana4.html">Question 4</a></li>
+                                        <li><a href="brandana5.html">Question 5</a></li>
                                     </ul>
                                 </details>
                             </li>
                             <li id="L3" class="active">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
-                                        <span>▶</span> 3.3 FlipConnect Test
+                                        <span>▶</span> 3.3
                                     </summary>
 
                                     <ul class="sub-lesson-list">
@@ -260,42 +262,42 @@
     <div class="dash-overlay" id="dashOverlay"></div>
 
     <main>
-          <section class="life">
+        <section class="life">
             <div class="one">
-                <h2>Spark Four - Before & Brand Test
- </h2>
+                <h2>Spark One - Brand Anagram Test
+                </h2>
             </div>
 
 
             <div class="solve">
-                
-                <h5>WIN(D)OW: For Game Center Business<br><br>Replace  <span>U</span> with:</h5>
+
+                <h5><span>(Scar)</span>city : (Car Dealership) <br><br>_____city</h5>
             </div>
 
             <div class="plan">
-               <p class="option" data-answer="A"> A. V </p>
-               <p class="option"  data-answer="B">B. N </p>
-               <p class="option"  data-answer="C">C. G </p>
-               <p class="option"  data-answer="D">D. M </p>
-             
-               
+                <p class="option" data-answer="A"> A. Card </p>
+                <p class="option" data-answer="B">B. Case </p>
+                <p class="option" data-answer="C">C. Care </p>
+                <p class="option" data-answer="D">D. Cars </p>
 
-               <p id="result"></p>
-            
-                <p id="explanation"></p> 
-              
+
+
+                <p id="result"></p>
+
+                <p id="explanation"></p>
+
             </div>
 
-          
 
-            
-                <section class="next">
-                    <a href="bb3.html"><button class="pre">Previous</button></a>
-            <a href="bb5.html" ><button class="pre">Next</button></a>
+
+
+            <section class="next">
+                <a href="brandanaintro.html"><button class="pre">Previous</button></a>
+                <a href="brandana2.html"><button class="pre">Next</button></a>
+            </section>
+
         </section>
 
-        </section>
-    
     </main>
 
 </body>
@@ -321,23 +323,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (overlay) overlay.addEventListener('click', closeAll);
 
-    
+   
     /* ================= QUIZ SETUP ================= */
     const currentModule = 'first5'; 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
+    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // JUST GET the existing values
-    let score = parseInt(localStorage.getItem(scoreKey)) || 0;
-    let questionCount = parseInt(localStorage.getItem(countKey)) || 0;
+    // RESET EVERYTHING because this is Question #1
+    localStorage.setItem(scoreKey, 0); 
+    localStorage.setItem(countKey, 0); 
 
     const options = document.querySelectorAll('.option');
-   
     const result = document.getElementById('result');
     const explanationElement = document.getElementById('explanation');
 
-    const correctAnswer = 'B'; // The correct choice ID
-    const explanationText = 'Correct Answer: B — BN:  WINNOW '; 
+    const correctAnswer = 'D'; // The correct choice ID
+    const explanationText = 'Correct Answer: D — BN: Scarcity'; 
 
     let answered = false;
 

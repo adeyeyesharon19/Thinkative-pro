@@ -109,5 +109,21 @@
 <!-- <script src="js/profile.js"></script> -->
 
 </body>
+<script>
+       // Add this script to your Profile/Dashboard page (in.html)
+window.onload = function() {
+    // Retrieve the data we saved earlier
+    const displayDataName = localStorage.getItem('savedUserName');
+    
+    // Find the place in your HTML where you want to show the name
+    // Example: If you have <span id="user-title"></span>
+    const nameTarget = document.getElementById('displayName'); 
 
+    if (displayDataName) {
+        nameTarget.textContent = displayDataName;
+    } else {
+        console.log("No user information found in storage.");
+    }
+};
+</script>
 </html>

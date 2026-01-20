@@ -1,58 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN</title>
-    <link rel="stylesheet" href="css/Login.css">
-    <link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LOGIN</title>
+  <link rel="stylesheet" href="css/Login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 </head>
+
 <body>
-    <section class="log-in">
+  <section class="log-in">
     <div class="wel-back">
-            <h2>Thinkative</h2>
-            <h3>Welcome back!</h3>
-        </div>   
+      <h2>Thinkative</h2>
+      <h3>Welcome back!</h3>
+    </div>
 
-        <div class="log-box">
-            <h4>New to Thinkative? 
-               <!-- <a href="get started.html"><button>Sign up</button></a></h4> -->
+    <div class="log-box">
+      <h4>New to Thinkative?
+        <!-- <a href="get started.html"><button>Sign up</button></a></h4> -->
 
-               <a href="get started.html">Sign up now➡️</a>
-              
-            <h3>Log in to continue</h3>
-            <p>How would you like to sign in?</p>
-       <form id="login-form" action="in.html" method="GET">
-         <label for="Name"></label>
-        <input type="text" id="Name" name="Name" placeholder="Name" required> 
-        
+        <a href="get started.html">Sign up now➡️</a>
+
+        <h3>Log in to continue</h3>
+        <p>How would you like to sign in?</p>
+        <form id="login-form" action="in.html" method="GET">
+          <label for="Name"></label>
+          <input type="text" id="Name" name="Name" placeholder="Name" required>
 
 
-         <label for="password"></label>
-        <input type="password" id="password" name="password" placeholder="Password" required>
 
-        <button type="submit">LOG IN</button>
-        <h5>Forgot password?</h5>
-        
-         <div class="social-icons"> 
-  <!-- Twitter -->
-  <a href="https://twitter.com" class="twitter" target="_blank">
-    <i class="fa-brands fa-x-twitter"></i>
-  </a>
+          <label for="password"></label>
+          <input type="password" id="password" name="password" placeholder="Password" required>
 
-  <!-- Instagram -->
-  <a href="https://instagram.com" class="instagram" target="_blank">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
-  </div>
-  <h6>By logging in, you agree to our <span> Terms of Service</span>, <br>
- <span>Privacy Policy</span> and <span>CA Privacy Policy</span>.</h6>
-</div>
+          <button type="submit">LOG IN</button>
+          <h5>Forgot password?</h5>
 
-        
+          <div class="social-icons">
+            <!-- Twitter -->
+            <a href="https://twitter.com" class="twitter" target="_blank">
+              <i class="fa-brands fa-x-twitter"></i>
+            </a>
 
-       </form>
-    </section>
+            <!-- Instagram -->
+            <a href="https://instagram.com" class="instagram" target="_blank">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </div>
+          <h6>By logging in, you agree to our <span> Terms of Service</span>, <br>
+            <span>Privacy Policy</span> and <span>CA Privacy Policy</span>.
+          </h6>
+    </div>
+
+
+
+    </form>
+  </section>
 </body>
+<script>
+// Add this script to your Login page
+const loginForm = document.getElementById('login-form');
+
+loginForm.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevents the page from reloading immediately
+
+    // Capture the information from your input fields
+    const userName = document.getElementById('Name').value;
+    const userPass = document.getElementById('password').value; 
+
+    // Save the information into the browser's memory (localStorage)
+    localStorage.setItem('savedUserName', userName);
+    localStorage.setItem('savedPassword', userPass); 
+
+    // Now manually tell the browser to go to your dashboard/profile
+    window.location.href = 'in.html'; 
+});
+</script>
 </html>

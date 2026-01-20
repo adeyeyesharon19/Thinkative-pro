@@ -321,28 +321,32 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (overlay) overlay.addEventListener('click', closeAll);
 
+  
     /* ================= QUIZ SETUP ================= */
-    const currentModule = 'first5'; // unique module
+    const currentModule = 'first5'; 
     const scoreKey = `${currentModule}_score`;
     const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
 
-    // Initialize score and question count if not present
-    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
-    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
+    // JUST GET the existing values
+    let score = parseInt(localStorage.getItem(scoreKey)) || 0;
+    let questionCount = parseInt(localStorage.getItem(countKey)) || 0;
 
     const options = document.querySelectorAll('.option');
+   
     const result = document.getElementById('result');
     const explanationElement = document.getElementById('explanation');
 
-    // Example: store correct answers per question if you want dynamic
-    const correctAnswer = 'B'; // for this first question
-    const explanationText = 'Correct Answer: B (EGGCENTRIC)'; 
+    const correctAnswer = 'B'; // The correct choice ID
+    const explanationText = 'Correct Answer: B — BN:  EGGCENTRIC '; 
 
     let answered = false;
 
     /* ================= QUIZ LOGIC ================= */
     options.forEach(option => {
+        // Simple hover effect via JS since there is no CSS
+        option.style.cursor = 'pointer';
+        option.style.transition = '0.3s';
+
         option.addEventListener('click', () => {
             if (answered) return;
             answered = true;
@@ -351,43 +355,60 @@ document.addEventListener('DOMContentLoaded', () => {
             let questionCount = parseInt(localStorage.getItem(countKey));
             questionCount++;
 
-            // Disable all options
-            options.forEach(opt => opt.style.pointerEvents = 'none');
+            // Disable all options so the user can't click again
+            options.forEach(opt => {
+                opt.style.pointerEvents = 'none';
+            });
 
-            // Show result and highlight
-            if (option.dataset.answer === correctAnswer) {
-                score++;
+            const userChoice = option.dataset.answer;
+
+            if (userChoice === correctAnswer) {
+                // 1. User picked CORRECT
+                option.style.backgroundColor = 'blue'; // Blue
+                option.style.color = 'white';
                 result.textContent = 'Correct!';
-                option.classList.add('correct');
+                result.style.color = 'blue';
+                score++;
             } else {
+                // 2. User picked WRONG
+                option.style.backgroundColor = 'red'; // Red
+                option.style.color = 'white';
                 result.textContent = 'Incorrect';
-                option.classList.add('wrong');
+                result.style.color = 'red';
+
+                // 3. Find and highlight the correct one in BLUE anyway
                 options.forEach(opt => {
                     if (opt.dataset.answer === correctAnswer) {
-                        opt.classList.add('correct');
+                        opt.style.backgroundColor = ' blue'; // Blue
+                        opt.style.color = 'white';
                     }
                 });
             }
 
             // Show explanation
-            explanationElement.textContent = explanationText;
+            if (explanationElement) {
+                explanationElement.textContent = explanationText;
+                explanationElement.style.display = 'block';
+            }
 
-            // Save score and question count
+            // Save progress
             localStorage.setItem(scoreKey, score);
             localStorage.setItem(countKey, questionCount);
 
             /* ===== AFTER 5 QUESTIONS ===== */
             if (questionCount % 5 === 0) {
-                const lastSetScore = score - (questionCount - 5); // last 5-question set
+                // Calculate score for the set of 5
+                const lastSetScore = score; 
                 localStorage.setItem(lastSetKey, lastSetScore);
-                localStorage.setItem(countKey, 0); // reset for next set
+                localStorage.setItem(countKey, 0); // Reset count for next module
+                
                 setTimeout(() => {
                     window.location.href = 'congratbrand.html';
-                }, 1200);
+                }, 1500);
             }
         });
     });
-
 });
+
 </script>
 </html>

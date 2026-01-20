@@ -301,96 +301,118 @@
     </main>
 
 </body>
-
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('DOMContentLoaded', () => {
 
-    /* ================= DASHBOARD ================= */
-    const sideDash = document.getElementById('sideDash');
-    const openBtn = document.getElementById('openDash');
-    const overlay = document.getElementById('dashOverlay');
+        /* ================= DASHBOARD ================= */
+        const sideDash = document.getElementById('sideDash');
+        const openBtn = document.getElementById('openDash');
+        const overlay = document.getElementById('dashOverlay');
 
-    if (openBtn) {
-        openBtn.addEventListener('click', () => {
-            sideDash.classList.add('active');
-            overlay.classList.add('active');
-        });
-    }
-
-    const closeAll = () => {
-        sideDash.classList.remove('active');
-        overlay.classList.remove('active');
-    };
-
-    if (overlay) overlay.addEventListener('click', closeAll);
-
-    /* ================= QUIZ SETUP ================= */
-    const currentModule = 'first5'; // unique module
-    const scoreKey = `${currentModule}_score`;
-    const countKey = `${currentModule}_questionCount`;
-    const lastSetKey = `${currentModule}_lastSetScore`;
-
-    if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
-    if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
-
-    const options = document.querySelectorAll('.option');
-    const result = document.getElementById('result');
-    const explanationElement = document.getElementById('explanation');
-
-    const correctAnswer = 'C'; // correct answer for this question
-    const explanationText = 'Correct Answer: C'; 
-
-    let answered = false;
-
-    /* ================= QUIZ LOGIC ================= */
-    options.forEach(option => {
-        option.addEventListener('click', () => {
-            if (answered) return;
-            answered = true;
-
-            let score = parseInt(localStorage.getItem(scoreKey));
-            let questionCount = parseInt(localStorage.getItem(countKey));
-            questionCount++;
-
-            // Disable all options
-            options.forEach(opt => opt.style.pointerEvents = 'none');
-
-            // Highlight correct answer immediately
-            options.forEach(opt => {
-                if (opt.dataset.answer === correctAnswer) {
-                    opt.classList.add('correct'); // correct = blue
-                }
+        if (openBtn) {
+            openBtn.addEventListener('click', () => {
+                sideDash.classList.add('active');
+                overlay.classList.add('active');
             });
+        }
 
-            // If clicked option is wrong, mark it red
-            if (option.dataset.answer !== correctAnswer) {
-                option.classList.add('wrong'); // wrong = red
-                result.textContent = 'Incorrect';
-            } else {
-                // If correct
-                score++;
-                result.textContent = 'Correct!';
-            }
+        const closeAll = () => {
+            sideDash.classList.remove('active');
+            overlay.classList.remove('active');
+        };
 
-            // Show explanation
-            explanationElement.textContent = explanationText;
+        if (overlay) overlay.addEventListener('click', closeAll);
 
-            // Save score and question count
-            localStorage.setItem(scoreKey, score);
-            localStorage.setItem(countKey, questionCount);
+     
+            /* ================= QUIZ SETUP ================= */
+            const currentModule = 'first5';
+            const scoreKey = `${currentModule}_score`;
+            const countKey = `${currentModule}_questionCount`;
+            const lastSetKey = `${currentModule}_lastSetScore`;
 
-            /* ===== AFTER 5 QUESTIONS ===== */
-            if (questionCount % 5 === 0) {
-                const lastSetScore = score - (questionCount - 5); // last set score
-                localStorage.setItem(lastSetKey, lastSetScore);
-                localStorage.setItem(countKey, 0); // reset for next set
-                setTimeout(() => {
-                    window.location.href = 'congratbrand.html';
-                }, 1200);
-            }
+            // RESET EVERYTHING because this is Question #1
+            localStorage.setItem(scoreKey, 0);
+            localStorage.setItem(countKey, 0);
+
+            const options = document.querySelectorAll('.option');
+            const result = document.getElementById('result');
+
+            const explanationElement = document.getElementById('explanation');
+
+            const correctAnswer = 'C'; // The correct choice ID
+            const explanationText = 'Correct Answer: C — BN:  ONNET ';
+
+            let answered = false;
+
+            /* ================= QUIZ LOGIC ================= */
+            options.forEach(option => {
+                // Simple hover effect via JS since there is no CSS
+                option.style.cursor = 'pointer';
+                option.style.transition = '0.3s';
+
+                option.addEventListener('click', () => {
+                    if (answered) return;
+                    answered = true;
+
+                    let score = parseInt(localStorage.getItem(scoreKey));
+                    let questionCount = parseInt(localStorage.getItem(countKey));
+                    questionCount++;
+
+                    // Disable all options so the user can't click again
+                    options.forEach(opt => {
+                        opt.style.pointerEvents = 'none';
+                    });
+
+                    const userChoice = option.dataset.answer;
+
+                    if (userChoice === correctAnswer) {
+                        // 1. User picked CORRECT
+                        option.style.backgroundColor = 'blue'; // Blue
+                        option.style.color = 'white';
+                        result.textContent = 'Correct!';
+                        result.style.color = 'blue';
+                        score++;
+                    } else {
+                        // 2. User picked WRONG
+                        option.style.backgroundColor = 'red'; // Red
+                        option.style.color = 'white';
+                        result.textContent = 'Incorrect';
+                        result.style.color = 'red';
+
+                        // 3. Find and highlight the correct one in BLUE anyway
+                        options.forEach(opt => {
+                            if (opt.dataset.answer === correctAnswer) {
+                                opt.style.backgroundColor = ' blue'; // Blue
+                                opt.style.color = 'white';
+                            }
+                        });
+                    }
+
+                    // Show explanation
+                    if (explanationElement) {
+                        explanationElement.textContent = explanationText;
+                        explanationElement.style.display = 'block';
+                    }
+
+                    // Save progress
+                    localStorage.setItem(scoreKey, score);
+                    localStorage.setItem(countKey, questionCount);
+
+                    /* ===== AFTER 5 QUESTIONS ===== */
+                    if (questionCount % 5 === 0) {
+                        // Calculate score for the set of 5
+                        const lastSetScore = score;
+                        localStorage.setItem(lastSetKey, lastSetScore);
+                        localStorage.setItem(countKey, 0); // Reset count for next module
+
+                        setTimeout(() => {
+                            window.location.href = 'congratbrand.html';
+                        }, 1500);
+                    }
+                });
+            });
         });
-    });
-});
+
 </script>
 
 
