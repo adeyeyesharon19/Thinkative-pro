@@ -77,22 +77,32 @@
 
         if (currentStage === 1) {
             // User finished BB5.html (Stage 1) -> Go to Brandana
-            localStorage.setItem('quiz_stage', '2'); // Prepare for next time
+            localStorage.setItem('quiz_stage', '1'); // Prepare for next time
             nextURL = 'BRANDANAINTRO.html';
         } 
         else if (currentStage === 2) {
-            // User finished Brandana (Stage 2) -> Go to Flip
-            localStorage.setItem('quiz_stage', '3'); // Prepare for next time
-            nextURL = 'FLIPINTRO.html';
+            // User finished Brandana (Stage 2) -> Go to brandblend
+            localStorage.setItem('quiz_stage', '2'); // Prepare for next time
+            nextURL = 'BRANDBLENDINTRO.html';
         } 
         else if (currentStage === 3) {
-            // User finished Flip (Stage 3) -> Add more as needed
-            nextURL = 'FINAL_PAGE.html'; 
+            // User finished Brandana (Stage 2) -> Go to INTRASWAP
+            localStorage.setItem('quiz_stage', '3'); // Prepare for next time
+            nextURL = 'INTRASWAPINTRO.html';
         } 
-        else {
-            // Fallback if something goes wrong
-            nextURL = 'index.html'; 
-        }
+           else if (currentStage === 4) {
+            // User finished Brandana (Stage 2) -> Go to LEXI-MORPH
+            localStorage.setItem('quiz_stage', '4'); // Prepare for next time
+            nextURL = 'SWAPMARKINTRO.html';
+        } 
+        // else if (currentStage === 3) {
+        //     // User finished Flip (Stage 3) -> Add more as needed
+        //     nextURL = 'FINAL_PAGE.html'; 
+        // } 
+        // else {
+        //     // Fallback if something goes wrong
+        //     nextURL = 'index.html'; 
+        // }
 
         // 4. Redirect the user
         window.location.href = nextURL;
