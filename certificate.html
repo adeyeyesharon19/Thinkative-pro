@@ -2,115 +2,142 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my Certificate</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Certificates - Thinkative</title>
+  <link rel="stylesheet" href="css/certificate.css">
+  <style>
+    /* Ensuring the table container is professional and scrollable */
+    .table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin-top: 20px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
 
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
 
-    <link rel="stylesheet" href="css/certificate.css">
+    th, td {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    th {
+      background-color: #f8f9fa;
+      color: #333;
+      font-weight: 600;
+    }
+
+    .icon-img {
+      width: 24px;
+      height: 24px;
+      cursor: pointer;
+      margin-right: 10px;
+      transition: transform 0.2s;
+    }
+
+    .icon-img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Professional Sidebar Active State */
+    .sidebar a.active {
+      background: #4a90e2;
+      color: white;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="sidebar">
-        <h2>Dashboard</h2>
+  <div class="sidebar">
+    <h2>Dashboard</h2>
+    <a href="dash.html">Home</a>
+    <a href="profile.html">My Profile</a>
+    <a href="courses.html">Courses</a>
+    <a href="enrolled.html">Enrolled courses</a>
+    <a href="certificate.html" class="active">My Certificate</a>
+    <a href="review.html">Review</a>
+    <a href="#">Reports</a>
+    <a href="#">Settings</a>
+    <a href="#">Logout</a>
+  </div>
 
-        <a href="dash.html" class=""> Home</a>
-        <a href="profile.html">My Profile </a>
-             <a href="courses.html"> Courses </a>
-        <a href="enrolled.html">Enrolled courses
-        </a>
-        <a href="certificate.html">My Certificate</a>
-          <a href="review.html">Review</a>
-        <a href="#">Reports</a>
-        <a href="#"> Settings</a>
-        <a href="#">Logout</a>
-    </div>
+  <main>
+    <section>
+      <div class="my">
+        <h2>My Certificates</h2>
 
+        <div class="table-container">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Course Name</th>
+                <th>Date</th>
+                <th>Marks</th>
+                <th>Out of</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="certificate-table-body">
+              </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <main>
-        <section>
-            <div class="my">
-                <h2>My Certificates</h2>
+  <script>
+    // 1. Data Structure: Default certificates + Dynamically added ones
+    const defaultCertificates = [
+      { id: '01', name: 'Anagram Intelligence', date: '22 Aug 2025', marks: 20, total: 20 },
+      { id: '02', name: 'Split Decision', date: '10 Aug 2025', marks: 18, total: 20 },
+      { id: '03', name: 'Supply skill', date: '26 Jul 2025', marks: 25, total: 30 },
+      { id: '04', name: 'Mind Bloom', date: '14 Jul 2025', marks: 15, total: 20 },
+      { id: '05', name: 'Hue Hack', date: '19 Jun 2025', marks: 20, total: 30 },
+      { id: '06', name: 'Digital Developer', date: '12 Jun 2025', marks: 20, total: 20 }
+    ];
 
+    function renderCertificates() {
+      const tableBody = document.getElementById('certificate-table-body');
+      
+      // Get dynamic certificates from localStorage (added when user finishes a course)
+      const dynamicCerts = JSON.parse(localStorage.getItem('completed_courses')) || [];
+      
+      // Combine both lists
+      const allCertificates = [...defaultCertificates, ...dynamicCerts];
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Course Name</th>
-                                <th>Date</th>
-                                <th>Marks</th>
-                                <th>Out of</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>Anagram Intelligence Certificate</td>
-                                <td>22 Aug 2025</td>
-                                <td>20</td>
-                                <td>20</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt="" class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="" class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>Split Decision Certificate</td>
-                                <td>10 Aug 2025</td>
-                                <td>18</td>
-                                <td>20</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
+      // Clear table
+      tableBody.innerHTML = '';
 
+      // Loop through and create rows
+      allCertificates.forEach((cert) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${cert.id}</td>
+          <td>${cert.name} Certificate</td>
+          <td>${cert.date}</td>
+          <td>${cert.marks}</td>
+          <td>${cert.total}</td>
+          <td>
+            <img src="hugeicons-static-main/icons/eye.svg" alt="View" class="icon-img" title="View Certificate">
+            <img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="Download" class="icon-img" title="Download">
+          </td>
+        `;
+        tableBody.appendChild(row);
+      });
+    }
 
-                            <tr>
-                                <td>03</td>
-                                <td>Supply skill Certificate</td>
-                                <td>26 Jul 2025</td>
-                                <td>25</td>
-                                <td>30</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>04</td>
-                                <td>Mind Bloom Certificate</td>
-                                <td>14 Jul 2025</td>
-                                <td>15</td>
-                                <td>20</td>
-                                <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>05</td>
-                                <td>Hue Hack Certificate</td>
-                                <td>19 Jun 2025</td>
-                                <td>20</td>
-                                <td>30</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>06</td>
-                                <td>Digital Developer Certificate</td>
-                                <td>12 Jun 2025</td>
-                                <td>20</td>
-                                <td>20</td>
-                                <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
-            </div>
-        </section>
-    </main>
+    // Load the table when the page opens
+    document.addEventListener('DOMContentLoaded', renderCertificates);
+  </script>
 </body>
 
 </html>

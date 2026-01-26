@@ -55,8 +55,8 @@ body {
     position: relative;
     height: 90vh;
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('teach1.jpeg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url('hero2.jpg') center/cover no-repeat;
      background-attachment: fixed;    
     display: flex;
     justify-content: center;
@@ -162,7 +162,7 @@ body {
 /* FUEL SECTION */
 .fuel {
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('fuel2.jpeg') center/cover no-repeat;
 
 background-attachment: fixed;
@@ -369,8 +369,8 @@ background-attachment: fixed;
      position: relative;
     height: 70vh;
     width: 100%;
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
-        url('land5.jpeg') center/cover no-repeat;
+    background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
+        url('land6.jpg') center/cover no-repeat;
     display: flex;
     justify-content: center;
     align-items: center;
