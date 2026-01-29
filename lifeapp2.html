@@ -9,7 +9,7 @@
 <body>
     <section>
         <div class="dash-trigger" id="openDash">
-            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
+            <img src="hugeicons-static-main/icons/menu-01.svg" alt="Menu" id="menuIcon">
         </div>
 
         <!-- <span class="welcome-label" id="welcomeText">Welcome to your courses</span>  -->
@@ -19,6 +19,14 @@
 <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
+                 <a href="dash.html" id="homeLink" style="text-decoration: none;">
+                    <div class="home-button" id="homeBtn">
+                        <span class="icon">
+                            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Back">
+                        </span>
+                        <span class="text">Back to Home</span>
+                    </div>
+                </a>
                 <header class="dash-nav-header">
                     <h2>Courses content</h2>
                 </header>
@@ -59,7 +67,10 @@
                         </ul>
                     </details>
                 </div>
-
+                       <header class="dash-nav-header">
+                    <h2>Test</h2>
+                </header>
+                
                 <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
@@ -262,7 +273,7 @@
     <main>
         <section class="life">
             <div class="one">
-                <h2>Life Equation One - AI Challenge</h2>
+                <h2>Life Equation Two - AI Challenge</h2>
             </div>
 
 
@@ -280,18 +291,20 @@
                <p id="result"></p>
                <div id="explanation-container">
                 <p id="explanation"></p>
-               <img  id="image" src="image/complete.jpg" alt="explanationimage">
+               <img  id="image" src="image/Goalrace.jpeg" alt="explanationimage">
                </div>
             </div>
 
             
                 <section class="next">
                     <a href="lifeapp1.html"><button class="pre">Previous</button></a>
-            <a href="sparkintro.html" ><button class="pre">Next</button></a>
+            <a href="sparkintro.html"  ><button class="pre" id="nextBtn">Next</button></a>
         </section>
 
         </section>
     </main>
+
+     <script src="js/course-lock.js"></script>
 
 </body>
     <script>
@@ -361,7 +374,7 @@
                 if (userAnswer === correctAnswer) {
                 result.textContent = 'Correct!';
                 explanation.textContent = ' (GOALS - LAGOS) Without clear goals, even a city like Lagos becomes just a location — not a destination.';
-                 document.getElementById('image').src = 'image/complete.jpg';
+                 document.getElementById('image').src = 'image/Goalrace.jpeg';
                  document.getElementById('image').style.display = 'block';
                 option.style.background = 'blue';
                  option.style.colour = 'white';

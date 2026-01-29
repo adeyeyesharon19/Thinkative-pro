@@ -549,3 +549,42 @@ summary::-webkit-details-marker { display: none; }
   margin-bottom: 15px;
   margin: 40px;
 } 
+
+
+/* icon on top */
+
+.home-button {
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  background-color: #007AFF;
+  /* Blue */
+  border-radius: 50px;
+  cursor: pointer;
+  overflow: hidden;
+  transition: width 0.4s ease;
+  padding: 0 13px;
+}
+
+.home-button .icon img {
+  width: 24px;
+  filter: brightness(0) invert(1);
+  /* Makes icon white */
+}
+
+.text {
+  color: white;
+  opacity: 0;
+  white-space: nowrap;
+  margin-left: 10px;
+  transition: opacity 0.3s;
+}
+
+.home-button.active {
+  width: 180px;
+}
+
+.home-button.active .text {
+  opacity: 1;
+}

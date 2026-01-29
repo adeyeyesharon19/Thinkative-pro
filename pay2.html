@@ -1,149 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pay</title>
     <link rel="stylesheet" href="css/pay.css">
 
-<script src="pay.js"></script>
+    <script src="pay.js"></script>
 </head>
+
 <body>
+
+     <div class="home">
+                <a href="dash.html"><button class="back"><img src="hugeicons-static-main/icons/arrow-left-02.svg"
+                            alt="">Back to Home</button></a>
+            </div>
     <div class="checkout-container">
-    <div class="order-summary">
-        <h2>Order Summary</h2>
+        
+        <div class="order-summary">
+            <h2>Order Summary</h2>
 
-        <div class="mind">
-    <div class="left">
-        <img src="image/ai.jpeg" alt="Carrot" width="80" height="80">
-        <h4>Anagram Intelligence</h4>
-    </div>
-    <div class="right">
-        <h6>$300</h6>
-        <p>Qty: 1</p>
-    </div>
-</div>
+            <div class="mind">
+                <div class="left">
+                    <img src="image/ai.jpeg" alt="Carrot" width="80" height="80">
+                    <h4>Anagram Intelligence</h4>
+                </div>
+                <div class="right">
+                    <h6>$300</h6>
+                    <p>Qty: 1</p>
+                </div>
+            </div>
 
-<div class="gift">
-         <input type="text" id="gift-number" placeholder="Gift or Discount code" maxlength="30">
+            <div class="gift">
+                <input type="text" id="gift-number" placeholder="Gift or Discount code" maxlength="30">
 
-         <button>Apply</button>
-     </div>
-      <div class="sub">
-        <h5>Subtotal</h5>
-        <p>$300</p>
-      </div>
+                <button>Apply</button>
+            </div>
+            <div class="sub">
+                <h5>Subtotal</h5>
+                <p>$300</p>
+            </div>
 
-      <div class="all">
-        <div class="total">
-        <h5>Total</h5>
-        <p>Including $2.35 for taxes</p>
+            <div class="all">
+                <div class="total">
+                    <h5>Total</h5>
+                    <p>Including $2.35 for taxes</p>
+                </div>
+                <div class="price">
+                    <h4>$302.35</h4>
+                </div>
+            </div>
+           
         </div>
-        <div class="price">
-            <h4>$302.35</h4>
+
+
+
+
+
+
+
+
+
+        <div class="payment-section">
+            <h2>Payment</h2>
+
+            <div class="pay-with">
+                <div class="pay-label">Pay with:</div>
+
+                <div class="options-row">
+                    <label class="option">
+                        <input type="radio" name="payment" value="card">
+                        <span class="custom-radio"></span>
+                        Card
+                    </label>
+
+                    <label class="option">
+                        <input type="radio" name="payment" value="bank">
+                        <span class="custom-radio"></span>
+                        Bank
+                    </label>
+                </div>
+
+                <div class="card-number-wrapper">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="30">
+                </div>
+
+                <div class="Expiration">
+                    <div class="input-group">
+                        <label for="expiration">Expiration Date</label>
+                        <input type="text" id="expiration" placeholder="MM/YY" maxlength="5">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="cvv">CVV</label>
+                        <input type="text" id="cvv" placeholder="123" maxlength="3">
+                    </div>
+                </div>
+                <div class="show-details">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="show-details-checkbox">
+                        Save Card Details
+                    </label>
+                </div>
+                <button class="pay-btn" id="payButton">Pay USD59.28</button>
+
+                <h5 class="your">Your personal will be used to process your order, support your experience throughout
+                    this website, and for other purposes described in our private policy.</h5>
+            </div>
+
         </div>
-      </div>
-      <div class="home">
-      <a href="dash.html"><button class="back"><img src="hugeicons-static-main/icons/arrow-left-02.svg" alt="">Back to Home</button></a>
-      </div>
+
+
+
     </div>
 
-
-
-
-
-
-
-
-
-    <div class="payment-section">
-        <h2>Payment</h2>
-    
- <div class="pay-with">
-    <div class="pay-label">Pay with:</div>
-
-    <div class="options-row">
-        <label class="option">
-            <input type="radio" name="payment" value="card">
-            <span class="custom-radio"></span>
-            Card
-        </label>
-
-        <label class="option">
-            <input type="radio" name="payment" value="bank">
-            <span class="custom-radio"></span>
-            Bank
-        </label>
     </div>
 
-       <div class="card-number-wrapper">
-    <label for="card-number">Card Number</label>
-    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="30">
-</div>
-
-   <div class="Expiration">
-    <div class="input-group">
-        <label for="expiration">Expiration Date</label>
-        <input type="text" id="expiration" placeholder="MM/YY" maxlength="5">
+    </div>
     </div>
 
-    <div class="input-group">
-        <label for="cvv">CVV</label>
-        <input type="text" id="cvv" placeholder="123" maxlength="3">
-    </div>
-</div>
-<div class="show-details">
-    <label class="checkbox-container">
-        <input type="checkbox" id="show-details-checkbox">
-        Save Card Details
-    </label>
-</div>
-   <button class="pay-btn" id="payButton">Pay USD59.28</button>
-
-    <h5 class="your">Your personal will be used to process your order, support your experience throughout this website, and for other purposes described in our private policy.</h5>
-</div>
- 
-</div>
-
-
-
-</div>
-
-</div>
-
+    <div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+    <div style="background:white; padding:30px; border-radius:15px; text-align:center; width:350px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+        <h2 style="color: #28a745;">Payment Successful!</h2>
+        <p><strong>Anagram Intelligence</strong> has been added to your courses.</p>
+        <button id="goToEnrolled" style="background:#1DA1F2; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:15px; width:100%;">
+            GO TO ENROLLED COURSES
+        </button>
     </div>
 </div>
 </body>
- <script>
+
+<script>
     document.addEventListener('DOMContentLoaded', () => {
-    const payBtn = document.getElementById('payButton');
+        const payBtn = document.getElementById('payButton');
+        const modal = document.getElementById('successModal');
+        const redirectBtn = document.getElementById('goToEnrolled');
 
-    payBtn.addEventListener('click', () => {
-        // 1. Show the success message
-        alert('Payment Successful! "Anagram Intelligence" has been added to your enrolled courses.');
+        payBtn.addEventListener('click', () => {
+            // 1. Data Logic (Keeping your code exactly as it was)
+            const purchasedCourse = {
+                title: "Anagram Intelligence",
+                price: "$300",
+                image: "image/ai.jpeg"
+            };
+            let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+            enrolledCourses.push(purchasedCourse);
+            localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
 
-        // 2. Define the course data
-        const purchasedCourse = {
-            title: "Anagram Intelligence",
-            price: "$300",
-            image: "image/ai.jpeg"
-        };
+            // 2. SHOW THE CUSTOM POPUP (No more "OK" button)
+            modal.style.display = 'flex';
 
-        // 3. Get existing courses from localStorage or start a new list
-        let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+            // 3. Update the main Pay button state
+            payBtn.disabled = true;
+            payBtn.textContent = 'Paid';
+        });
 
-        // 4. Add the new course to the list
-        enrolledCourses.push(purchasedCourse);
-
-        // 5. Save back to localStorage
-        localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
-
-        // 6. Optional: Redirect to the enrolled courses page
-        // window.location.href = "enrolled-courses.html";
-        
-        payBtn.disabled = true;
-        payBtn.textContent = 'Paid';
+        // 4. Make the NEW button go to the page
+        redirectBtn.addEventListener('click', () => {
+            window.location.href = "enrolled.html";
+        });
     });
-});
-  </script>
+</script>
+
 </html>

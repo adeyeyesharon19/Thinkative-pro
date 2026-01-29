@@ -4,126 +4,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>profile</title>
 
     <link rel="stylesheet" href="css/profile.css">
 </head>
 
 <body>
-    <header>
+       <header>
+      
+
         <div class="sidebar">
-            <h2>Dashboard</h2>
+            <div class="sidebar-top">
+                <h2>Dashboard</h2>
 
-            <a href="dash.html" class=""> Home</a>
-            <a href="profile.html">My Profile </a>
-                 <a href="courses.html"> Courses </a>
-            <a href="enrolled.html">Enrolled courses
-            </a>
-            <a href="certificate.html">My Certificate</a>
-              <a href="review.html">Review</a>
-            <a href="#">Reports</a>
-            <a href="#"> Settings</a>
-            <a href="#">Logout</a>
+                <a href="dash.html" ><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+               
+                 <p>Academics</p>
+                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
+                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
+                <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
+                <p>Managment</p>
+                <a href="#" class="current-page">Reports</a>
+                <a href="#" class="current-page">Settings</a>
+                <a href="#" class="current-page">Logout</a>
+            </div>
+
+          <div class="sidebar-footer">
+        <a href="profile.html" class="profile-card">
+            <div class="profile-avatar">S</div>
+            <span class="profile-name">Sharon Adeyeye</span>
+        </a>
+
         </div>
-
     </header>
 
     <main>
         <section>
             <div>
 
-                <div class="profile-container">
-                    <h1>My Profile</h1>
-                    <form action="#" method="post" class="profile-form">
-                        <!-- First Row -->
-                        <div class="form-group">
-                            <label for="first-name">First Name</label>
-                            <input type="text" id="first-name" name="first-name" value="Ronald" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="last-name">Last Name</label>
-                            <input type="text" id="last-name" name="last-name" value="Record" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="registration-date">Registration Date</label>
-                            <input type="text" id="registration-date" name="registration-date"
-                                value="16 Jan 2024, 11:15 AM" readonly>
-                        </div>
+            <div class="profile-container">
+                <h1>My Profile</h1>
+                <form action="#" method="post" class="profile-form">
+                    <div class="form-group">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="first-name" placeholder="Loading..." readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="last-name" placeholder="Loading..." readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="registration-date">Registration Date</label>
+                        <input type="text" id="registration-date" name="registration-date" placeholder="---" readonly>
+                    </div>
 
-                        <!-- Second Row -->
-                        <div class="form-group">
-                            <label for="username">User Name</label>
-                            <input type="text" id="username" name="username" value="student800" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" value="154-91036" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" value="student@learning.com" readonly>
-                        </div>
+                    <div class="form-group">
+                        <label for="username">User Name</label>
+                        <input type="text" id="username" name="username" placeholder="---" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Not Provided" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Loading..." readonly>
+                    </div>
 
-                        <!-- Third Row -->
-                        <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <input type="text" id="gender" name="gender" value="Male" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="dob">DOB</label>
-                            <input type="text" id="dob" name="dob" value="01 Jan 1990" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="age">Age</label>
-                            <input type="number" id="age" name="age" value="34" readonly>
-                        </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <input type="text" id="gender" name="gender" placeholder="Not Set" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">DOB</label>
+                        <input type="text" id="dob" name="dob" placeholder="---" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" placeholder="0" readonly>
+                    </div>
 
-                        <!-- Fourth Row (Bio) -->
-                        <div class="form-group full-width">
-                            <label for="bio">Bio</label>
-                            <textarea id="bio" name="bio" rows="4"
-                                readonly>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</textarea>
-                        </div>
-                    </form>
-                </div>
-</body>
+                    <div class="form-group full-width">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..." readonly></textarea>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
 
-</html>
-
-</div>
-</section>
-</main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <script src="js/profile.js"></script> -->
-
+    
 </body>
 <script>
-       // Add this script to your Profile/Dashboard page (in.html)
-window.onload = function() {
-    // Retrieve the data we saved earlier
-    const displayDataName = localStorage.getItem('savedUserName');
-    
-    // Find the place in your HTML where you want to show the name
-    // Example: If you have <span id="user-title"></span>
-    const nameTarget = document.getElementById('displayName'); 
+    window.onload = function () {
+        // 1. Pull the new user object from storage
+        const storedUser = localStorage.getItem('thinkative_user');
 
-    if (displayDataName) {
-        nameTarget.textContent = displayDataName;
-    } else {
-        console.log("No user information found in storage.");
-    }
-};
+        if (storedUser) {
+            const user = JSON.parse(storedUser);
+
+            // 2. Fill Name Fields directly (No more guessing!)
+            // We now use the specific firstName and lastName keys
+            document.getElementById('first-name').value = user.firstName || "";
+            document.getElementById('last-name').value = user.lastName || "";
+
+            // 3. Fill the Gender field
+            if (document.getElementById('gender')) {
+                document.getElementById('gender').value = user.gender || "Not Set";
+            }
+
+            // 4. Fill Basic Info
+            document.getElementById('email').value = user.email || "";
+            document.getElementById('registration-date').value = user.regDate || "Recently Joined";
+            document.getElementById('dob').value = user.dob || "---";
+
+            // 5. Generate Username (using the stored firstName)
+            if (user.firstName) {
+                const cleanName = user.firstName.toLowerCase();
+                document.getElementById('username').value = cleanName + Math.floor(Math.random() * 100);
+            }
+
+            // 6. Calculate Age from the stored DOB
+            if (user.dob) {
+                const dobParts = user.dob.split(" ");
+                // The year is the last part of the string (e.g., "12 January 2005")
+                const birthYear = parseInt(dobParts[dobParts.length - 1]);
+                const currentYear = new Date().getFullYear();
+                if (!isNaN(birthYear)) {
+                    document.getElementById('age').value = currentYear - birthYear;
+                }
+            }
+
+            // 7. Set default Phone and Bio
+            document.getElementById('phone').value = "Not Provided";
+            document.getElementById('bio').value = "Welcome to my profile! I am ready to train my brain.";
+            
+            console.log("Profile successfully loaded for: " + user.firstName);
+        } else {
+            console.log("No user data found. Please complete the Get Started page.");
+        }
+    };
 </script>
+</body>
 </html>

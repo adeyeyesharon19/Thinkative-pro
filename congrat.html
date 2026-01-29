@@ -1,205 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Congratulations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
+            margin: 0; padding: 0;
+            display: flex; align-items: center; justify-content: center;
+            min-height: 100vh;
+            background: radial-gradient(circle at top, #ffffff 0%, #e3f2fd 40%, #bbdefb 100%);
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+
+        .info-card {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 35px;
+            box-shadow: 0 20px 40px rgba(0, 80, 180, 0.1);
+            width: 90%; max-width: 440px;
             text-align: center;
-            font-family: Arial, sans-serif;
-            padding-top: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            position: relative; z-index: 10;
         }
 
-        img {
-            width: 200px;
-            margin: 20px 0;
+        #completionSlide {
+            position: fixed; top: 50%; left: 50%;
+            transform: translate(-50%, -50%) scale(0.5);
+            background: #ffffff;
+            padding: 40px; border-radius: 35px;
+            box-shadow: 0 40px 80px rgba(0, 20, 50, 0.3);
+            width: 85%; max-width: 400px;
+            z-index: 100; text-align: center;
+            opacity: 0; display: none; 
+            border: 5px solid #001f3f; 
         }
 
-        button {
-            padding: 12px 25px;
-            font-size: 16px;
-            cursor: pointer;
-            background: rgb(47, 47, 223);
-            color: #fff;
-            border: none;
-            border-radius: 10px;
+        #completionSlide.show {
+            display: block;
+            animation: popCenter 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
 
-        /* Blur overlay */
-        #blurOverlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(6px);
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.4s ease;
-            z-index: 10;
+        @keyframes popCenter {
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
-        #blurOverlay.show {
-            opacity: 1;
-            pointer-events: auto;
+        #scoreText {
+            font-size: 1.6rem; font-weight: 800;
+            color: #2c3e50; background: #f0f7ff; 
+            display: inline-block; padding: 12px 35px;
+            border-radius: 100px; border: 2px solid #001f3f; 
+            margin-bottom: 30px;
         }
 
-        /* Certificate modal */
-        #certificateNotice {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0.8);
-            background: #1e90ff;
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 420px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            font-size: 18px;
-            text-align: center;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.5s ease;
-            z-index: 20;
-        }
-
-        #certificateNotice.show {
-            opacity: 1;
-            transform: translate(-50%, -50%) scale(1);
-            pointer-events: auto;
-        }
-
-        #certificateNotice button {
-            margin-top: 20px;
-            padding: 12px 25px;
-            font-size: 16px;
-            background: white;
-            color: #1e90ff;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
+        button#mainBtn, .slide-btn {
+            width: 100%; padding: 18px;
+            font-size: 1.1rem; font-weight: 700;
+            cursor: pointer; background: #001f3f; 
+            color: #ffffff; border: none;
+            border-radius: 18px; text-transform: uppercase;
         }
     </style>
 </head>
-
 <body>
 
+    <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></canvas>
 
-
-    <h1>🎉 Congratulations! 🎉</h1>
-    <img src="image/congratulations.png" alt="Congratulations">
-    <h2 id="scoreText">Your Score: 0 / 5</h2>
-    <button onclick="goNext()">Continue</button>
-
-    <div id="blurOverlay"></div>
-
-    <div id="certificateNotice">
-        🎓 <h2>Congratulations!</h2>
-        <p>
-            You have received a certificate on<br>
-            <strong>Anagram Intelligence</strong>
-        </p>
-        <button onclick="viewCertificate()">View My Certificate</button>
+    <div class="info-card" id="mainCard">
+        <h1 style="color: #1565c0;">GREAT JOB!</h1>
+        <img src="image/congratulations.png" alt="Celebration" style="width:170px; margin:20px 0;">
+        <div>
+            <div id="scoreText">SCORE: 0 / 5</div>
+        </div>
+        <button id="mainBtn" onclick="goNext()">Continue</button>
     </div>
 
+    <div id="completionSlide">
+        <div style="font-size: 50px; margin-bottom: 10px;">🏆</div>
+        <h2 style="color: #001f3f;">CONGRATULATIONS!</h2>
+        <p>You have completed the entire<br><strong>Anagram Intelligence</strong> course.</p>
+        <button class="slide-btn" onclick="goToCertificate()">VIEW CERTIFICATE</button>
+    </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+ 
 </body>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const scoreText = document.getElementById('scoreText');
-        const referrer = document.referrer.toLowerCase();
-        
-        /* ================== 1. Accurate Score Handling ================== */
-        let score = 0;
-        const allKeys = Object.keys(localStorage);
-        
-        // 1a. Find the level keyword from the URL
-        let levelKeyword = "";
-        if (referrer.includes('back')) levelKeyword = 'back';
-        else if (referrer.includes('plug')) levelKeyword = 'plug';
-        else if (referrer.includes('flip')) levelKeyword = 'flip';
-        else if (referrer.includes('wordpick')) levelKeyword = 'wordpick';
-        else if (referrer.includes('math')) levelKeyword = 'math';
-        else if (referrer.includes('phrase')) levelKeyword = 'phrase';
-        else if (referrer.includes('meaning')) levelKeyword = 'meaning';
-        else if (referrer.includes('split')) levelKeyword = 'split';
-        else if (referrer.includes('riddle')) levelKeyword = 'riddle';
-
-        // 1b. Get the specific score for THIS level only
-        const bestKey = allKeys.find(k => k.toLowerCase().includes(levelKeyword) && k.endsWith('_lastSetScore'));
-
-        if (bestKey) {
-            score = parseInt(localStorage.getItem(bestKey)) || 0;
-        }
-
-        scoreText.textContent = `Your Score: ${score} / 5`;
-
-        /* ================== 2. Navigation & Score Refresh ================== */
-        window.goNext = function () {
+   <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const scoreDisplay = document.getElementById('scoreText');
+            const referrer = document.referrer.toLowerCase();
+            const allKeys = Object.keys(localStorage);
             
-            // --- REFRESH LOGIC ---
-            // This deletes the old score key so the next level starts fresh
-            if (bestKey) {
-                localStorage.removeItem(bestKey);
+            // 1. Find the current level score key
+            const lastSetKey = allKeys.find(k => k.endsWith('_lastSetScore'));
+
+            if (lastSetKey) {
+                const rawScore = parseInt(localStorage.getItem(lastSetKey)) || 0;
+                const accurateScore = rawScore > 5 ? rawScore % 6 : rawScore;
+                
+                scoreDisplay.textContent = `SCORE: ${accurateScore} / 5`;
+
+                // --- BANKING LOGIC: Add to the Master Score ---
+                let masterScore = parseInt(localStorage.getItem('master_cumulative_score')) || 0;
+                masterScore += accurateScore;
+                localStorage.setItem('master_cumulative_score', masterScore);
+
+                // 2. DEEP CLEAN: Wipe level keys so next set starts at 0
+                const prefix = lastSetKey.split('_')[0];
+                allKeys.forEach(key => {
+                    if (key.startsWith(prefix)) {
+                        localStorage.removeItem(key);
+                    }
+                });
             }
 
-            // --- NAVIGATION ---
-            if (referrer.includes('back') && referrer.includes('front')) {
-                window.location.href = 'anagramplugintro.html';
-            } 
-            else if (referrer.includes('anagram') && referrer.includes('plug')) {
-                window.location.href = 'flipconnectintro.html';
-            }
-            else if (referrer.includes('flip') && referrer.includes('connect')) {
-                window.location.href = 'wordpickIQintro.html';
-            }
-            else if (referrer.includes('wordpick')) {
-                window.location.href = 'anagramathintro.html';
-            }
-            else if (referrer.includes('math') && !referrer.includes('meaning')) {
-                window.location.href = 'smartphraseintro.html';
-            }
-            else if (referrer.includes('smart') && referrer.includes('phrase')) {
-                window.location.href = 'meaningmathintro.html';
-            }
-            else if (referrer.includes('meaning')) {
-                window.location.href = 'splitanagramintro.html';
-            }
-            else if (referrer.includes('split')) {
-                window.location.href = 'riddlegramintro.html';
-            }
-            else if (referrer.includes('riddlegram5')) {
-                window.location.href = 'dashboard.html';
-            }
-            else {
-                window.location.href = 'dashboard.html';
-            }
-        };
+            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
 
-        /* ================== 3. Final Certificate Logic ================== */
-        if (referrer.includes('riddlegram5')) {
-            setTimeout(() => {
-                document.getElementById('blurOverlay').classList.add('show');
-                document.getElementById('certificateNotice').classList.add('show');
-            }, 2000);
+            // FINAL MODULE DETECTION
+            if (referrer.includes('riddlegram5')) {
+                setTimeout(() => {
+                    document.getElementById('mainCard').style.opacity = "0.2"; 
+                    document.getElementById('completionSlide').classList.add('show');
+                    confetti({ particleCount: 200, colors: ['#001f3f', '#ffffff'] });
 
-            // Mark course as complete
-            let enrolled = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-            let updated = enrolled.map(course => {
-                if (course.title === "Anagram Intelligence") course.isCompleted = true;
-                return course;
-            });
-            localStorage.setItem('enrolledCourses', JSON.stringify(updated));
-        }
+                    // Finalize the certificate data
+                    const finalTotal = localStorage.getItem('master_cumulative_score') || 0;
+                    let certificates = JSON.parse(localStorage.getItem('completed_courses')) || [];
+                    
+                    const newCert = {
+                        id: 'AI' + Math.floor(1000 + Math.random() * 9000),
+                        name: 'Anagram Intelligence',
+                        date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+                        marks: finalTotal,
+                        total: 45
+                    };
 
-        window.viewCertificate = function () {
-            localStorage.setItem('anagram_certificate_unlocked', 'true');
-            window.location.href = 'certificate.html';
-        };
-    });
-</script>
+                    certificates.push(newCert);
+                    localStorage.setItem('completed_courses', JSON.stringify(certificates));
+                }, 1800);
+            }
 
+            window.goNext = function () {
+                if (referrer.includes('riddlegram5')) { window.location.href = 'certificate.html'; } 
+                else if (referrer.includes('back')) { window.location.href = 'anagramplugintro.html'; } 
+                else if (referrer.includes('plug')) { window.location.href = 'flipconnectintro.html'; }
+                else if (referrer.includes('flip')) { window.location.href = 'wordpickIQintro.html'; }
+                else if (referrer.includes('wordpick')) { window.location.href = 'anagramathintro.html'; }
+                else if (referrer.includes('math')) { window.location.href = 'smartphraseintro.html'; }
+                else if (referrer.includes('smart')) { window.location.href = 'meaningmathintro.html'; }
+                else if (referrer.includes('meaning')) { window.location.href = 'splitanagramintro.html'; }
+                else if (referrer.includes('split')) { window.location.href = 'riddlegramintro.html'; }
+                else { window.location.href = 'enroll.html'; }
+            };
+
+            window.goToCertificate = function() {
+                window.location.href = 'certificate.html';
+            };
+        });
+    </script>
+    
 </html>

@@ -1,102 +1,160 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get started</title>
-    <link rel="stylesheet" href="css/getstarted.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get started</title>
+  <link rel="stylesheet" href="css/getstarted.css">
+  
+  <script src="js/register.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
-
-    
 
 </head>
+
 <body>
-    <section class="get-started">
-      <div class="wel-back">
-            <h2>Thinkative</h2>
-            <h3>Discover what your <br> <span>mind can do.</span></h3>
-            <h4>Sign up to train your brain</h4>
-        </div>   
+  <section class="get-started">
+    <div class="wel-back">
+      <h2>Thinkative</h2>
+      <h3>Discover what your <br> <span>mind can do.</span></h3>
+      <h4>Sign up to train your brain</h4>
+    </div>
 
-        <div class="log-box">
-            <h3>Create your account</h3>
-            <h4>Already a member?<a href="login.html"><button>LOG IN</button></a></h4>
+    <div class="log-box">
+      <h3>Create your account</h3>
+      <h4>Already a member?<a href="login.html"><button type="button">LOG IN</button></a></h4>
 
-           
-            <form id="login-form" action="in.html" method="GET">
+      <form id="registration-form">
+        <div class="name-row">
+          <input type="text" id="FirstName" name="FirstName" placeholder="First Name" required>
+          <input type="text" id="LastName" name="LastName" placeholder="Last Name" required>
+        </div>
 
-        <input type="text" id="Name" name="Name" placeholder="Name" required> 
-        <label for="Name"></label>
-        
-         <label for="email"></label>
-        <input type="email" id="email" name="email" placeholder="Email" required>
+        <input type="email" id="email" name="email" placeholder="Email" required style=" padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;">
 
-         <label for="password"></label>
-        <input type="password" id="password" name="password" placeholder="Password" required>
+       
 
-        
-        
+        <input type="password" id="password" name="password" placeholder="Password" required style=" padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
+
+
+
+
+
         <div class="dob-container">
-  <label for="dob-month">What is your date of birth?</label>
-  <div class="dob-select">
-    <select id="dob-month" name="month" required>
-      <option value="" disabled selected>Month</option>
-      <option value="1">January</option>
-      <option value="2">February</option>
-      <option value="3">March</option>
-      <option value="4">April</option>
-      <option value="5">May</option>
-      <option value="6">June</option>
-      <option value="7">July</option>
-      <option value="8">August</option>
-      <option value="9">September</option>
-      <option value="10">October</option>
-      <option value="11">November</option>
-      <option value="12">December</option>
-    </select>
+          <label for="dob-month">What is your date of birth?</label>
+          <div class="dob-select">
+            <select id="dob-month" name="month" required>
+              <option value="" disabled selected>Month</option>
+              <option value="January">January</option>
+              <option value="February">February</option>
+              <option value="March">March</option>
+              <option value="April">April</option>
+              <option value="May">May</option>
+              <option value="June">June</option>
+              <option value="July">July</option>
+              <option value="August">August</option>
+              <option value="September">September</option>
+              <option value="October">October</option>
+              <option value="November">November</option>
+              <option value="December">December</option>
+            </select>
 
-    <select id="dob-day" name="day" required>
-      <option value="" disabled selected>Day</option>
+            <select id="dob-day" name="day" required>
+              <option value="" disabled selected>Day</option>
+              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+              <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+              <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+              <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+              <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+            </select>
 
-      <option>1</option><option>2</option><option>3</option>
-      <option>4</option><option>5</option><option>6</option>
-      <option>7</option><option>8</option><option>9</option>
-      <option>10</option><option>11</option><option>12</option>
-      <option>13</option><option>14</option><option>15</option>
-      <option>16</option><option>17</option><option>18</option>
-      <option>19</option><option>20</option><option>21</option>
-      <option>22</option><option>23</option><option>24</option>
-      <option>25</option><option>26</option><option>27</option>
-      <option>28</option><option>29</option><option>30</option>
-    </select>
+            <select id="dob-year" name="year" required>
+              <option value="" disabled selected>Year</option>
+              <option>2013</option><option>2012</option><option>2011</option><option>2010</option>
+              <option>2009</option><option>2008</option><option>2007</option><option>2006</option>
+              <option>2005</option><option>2004</option><option>2003</option><option>2002</option>
+              <option>2001</option><option>2000</option>
+            </select>
+          </div>
 
-    <select id="dob-year" name="year" required>
-      <option value="" disabled selected>Year</option>
-      <option>2024</option><option>2023</option><option>2022</option>
-      <option>2021</option><option>2020</option><option>2019</option>
-      <option>2018</option><option>2017</option><option>2016</option>
-      <option>2015</option><option>2014</option> <option>2013</option> <option>2012</option><option>2011</option><option>2010</option><option>2009</option><option>2008</option><option>2007</option><option>2006</option><option>2005</option><option>2004</option><option>2003</option><option>2002</option><option>2001</option><option>2000</option>
-    </select>
+          
+         <select id="gender" name="gender" class="gender-select" required>
+          <option value="" disabled selected>Select Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+          
+          <button class="create-acc" type="submit" style="margin-top: 20px;">Create your account</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div id="overlay" class="overlay"></div>
+  <div id="otp-drawer" class="otp-drawer">
+    <div class="drawer-content">
+      <h3>Verify your Email</h3>
+      <p>Code sent to: <strong id="user-email-display"></strong></p>
+      <input type="text" id="otp-input" class="otp-input-field" placeholder="0000" maxlength="4">
+      <button id="verify-btn">Verify Code</button>
+      <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Incorrect code. Please try '1234'.</p>
+    </div>
   </div>
-  <h6>By logging in, you agree to our <span> Terms of Service</span>, <br>
- <span>Privacy Policy</span> and <span>CA Privacy Policy</span>.</h6>
 
- <button class="create-acc" type="submit">Create your account</button>
-
-  <div class="social-icons"> 
-  <!-- Twitter -->
-  <a href="https://twitter.com" class="twitter" target="_blank">
-    <i class="fa-brands fa-x-twitter"></i>
-  </a>
-
-  <!-- Instagram -->
-  <a href="https://instagram.com" class="instagram" target="_blank">
-    <i class="fa-brands fa-instagram"></i>
-  </a>
+  <div id="success-screen" class="success-screen">
+    <h2>🎉 Success!</h2>
+    <p>Account created successfully.</p>
+    <button class="create-acc" style="width: 200px; color: #fff; background-color: #4a90e2; border: none; border-radius: 20px; padding: 10px; margin-top: 20px;" onclick="window.location.href='in.html'">Continue</button>
   </div>
-</div>
 
-<script src="js/register.js"></script>
-
+ 
 </body>
-  </html>
+ <script>
+    (function () { emailjs.init("YOUR_PUBLIC_KEY"); })();
+    let generatedOTP;
+
+    document.getElementById('registration-form').addEventListener('submit', function (e) {
+      e.preventDefault();
+      
+      const userData = {
+        firstName: document.getElementById('FirstName').value,
+        lastName: document.getElementById('LastName').value,
+        email: document.getElementById('email').value,
+        gender: document.getElementById('gender').value,
+        dob: document.getElementById('dob-day').value + " " + document.getElementById('dob-month').value + " " + document.getElementById('dob-year').value,
+        regDate: new Date().toLocaleDateString()
+      };
+
+      // Save to temp storage
+      localStorage.setItem('temp_user', JSON.stringify(userData));
+
+      document.getElementById('user-email-display').innerText = userData.email;
+      generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
+      
+      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
+        to_email: userData.email,
+        otp_code: generatedOTP,
+      });
+
+      document.getElementById('overlay').style.display = 'block';
+      document.getElementById('otp-drawer').classList.add('active');
+    });
+
+    document.getElementById('verify-btn').addEventListener('click', function () {
+      const enteredCode = document.getElementById('otp-input').value;
+      if (enteredCode === '1234') { // Changed to match your test logic
+        const data = localStorage.getItem('temp_user');
+        localStorage.setItem('thinkative_user', data);
+
+        document.getElementById('otp-drawer').classList.remove('active');
+        document.getElementById('overlay').style.display = 'none';
+        document.getElementById('success-screen').style.display = 'flex';
+      } else {
+        document.getElementById('error-msg').style.display = 'block';
+      }
+    });
+  </script>
+</html>

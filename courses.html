@@ -2,157 +2,237 @@
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Courses</title>
-<link rel="stylesheet" href="css/courses.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses</title>
+    <link rel="stylesheet" href="css/courses.css">
 </head>
 
 <body>
 
-<header>
-    <div class="sidebar">
-        <h2>Dashboard</h2>
-        <a href="dash.html">Home</a>
-        <a href="profile.html">My Profile</a>
-        <a href="courses.html" class="active">Courses</a>
-        <a href="enrolled.html">Enrolled courses</a>
-        <a href="certificate.html">My Certificate</a>
-          <a href="review.html">Review</a>
-        <a href="#">Reports</a>
-        <a href="#">Settings</a>
-        <a href="#">Logout</a>
-    </div>
-</header>
+    <header>
+      
 
-<main>
-    <section class="roll">
-        <div class="arc">
-            <h2>Courses</h2>
-        </div>
-    </section>
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <h2>Dashboard</h2>
 
-    <section>
-        <div class="start">
-
-            <!-- Course Example -->
-            <div class="sum" data-name="Anagram Intelligence" data-price="$100">
-                <img src="image/ai.jpeg" alt="sumlogo" width="210" height="180">
-                <h4>Anagram Intelligence</h4>
-                <div class="price-row">
-                    <p class="price">$100</p>
-                    <a href="AI.html"><button class="get-started" id="payButton">Get Started</button></a>
-                </div>
+                <a href="dash.html" ><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+               
+                 <p>Academics</p>
+                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
+                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
+                <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
+                <p>Managment</p>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/repository.svg" alt="">Reports</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg" alt="">Logout</a>
             </div>
 
-                <div class="sum" data-name="Brand Brain" data-price="$300">
-                <img src="image/brain3.jpeg" alt="sumlogo" width="210" height="180">
-                <h4>Brand Brain</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                  <a href="brand.html"><button class="get-started">Get Started</button></a>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Link Lab" data-price="$300">
-                <img src="image/llink lab.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Link Lab</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-        
-            <div class="sum" data-name="Split Decision" data-price="$300">
-                <img src="image/splitdecision.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Split Decision</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Delete Decision" data-price="$300">
-                <img src="image/delete.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Delete Decision</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Supply skill" data-price="$300">
-                <img src="image/supplyskill.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Supply skill</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Alpha Wave" data-price="$300">
-                <img src="image/abc.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Alpha Wave</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Mind Bloom" data-price="$300">
-                <img src="image/mind.jpg" alt="sumlogo" width="210" height="180">
-                <h4>Mind Bloom</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-
-            <div class="sum" data-name="First Space" data-price="$300">
-                <img src="image/first space.jpg" alt="sumlogo" width="210" height="180">
-                <h4>First Space</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Think Forward" data-price="$300">
-                <img src="image/fuel3.jpeg" alt="sumlogo" width="210" height="180">
-                <h4>Think Forward</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            <div class="sum" data-name="Hue Hack" data-price="$300">
-                <img src="image/in.jpeg" alt="sumlogo" width="210" height="180">
-                <h4>Hue Hack</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-
-            <div class="sum" data-name="Digital Developer" data-price="$300">
-                <img src="image/in2.jpeg" alt="sumlogo" width="210" height="180">
-                <h4>Digital Developer</h4>
-                <div class="price-row">
-                    <p class="price">$300</p>
-                    <button class="get-started">Get Started</button>
-                </div>
-            </div>
-
-            
+          <div class="sidebar-footer">
+        <a href="profile.html" class="profile-card">
+            <div class="profile-avatar">S</div>
+            <span class="profile-name">Sharon Adeyeye</span>
+        </a>
 
         </div>
-    </section>
-</main>
-<!-- 
+    </header>
+
+    <main>
+        <section class="roll">
+            <div class="arc">
+                <h2>Courses</h2>
+            </div>
+        </section>
+
+        <section>
+
+            <div class="start">
+
+
+                <div class="start">
+
+                    <div class="sum">
+                        <img src="image/ai.jpeg" alt="sumlogo" width="300" height="230">
+                        <h4>Anagram Intelligence</h4>
+                        <p>This immersive course helps you master anagrams while boosting creativity, memory, and
+                            problem-solving skills.
+
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$15</p>
+                            <a href="AI.html"><button>View Details</button></a>
+                        </div>
+
+
+
+                        <!-- <p>$300</p> -->
+                        <!-- <button>Get started▶️</button> -->
+                    </div>
+
+
+
+
+
+
+                    <div class="sum">
+                        <img src="image/brain3.jpeg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -90px;">Brand Brain</h4>
+                        <p>Give your ideas a strong identity—it's the key to making your products and services stand out
+                            in the market.</p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$20</p>
+                            <a href="brand.html"><button>View Details</button></a>
+                        </div>
+
+
+
+                        <!-- <p>$300</p> -->
+                        <!-- <button>Get started▶️</button> -->
+                    </div>
+
+                    <div class="sum">
+                        <img src="image/changecraft..jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -80px;">Change Craft</h4>
+                        <p> Empower you to transform yourself and lead positive change as a Change Executive Officer
+                            (CEO).
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$10</p>
+                            <a href="info.html"><button>View Details </button></a>
+                        </div>
+                        <!-- <p>$300</p> -->
+                        <!-- <button>Get started▶️</button> -->
+                    </div>
+
+
+                    <div class="sum">
+                        <img src="image/deletedecision.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -55px;">Delete Decision</h4>
+                        <p>Delete, Decide, Thrive teaches you to let go of the old to unlock fresh ideas and better
+                            outcomes,
+                            mastering decisions that shape your destiny.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$15</p>
+                            <button>View Details</button>
+                        </div>
+                        <!-- <p>$300</p> -->
+                        <!-- <button>Get started▶️</button> -->
+                    </div>
+
+
+                    <div class="sum">
+                        <img src="image/emergevalue.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -70px;">Emerge Value</h4>
+                        <p> Unlock the Power of Insight
+                            Transform your perspective, ignite creativity, and shift your gaze to drive positive change
+                            <br> for
+                            humanity.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$20</p>
+                            <button>View Details</button>
+                        </div>
+                        <!-- <p>$300</p> -->
+                        <!-- <button>Get started▶️</button> -->
+                    </div>
+
+
+
+
+                    <div class="sum">
+                        <img src="image/forward.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -38px;">Forward Thinking</h4>
+                        <p>Forward Thinking teaches you to <br> anticipate the future, empowering a <br> new you
+                            equipped to
+                            create
+                            solutions for tomorrow’s challenges.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$20</p>
+                            <button>View Details</button>
+                        </div>
+                    </div>
+
+
+                    <div class="sum">
+                        <img src="image/generate.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -3px;">Generate Connection</h4>
+                        <p>Generate Connection teaches you to link the unusual, sparking creativity to create uncommon
+                            solutions
+                            that meet people’s needs and unlock opportunities.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$10</p>
+                            <a href="info.html"><button>View Details</button></a>
+                        </div>
+
+                        <!-- <p>$2l4</p>
+        <button>Get started▶️</button> -->
+                    </div>
+
+                    <div class="sum">
+                        <img src="image/hidden hub.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -90px;">Hidden Hub</h4>
+                        <p>Uncover hidden opportunities, transform them into valuable ventures, and turn ideas into
+                            impact,
+                            progress, and market success.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$15</p>
+                            <a href=""><button>View Details</button></a>
+                        </div>
+
+                        <!-- <p>$280</p>
+        <button>Get started▶️</button> -->
+                    </div>
+
+                    <div class="sum">
+                        <img src="image/insigt.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -100px;">Insight Tech</h4>
+                        <p> Equiping you to reveal hidden opportunities, link unexpected ideas, <br> and transform
+                            insights
+                            into innovative solutions that solve real problems.
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$20</p>
+                            <a href=""><button>View Details</button></a>
+                        </div>
+
+                        <!-- <p>$280</p>
+        <button>Get started▶️</button> -->
+                    </div>
+
+                    <div class="sum">
+                        <img src="image/jumpstartsave.jpg" alt="sumlogo" width="300" height="230">
+                        <h4 style="margin-left: -100px;">JumpStart</h4>
+                        <p>Taking the first step is crucial— <br>turning ideas into action is the
+                            key to transforming results and making your vision a reality.
+
+                        </p>
+                        <div class="price-row">
+                            <p class="price" style="font-size: large;">$15</p>
+                            <a href=""><button>View Details</button></a>
+                        </div>
+
+                        <!-- <p>$280</p>
+        <button>Get started▶️</button> -->
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+
+
+        </section>
+    </main>
+    <!-- 
 <script>
 document.addEventListener('DOMContentLoaded', () => {
     const buttons = document.querySelectorAll('.get-started');
@@ -194,7 +274,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 </script> -->
-   <!-- <script>
+    <!-- <script>
     document.addEventListener('DOMContentLoaded', () => {
     const payBtn = document.getElementById('payButton');
 
@@ -226,5 +306,21 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
   </script> -->
+
+
 </body>
+  <script>
+    // Get the current URL of the page
+    const currentPath = window.location.pathname.split("/").pop();
+
+    // Find all links in the sidebar
+    const navLinks = document.querySelectorAll('.sidebar-top a');
+
+    navLinks.forEach(link => {
+        // If the link's href matches the current page name
+        if (link.getAttribute('href') === currentPath) {
+            link.classList.add('current-page');
+        }
+    });
+</script>
 </html>

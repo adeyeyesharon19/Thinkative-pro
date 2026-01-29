@@ -1,116 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>my Certificate</title>
-
-
+    <title>My Certificates</title>
     <link rel="stylesheet" href="css/certificate.css">
+    <style>
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 2px dashed #ccc;
+            margin-top: 20px;
+        }
+        .empty-state h3 { color: #888; margin-bottom: 10px; }
+        .btn-browse {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .hidden { display: none; }
+        .icon-img { width: 20px; cursor: pointer; margin: 0 5px; }
+    </style>
 </head>
-
 <body>
-    <div class="sidebar">
-        <h2>Dashboard</h2>
-
-        <a href="dash.html" class=""> Home</a>
-        <a href="profile.html">My Profile </a>
-             <a href="courses.html"> Courses </a>
-        <a href="enrolled.html">Enrolled courses
-        </a>
-        <a href="certificate.html">My Certificate</a>
-          <a href="review.html">Review</a>
-        <a href="#">Reports</a>
-        <a href="#"> Settings</a>
-        <a href="#">Logout</a>
-    </div>
-
+    <header>
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <h2>Dashboard</h2>
+                <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+                <p>Academics</p>
+                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
+                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
+                <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
+                <p>Management</p>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/repository.svg" alt="">Reports</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg" alt="">Logout</a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="profile.html" class="profile-card">
+                    <div class="profile-avatar">S</div>
+                    <span class="profile-name">Sharon Adeyeye</span>
+                </a>
+            </div>
+        </div>
+    </header>
 
     <main>
-        <section>
-            <div class="my">
-                <h2>My Certificates</h2>
+        <section class="my">
+            <h2>My Certificates</h2>
 
+            <div id="no-certificates" class="empty-state hidden">
+                <h3>No courses completed yet.</h3>
+                <p>Start learning and finish a course to earn your certificate!</p><br>
+                <a href="courses.html" class="btn-browse">Browse Courses</a>
+            </div>
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Course Name</th>
-                                <th>Date</th>
-                                <th>Marks</th>
-                                <th>Out of</th>
-                                <th></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>01</td>
-                                <td>Anagram Intelligence Certificate</td>
-                                <td>22 Aug 2025</td>
-                                <td>20</td>
-                                <td>20</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt="" class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="" class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>02</td>
-                                <td>Split Decision Certificate</td>
-                                <td>10 Aug 2025</td>
-                                <td>18</td>
-                                <td>20</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-
-
-                            <tr>
-                                <td>03</td>
-                                <td>Supply skill Certificate</td>
-                                <td>26 Jul 2025</td>
-                                <td>25</td>
-                                <td>30</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>04</td>
-                                <td>Mind Bloom Certificate</td>
-                                <td>14 Jul 2025</td>
-                                <td>15</td>
-                                <td>20</td>
-                                <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>05</td>
-                                <td>Hue Hack Certificate</td>
-                                <td>19 Jun 2025</td>
-                                <td>20</td>
-                                <td>30</td>
-                                 <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>06</td>
-                                <td>Digital Developer Certificate</td>
-                                <td>12 Jun 2025</td>
-                                <td>20</td>
-                                <td>20</td>
-                                <td><img src="hugeicons-static-main/icons/eye.svg" alt=""class="icon-img"><img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt=""class="icon-img"></td>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-
+            <div id="certificate-container" class="table-container hidden">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Date</th>
+                            <th>Marks</th>
+                            <th>Out of</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="certificate-list"></tbody>
+                </table>
             </div>
         </section>
     </main>
+
+
 </body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('certificate-list');
+            const noCertMsg = document.getElementById('no-certificates');
+            const tableContainer = document.getElementById('certificate-container');
+
+            // 1. Retrieve the completed courses array from localStorage
+            const completed = JSON.parse(localStorage.getItem('completed_courses')) || [];
+
+            if (completed.length === 0) {
+                // Show "No certificates" message if array is empty
+                noCertMsg.classList.remove('hidden');
+            } else {
+                // Show table and populate rows
+                tableContainer.classList.remove('hidden');
+                
+                // Clear any existing content just in case
+                tableBody.innerHTML = '';
+
+                completed.forEach(cert => {
+                    const row = `
+                        <tr>
+                            <td>${cert.id}</td>
+                            <td>${cert.name}</td>
+                            <td>${cert.date}</td>
+                            <td style="font-weight: bold; color: #2193b0;">${cert.marks}</td>
+                            <td>${cert.total}</td>
+                            <td>
+                                <img src="hugeicons-static-main/icons/eye.svg" alt="View" class="icon-img">
+                                <img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="Download" class="icon-img">
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }
+        });
+    </script>
 </html>
