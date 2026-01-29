@@ -8,51 +8,135 @@
 
 body {
     color: black;
-    background-color:white;
+    background-color:whitesmoke;
     font-weight: 400;
 }
 
 /* Sidebar Styling */
- .sidebar {
+
+.sidebar {
     position: fixed;
     left: 0;
     top: 0;
-    height: 100%;
     width: 230px;
+    height: 100vh; /* Takes full screen height */
     background-color: #fff;
-    color: #000;
-    padding-top: 20px;
     display: flex;
-    flex-direction: column;
-    border-bottom: 2px solid #ccc;
-    border-right:2px solid #ccc; ;
+    flex-direction: column; /* Stacks top and footer vertically */
+    border-right: 2px solid #ccc;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-.sidebar h2 {
-    text-align: left;
+
+.sidebar-top {
+    flex: 1; /* This grows to fill all space, pushing the footer down */
+    overflow-y: auto; /* Adds scrollbar only if links are too many */
+    padding: 20px 0;
+}
+
+.sidebar-top h2 {
+    padding: 0 20px;
     margin-bottom: 20px;
     font-size: 22px;
-    margin-left: 20px;
-    color: #000;
 }
 
-.sidebar a {
-    padding: 15px 20px;
+
+.sidebar-top p {
+    background-color: #1DA1F2; /* Your Sky Blue */
+    color: white;
+    padding: 10px;
+    
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px; 
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.sidebar-top a {
+    padding: 12px 25px;
     display: block;
     text-decoration: none;
     color: #000;
     font-size: 16px;
-} 
+    transition: 0.3s;
+    margin: 15px;
+}
 
-.sidebar a.active {
-    background-color: blue;
-} 
+.sidebar-top a:hover {
+    background-color: #e8f0fe; /* Dark Blue */
+    color: #000;
+    border-radius: 20px;
+    
+}
+
+.sidebar-top a img{
+    padding-right: 8px;
+     
+}
+ .sidebar-top a span{
+    padding-left: 30px;
+ }
+
+/* This class will be applied to the link of the current page */
+.sidebar-top a:hover.current-page {
+    background-color: #e8f0fe !important;
+    color: #2473a5 !important; /* Blue text to match your theme */
+      
+    border-left: 5px solid #1DA1F2; /* Optional: adds a nice indicator bar */
+}
 
 
-.sidebar a:hover {
-     background-color: rgb(53, 53, 192);
-     color: #fff;
-} 
+
+/* 5. Sidebar Footer (The Sharon Profile Area) */
+.sidebar-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px 20px;
+    background-color: #fff;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #333;
+    padding: 8px;
+    transition: 0.3s;
+}
+
+/* Hover logic: Card turns blue, Avatar turns white */
+.profile-card:hover {
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 10px;
+}
+
+.profile-card:hover .profile-avatar {
+    background-color: white;
+    color: #1DA1F2;
+}
+
+.profile-avatar {
+    width: 42px;
+    height: 42px;
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.profile-name {
+    font-weight: 500;
+    font-size: 14px;
+}
 
 
 /* courses */
@@ -72,14 +156,58 @@ body {
 }
 
 .start{
-      display: grid;
-   align-items: center;
-   justify-content: center;
-   grid-template-columns: repeat(3,1fr);
-     margin-right: 100px;
-   gap: 10px;
-   margin-left: 280px;
+     display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+    margin-left: 140px;
 }
+
+.sum {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    border: 1px solid rgb(227, 227, 227);
+    border-radius: 10px;
+    background-color: #fff;
+    width: 300px;
+    height: auto;
+    /* padding-top: 20px; */
+    margin-left: 20px;
+    margin-right: -20px;
+    margin-top: 20px;
+    box-shadow: 0 2px 4px rgba(174, 174, 241, 0.902);
+}
+
+.sum p {
+    text-align: left;
+    margin-top: 12px;
+    font-size: 13px;
+    padding-left: 15px;
+    line-height: 20.5px;
+}
+
+.sum img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block;
+    /* margin: 0 auto;    */
+
+    margin-left: 20px;
+    margin-right: 20px;
+
+}
+
+.sum h4 {
+    font-size: 20px;
+    padding-right: 60px;
+    padding-top: 10px;
+}
+
 
 
 /* .sum{
@@ -93,54 +221,25 @@ body {
    margin-top: 20px;
 } */
 
-.sum {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-
-    border: 1px solid rgb(227, 227, 227);
-    border-radius: 20px;
-    width: 300px;
-    height: 300px;
-    padding-top: 20px;
-    margin-left: 20px;
-    margin-top: 20px;
-}
 
 
-.sum:hover {
-    box-shadow: 0 2px 4px rgba(21, 21, 255, 0.902);
-}
-
-.sum img{
-    border-radius: 20px;
-    display: block;
-    /* margin: 0 auto;    */
-
-     margin-left: 20px;
-    margin-right: 20px;
-    
-}
-
-.sum h4{
-    font-size: 20px;
-}
 
 
 .price-row {
     display: flex;
-    justify-content: space-between; /* price left, button right */
-    align-items: center;
+    justify-content: space-between;
+    /* price left, button right */
+    /* align-items: center; */
     width: 100%;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 
 .price {
     /* margin: 0; */
-    font-size: 18px;
-    font-weight: bold;
-    margin-left: 20px;
+    /* font-size: 50px; */
+    font-weight: 700;
+    margin-left: 3px;
 }
 
 .sum button {
@@ -154,9 +253,12 @@ body {
 }
 
 
-.sum button:hover{
+.sum button:hover {
     background-color: rgb(36, 36, 94);
 }
+
+
+
 
 .view img{
     display: flex;

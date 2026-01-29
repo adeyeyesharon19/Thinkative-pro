@@ -6,21 +6,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>what ai</title>
     <link rel="stylesheet" href="css/what ai.css">
+    <style>
+        /* --- LOCKING STYLES --- */
+        .locked-element {
+            pointer-events: none !important;
+            opacity: 0.4 !important;
+            cursor: not-allowed !important;
+            user-select: none;
+        }
+
+        .lock-icon {
+            margin-left: 8px;
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 
 <body>
     <section>
         <div class="dash-trigger" id="openDash">
-            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
+            <img src="hugeicons-static-main/icons/menu-01.svg" alt="Menu" id="menuIcon">
         </div>
-
-         <!-- <span class="welcome-label" id="welcomeText">Welcome to your courses</span>  -->
     </section>
 
-
-<section>
+    <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
+
+                <a href="dash.html" id="homeLink" style="text-decoration: none;">
+                    <div class="home-button" id="homeBtn">
+                        <span class="icon">
+                            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Back">
+                        </span>
+                        <span class="text">Back to Home</span>
+                    </div>
+                </a>
+
                 <header class="dash-nav-header">
                     <h2>Courses content</h2>
                 </header>
@@ -29,16 +50,13 @@
                         <summary class="module-header">
                             <div class="header-info">
                                 <span class="icon"></span>
-                                <span class="title">
-                                    Foundations of Anagrams Intelligence</span>
+                                <span class="title">Foundations of Anagrams Intelligence</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
                         <ul class="lesson-list">
                             <li id="L1"><a href="what ai.html"><span>▶</span> 1.1 What is Anagram Intelligence</a></li>
-                            <li id="L2"><a href="history ai.html"><span>▶</span> 1.2 History and cultural
-                                    significance</a></li>
-
+                            <li id="L2"><a href="history ai.html" class="course-link"><span>▶</span> 1.2 History and cultural significance</a></li>
                         </ul>
                     </details>
                 </div>
@@ -48,27 +66,27 @@
                         <summary class="module-header">
                             <div class="header-info">
                                 <span class="icon"></span>
-                                <span class="title">
-                                    Real Life Application</span>
+                                <span class="title">Real Life Application</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
                         <ul class="lesson-list">
                             <li id="L1"><a href="lifeapp1.html"><span>▶</span> 2.1 Life Equation 1</a></li>
-
                             <li id="L2"><a href="lifeapp2.html"><span>▶</span> 2.2 Life Equation 2</a></li>
-
                         </ul>
                     </details>
                 </div>
+
+                <header class="dash-nav-header">
+                    <h2>Test</h2>
+                </header>
 
                 <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
                                 <span class="icon"></span>
-                                <span class="title">
-                                    Spark</span>
+                                <span class="title">Spark</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
@@ -78,9 +96,8 @@
                                     <summary class="lesson-summary">
                                         <span>▶</span> 3.1 Back To Front Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                          <li><a href="sparkintro.html">Introduction</a></li>
+                                        <li><a href="sparkintro.html">Introduction</a></li>
                                         <li><a href="spark.html">Question 1</a></li>
                                         <li><a href="backtofront1.html">Question 2</a></li>
                                         <li><a href="backtofront2.html">Question 3</a></li>
@@ -90,12 +107,11 @@
                                 </details>
                             </li>
 
-                           <li id="L2">
+                            <li id="L2">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 3.2 AnagramPlug Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
                                         <li><a href="anagramplugintro.html">Introduction</a></li>
                                         <li><a href="anagramplug1.html">Question 1</a></li>
@@ -106,14 +122,13 @@
                                     </ul>
                                 </details>
                             </li>
-                           <li id="L3" class="active">
+                            <li id="L3">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 3.3 FlipConnect Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                         <li><a href="flipconnectintro.html">Introduction</a></li>
+                                        <li><a href="flipconnectintro.html">Introduction</a></li>
                                         <li><a href="flipconnect1.html">Question 1</a></li>
                                         <li><a href="flipconnect2.html">Question 2</a></li>
                                         <li><a href="flipconnect3.html">Question 3</a></li>
@@ -122,18 +137,16 @@
                                     </ul>
                                 </details>
                             </li>
-                            </li>
                         </ul>
                     </details>
                 </div>
-              
+
                 <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
                                 <span class="icon"></span>
-                                <span class="title">
-                                    Flame</span>
+                                <span class="title">Flame</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
@@ -143,9 +156,8 @@
                                     <summary class="lesson-summary">
                                         <span>▶</span> 4.1 WordPick.IQ
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                          <li><a href="wordpickIQintro.html">Introduction</a></li>
+                                        <li><a href="wordpickIQintro.html">Introduction</a></li>
                                         <li><a href="wordpickIQ1.html">Question 1</a></li>
                                         <li><a href="wordpickIQ2.html">Question 2</a></li>
                                         <li><a href="wordpickIQ3.html">Question 3</a></li>
@@ -154,13 +166,11 @@
                                     </ul>
                                 </details>
                             </li>
-
-                           <li id="L2">
+                            <li id="L2">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 4.2 Anagramaths Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
                                         <li><a href="anagramathintro.html">Introduction</a></li>
                                         <li><a href="anagramath1.html">Question 1</a></li>
@@ -171,14 +181,13 @@
                                     </ul>
                                 </details>
                             </li>
-                           <li id="L3" class="active">
+                            <li id="L3">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 4.3 SmartPhrase Scramble Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                         <li><a href="smartphraseintro.html">Introduction</a></li>
+                                        <li><a href="smartphraseintro.html">Introduction</a></li>
                                         <li><a href="smartphrase1.html">Question 1</a></li>
                                         <li><a href="smartphrase2.html">Question 2</a></li>
                                         <li><a href="smartphrase3.html">Question 3</a></li>
@@ -187,18 +196,16 @@
                                     </ul>
                                 </details>
                             </li>
-                            </li>
                         </ul>
                     </details>
                 </div>
 
-                    <div class="course-container">
+                <div class="course-container">
                     <details class="module" open>
                         <summary class="module-header">
                             <div class="header-info">
                                 <span class="icon"></span>
-                                <span class="title">
-                                    Blaze</span>
+                                <span class="title">Blaze</span>
                             </div>
                             <span class="chevron"></span>
                         </summary>
@@ -206,11 +213,10 @@
                             <li id="L1">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
-                                        <span>▶</span>5.1 MeaningMatch Test
+                                        <span>▶</span> 5.1 MeaningMatch Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                          <li><a href="meaningmathintro.html">Introduction</a></li>
+                                        <li><a href="meaningmathintro.html">Introduction</a></li>
                                         <li><a href="meaningmatch1.html">Question 1</a></li>
                                         <li><a href="meaningmatch2.html">Question 2</a></li>
                                         <li><a href="meaningmatch3.html">Question 3</a></li>
@@ -219,13 +225,11 @@
                                     </ul>
                                 </details>
                             </li>
-
-                           <li id="L2">
+                            <li id="L2">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 5.2 SplitAnagram Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
                                         <li><a href="splitanagramintro.html">Introduction</a></li>
                                         <li><a href="splitanagram1.html">Question 1</a></li>
@@ -236,14 +240,13 @@
                                     </ul>
                                 </details>
                             </li>
-                           <li id="L3" class="active">
+                            <li id="L3">
                                 <details class="lesson-dropdown">
                                     <summary class="lesson-summary">
                                         <span>▶</span> 5.3 Riddlegram Test
                                     </summary>
-
                                     <ul class="sub-lesson-list">
-                                         <li><a href="riddlegramintro.html">Introduction</a></li>
+                                        <li><a href="riddlegramintro.html">Introduction</a></li>
                                         <li><a href="riddlegram1.html">Question 1</a></li>
                                         <li><a href="riddlegram2.html">Question 2</a></li>
                                         <li><a href="riddlegram3.html">Question 3</a></li>
@@ -252,40 +255,36 @@
                                     </ul>
                                 </details>
                             </li>
-                            </li>
                         </ul>
                     </details>
                 </div>
-                
+
             </div>
+        </div>
     </section>
-            <div class="dash-overlay" id="dashOverlay"></div>
+
+    <div class="dash-overlay" id="dashOverlay"></div>
+
     <main>
         <section class="ai">
             <div class="what">
                 <h2>What is Anagram Intelligence?</h2>
-                <h6>Anagram Intelligence refers to the ability to manipulate words and letters to create new meanings 
-                    and insights.</h6>
-                    <h6> It's a cognitive skill that enhances creativity, memory, and problem-solving
-                    abilities. By rearranging letters, words, or phrases to form new words or phrases, you'll develop a
-                    unique approach to language and thinking.</h6>
-
-                   <h6> Imagine being able to generate innovative ideas, craft compelling stories, and communicate complex
-                    ideas with ease. Anagram Intelligence helps you do just that. It's a powerful tool for
-                    </h6> 
-                
+                <h6>Anagram Intelligence refers to the ability to manipulate words and letters to create new meanings and insights.</h6>
+                <h6>It's a cognitive skill that enhances creativity, memory, and problem-solving abilities. By rearranging letters, words, or phrases to form new words or phrases, you'll develop a unique approach to language and thinking.</h6>
+                <h6>Imagine being able to generate innovative ideas, craft compelling stories, and communicate complex ideas with ease. Anagram Intelligence helps you do just that. It's a powerful tool for</h6>
             </div>
+
             <div class="boxes">
                 <div class="box1">
                     <div class="number-circle">1</div>
-                   <h5>Boosting Creativity</h5>
-                   <p> Break free from conventional thinking patterns and explore new possibilities. Anagram Intelligence helps you generate fresh ideas, approach problems from unique angles, and find novel solutions.</p>
+                    <h5>Boosting Creativity</h5>
+                    <p>Break free from conventional thinking patterns and explore new possibilities. Anagram Intelligence helps you generate fresh ideas, approach problems from unique angles, and find novel solutions.</p>
                 </div>
 
                 <div class="box1">
                     <div class="number-circle">2</div>
-                      <h5>Improving Memory</h5>
-                      <p>Develop a sharper memory and recall words, phrases, and ideas with ease. By recognizing patterns and connections between words, you'll enhance your ability to retain and retrieve information.</p>
+                    <h5>Improving Memory</h5>
+                    <p>Develop a sharper memory and recall words, phrases, and ideas with ease. By recognizing patterns and connections between words, you'll enhance your ability to retain and retrieve information.</p>
                 </div>
 
                 <div class="box1">
@@ -297,17 +296,15 @@
                 <div class="box1">
                     <div class="number-circle">4</div>
                     <h5>Elevating Language Skills</h5>
-                    <p> Expand your vocabulary, refine your writing, and communicate with confidence. By mastering anagrams, you'll develop a deeper understanding of language structures, syntax, and semantics.</p>
+                    <p>Expand your vocabulary, refine your writing, and communicate with confidence. By mastering anagrams, you'll develop a deeper understanding of language structures, syntax, and semantics.</p>
                 </div>
 
-                
                 <div class="box1">
                     <div class="number-circle">5</div>
                     <h5>Fostering Critical Thinking</h5>
                     <p>Develop a keen eye for detail and learn to analyze information from multiple perspectives. Anagram Intelligence helps you identify biases, challenge assumptions, and make informed decisions.</p>
                 </div>
 
-                
                 <div class="box1">
                     <div class="number-circle">6</div>
                     <h5>Unlocking Innovation</h5>
@@ -316,66 +313,94 @@
             </div>
 
             <section class="next">
-            <a href="history ai.html"><button>Next</button></a>
+                <a href="history ai.html"><button id="nextBtn">Next</button></a>
+            </section>
         </section>
-
-
-        </section>
-
-        
     </main>
-</body>
+
     <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sideDash = document.getElementById('sideDash');
+            const openBtn = document.getElementById('openDash');
+            const overlay = document.getElementById('dashOverlay');
+            const nextBtn = document.getElementById('nextBtn');
+            const homeLink = document.getElementById('homeLink');
+            const homeBtn = document.getElementById('homeBtn');
 
-    document.addEventListener('DOMContentLoaded', () => {
-        const sideDash = document.getElementById('sideDash');
-        const openBtn = document.getElementById('openDash');
-        const closeBtn = document.getElementById('closeDash');
-        const overlay = document.getElementById('dashOverlay');
-        const welcomeText = document.getElementById('welcomeText');
-        const courseContainer = document.getElementById('enrolled-list');
+            const courseSequence = [
+                "what ai.html", "history ai.html", "lifeapp1.html", "lifeapp2.html",
+                "sparkintro.html", "spark.html", "backtofront1.html", "backtofront2.html", "backtofront3.html", "backtofront4.html",
+                "anagramplugintro.html", "anagramplug1.html", "anagramplug2.html", "anagramplug3.html", "anagramplug4.html", "anagramplug5.html",
+                "flipconnectintro.html", "flipconnect1.html", "flipconnect2.html", "flipconnect3.html", "flipconnect4.html", "flipconnect5.html",
+                "wordpickIQintro.html", "wordpickIQ1.html", "wordpickIQ2.html", "wordpickIQ3.html", "wordpickIQ4.html", "wordpickIQ5.html",
+                "anagramathintro.html", "anagramath1.html", "anagramath2.html", "anagramath3.html", "anagramath4.html", "anagramath5.html",
+                "smartphraseintro.html", "smartphrase1.html", "smartphrase2.html", "smartphrase3.html", "smartphrase4.html", "smartphrase5.html",
+                "meaningmathintro.html", "meaningmatch1.html", "meaningmatch2.html", "meaningmatch3.html", "meaningmatch4.html", "meaningmatch5.html",
+                "splitanagramintro.html", "splitanagram1.html", "splitanagram2.html", "splitanagram3.html", "splitanagram4.html", "splitanagram5.html",
+                "riddlegramintro.html", "riddlegram1.html", "riddlegram2.html", "riddlegram3.html", "riddlegram4.html", "riddlegram5.html"
+            ];
 
-        // --- 1. OPEN DASHBOARD ---
-        openBtn.addEventListener('click', () => {
-            sideDash.classList.add('active');
-            overlay.classList.add('active');
+            openBtn.addEventListener('click', () => {
+                sideDash.classList.add('active');
+                overlay.classList.add('active');
+            });
 
-            // Hide the text label
-            if (welcomeText) {
-                welcomeText.classList.add('hidden');
+            const closeAll = () => {
+                sideDash.classList.remove('active');
+                overlay.classList.remove('active');
+            };
+
+            if (overlay) overlay.addEventListener('click', closeAll);
+
+            let userProgress = parseInt(localStorage.getItem('courseProgress')) || 0;
+
+            // Lock Links
+            const allLinks = document.querySelectorAll('.lesson-list a, .sub-lesson-list a');
+            allLinks.forEach((link) => {
+                const targetPage = link.getAttribute('href');
+                const pageIndex = courseSequence.indexOf(targetPage);
+                if (pageIndex !== -1 && pageIndex > userProgress) {
+                    link.classList.add('locked-element');
+                    link.innerHTML += ' <span class="lock-icon">🔒</span>';
+                }
+            });
+
+            // Lock Test Headers
+            const testDropdowns = document.querySelectorAll('.lesson-dropdown');
+            testDropdowns.forEach((dropdown) => {
+                const summary = dropdown.querySelector('.lesson-summary');
+                const firstLink = dropdown.querySelector('ul.sub-lesson-list li a');
+                if (firstLink) {
+                    const targetPage = firstLink.getAttribute('href');
+                    const pageIndex = courseSequence.indexOf(targetPage);
+                    if (pageIndex !== -1 && pageIndex > userProgress) {
+                        summary.classList.add('locked-element');
+                        summary.innerHTML += ' <span class="lock-icon">🔒</span>';
+                        dropdown.removeAttribute('open');
+                    }
+                }
+            });
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    const currentPage = window.location.pathname.split("/").pop();
+                    const currentIndex = courseSequence.indexOf(decodeURIComponent(currentPage));
+                    if (currentIndex === userProgress) {
+                        localStorage.setItem('courseProgress', currentIndex + 1);
+                    }
+                });
+            }
+
+            if (homeLink && homeBtn) {
+                homeLink.addEventListener('click', function (e) {
+                    if (!homeBtn.classList.contains('active')) {
+                        e.preventDefault();
+                        homeBtn.classList.add('active');
+                        setTimeout(() => { window.location.href = homeLink.href; }, 150);
+                    }
+                });
             }
         });
-
-        // --- 2. CLOSE DASHBOARD ---
-        const closeAll = () => {
-            sideDash.classList.remove('active');
-            overlay.classList.remove('active');
-
-            // Show the text label again
-            if (welcomeText) {
-                welcomeText.classList.remove('hidden');
-            }
-        };
-
-        if (closeBtn) closeBtn.addEventListener('click', closeAll);
-        if (overlay) overlay.addEventListener('click', closeAll);
-
-        // --- 3. LOAD COURSES ---
-        const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-        if (courseContainer) {
-            if (enrolledCourses.length > 0) {
-                courseContainer.innerHTML = enrolledCourses.map(course => `
-                <div class="mini-course-card">
-                    <img src="${course.image}" alt="${course.title}">
-                    <h4>${course.title}</h4>
-                    <a href="learning-page.html">Resume →</a>
-                </div>
-            `).join('');
-            } else {
-                courseContainer.innerHTML = '<p>No courses yet.</p>';
-            }
-        }
-
-    });
-</script>
+    </script>
+</body>
 </html>

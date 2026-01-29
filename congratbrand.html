@@ -17,7 +17,7 @@
         font-family: 'Fredoka One', cursive;
     }
     .container {
-        background: rgba(0,0,0,0.6);
+        background: rgba(0,0,0,0.8);
         padding: 60px;
         border-radius: 25px;
         text-align: center;
@@ -25,10 +25,12 @@
         box-shadow: 0 0 30px rgba(255,255,255,0.2);
         position: relative;
         z-index: 1;
+        max-width: 80%;
     }
     h1 { font-size: 60px; color: #f2ed61; text-shadow: 2px 2px 10px #ff4b5c; margin-bottom: 20px; }
     p { font-size: 28px; margin-bottom: 20px; }
     .score { font-size: 50px; color: #00ffe7; text-shadow: 1px 1px 5px #00bfff; }
+    
     button {
         margin-top: 30px;
         padding: 15px 35px;
@@ -38,10 +40,11 @@
         background: linear-gradient(45deg, #ff4b5c, #ffac41);
         color: #fff;
         cursor: pointer;
-        box-shadow: 0 0 10px rgba(255,255,255,0.2);
         transition: transform 0.2s;
     }
     button:hover { transform: scale(1.1); }
+    .finish-btn { background: linear-gradient(45deg, #00bfff, #1de9b6) !important; }
+
     .confetti {
         position: absolute;
         width: 10px; height: 10px; top: 0;
@@ -54,61 +57,106 @@
 <body>
 
 <div class="container">
-    <h1>🎉 Congratulations! 🎉</h1>
-    <p>You completed the questions successfully </p>
+    <h1 id="congrat-title">🎉 Congratulations! 🎉</h1>
+    <p id="congrat-text">You completed the questions successfully</p>
     <div class="score" id="score">Score: 0/5</div>
-    <button onclick="continueQuiz()">Continue</button>
+    <button id="action-btn" onclick="handleContinue()">Continue</button>
 </div>
 
-
-
 <script>
-    // 1. Get the score from the last set
     const lastSetScore = localStorage.getItem('first5_lastSetScore') || 0;
-    document.getElementById('score').innerText = `Score: ${lastSetScore}/5`;
+    let currentStage = parseInt(localStorage.getItem('quiz_stage')) || 1;
+    
+    const scoreElement = document.getElementById('score');
+    const actionBtn = document.getElementById('action-btn');
+    const congratTitle = document.getElementById('congrat-title');
+    const congratText = document.getElementById('congrat-text');
 
-    function continueQuiz() {
-        // 2. Identify which stage the user just completed
-        // Defaults to '1' if not found
-        let currentStage = parseInt(localStorage.getItem('quiz_stage')) || 1;
+    // Updated with all 9 modules to reach 45 questions
+    function getTotalScore() {
+        const allScoreKeys = [
+            'first5_score',      // Stage 1
+            'brandana_score',    // Stage 2
+            'brandblend_score',  // Stage 3
+            'intraswap_score',   // Stage 4
+            'swapmark_score',    // Stage 5
+            'revertamark_score', // Stage 6
+            'brandlink_score',   // Stage 7
+            'brandcombo_score',  // Stage 8
+            'final_score'        // Stage 9
+        ];
 
-        // 3. Define the routing logic
+        let total = 0;
+        allScoreKeys.forEach(key => {
+            total += parseInt(localStorage.getItem(key)) || 0;
+        });
+        return total;
+    }
+
+    scoreElement.innerText = `Score: ${lastSetScore}/5`;
+
+    if (currentStage === 9) {
+        const grandTotal = getTotalScore();
+        congratTitle.innerText = "🏆 Course Completed! 🏆";
+        congratText.innerHTML = `Amazing work! You finished the <b>Brand Brain</b> course.<br>Total Score: <b>${grandTotal} / 45</b>`;
+        scoreElement.style.display = 'none';
+        actionBtn.innerText = "Finish Course";
+        actionBtn.classList.add('finish-btn');
+    }
+
+    function handleContinue() {
         let nextURL = '';
 
+        // ROUTING LOGIC FOR ALL 9 STAGES
         if (currentStage === 1) {
-            // User finished BB5.html (Stage 1) -> Go to Brandana
-            localStorage.setItem('quiz_stage', '1'); // Prepare for next time
             nextURL = 'BRANDANAINTRO.html';
         } 
         else if (currentStage === 2) {
-            // User finished Brandana (Stage 2) -> Go to brandblend
-            localStorage.setItem('quiz_stage', '2'); // Prepare for next time
-            nextURL = 'BRANDBLENDINTRO.html';
+            nextURL = 'PPBRANDINTRO.html';
         } 
         else if (currentStage === 3) {
-            // User finished Brandana (Stage 2) -> Go to INTRASWAP
-            localStorage.setItem('quiz_stage', '3'); // Prepare for next time
+            nextURL = 'BRANDBLENDINTRO.html';
+        } 
+        else if (currentStage === 4) {
             nextURL = 'INTRASWAPINTRO.html';
         } 
-           else if (currentStage === 4) {
-            // User finished Brandana (Stage 2) -> Go to LEXI-MORPH
-            localStorage.setItem('quiz_stage', '4'); // Prepare for next time
+        else if (currentStage === 5) {
+            nextURL = 'BRANDLINKINTRO.html';
+        } 
+        else if (currentStage === 6) {
             nextURL = 'SWAPMARKINTRO.html';
         } 
-        // else if (currentStage === 3) {
-        //     // User finished Flip (Stage 3) -> Add more as needed
-        //     nextURL = 'FINAL_PAGE.html'; 
+        else if (currentStage === 7) {
+            nextURL = 'REVERTAMARKINTRO.html';
+        } 
+         else if (currentStage === 8) {
+            nextURL = 'BRANDCOMBOINTRO.html';
+        } 
+        // else if (currentStage === 8) {
+        //     // This assumes your 9th module is the final one
+        //     nextURL = 'FINALMODULEINTRO.html'; 
         // } 
-        // else {
-        //     // Fallback if something goes wrong
-        //     nextURL = 'index.html'; 
-        // }
+        else if (currentStage === 9) {
+            const finalScore45 = getTotalScore();
+            let certificates = JSON.parse(localStorage.getItem('completed_courses')) || [];
 
-        // 4. Redirect the user
+            const newCert = {
+                id: 'CB' + Math.floor(100 + Math.random() * 900),
+                name: 'Brand Brain',
+                date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+                marks: finalScore45,
+                total: 45
+            };
+
+            certificates.push(newCert);
+            localStorage.setItem('completed_courses', JSON.stringify(certificates));
+            nextURL = 'certificate.html';
+        }
+
         window.location.href = nextURL;
     }
 
-    // Generate confetti (Keep your existing code below)
+    // Confetti
     for(let i = 0; i < 100; i++){
         const confetti = document.createElement('div');
         confetti.classList.add('confetti');
@@ -120,7 +168,5 @@
         document.body.appendChild(confetti);
     }
 </script>
-
 </body>
 </html>
-

@@ -8,17 +8,145 @@
 
 body {
     color: black;
-    background-color:white;
+    background-color:whitesmoke;
     font-weight: 400;
-    background-image: url(in3.jpeg);
+    /* background-image: url(in3.jpeg); */
     background-repeat: no-repeat;
     background-size: cover;
     /* width: 100%; */
-     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+     /* background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url('Ai.jpg') left/cover no-repeat;
-     background-position: right; 
+     background-position: right;  */
      /* border: 1px solid #333; */
 }
+
+/* Sidebar Styling */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 230px;
+    height: 100vh; /* Takes full screen height */
+    background-color: #fff;
+    display: flex;
+    flex-direction: column; /* Stacks top and footer vertically */
+    border-right: 2px solid #ccc;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+.sidebar-top {
+    flex: 1; /* This grows to fill all space, pushing the footer down */
+    overflow-y: auto; /* Adds scrollbar only if links are too many */
+    padding: 20px 0;
+}
+
+.sidebar-top h2 {
+    padding: 0 20px;
+    margin-bottom: 20px;
+    font-size: 22px;
+}
+
+
+.sidebar-top p {
+    background-color: #1DA1F2; /* Your Sky Blue */
+    color: white;
+    padding: 10px;
+    
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px; 
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+.sidebar-top a {
+    padding: 12px 25px;
+    display: block;
+    text-decoration: none;
+    color: #000;
+    font-size: 16px;
+    transition: 0.3s;
+    margin: 15px;
+}
+
+.sidebar-top a:hover {
+    background-color: #e8f0fe; /* Dark Blue */
+    color: #000;
+    border-radius: 20px;
+    
+}
+
+.sidebar-top a img{
+    padding-right: 8px;
+     
+}
+ .sidebar-top a span{
+    padding-left: 30px;
+ }
+
+/* This class will be applied to the link of the current page */
+.sidebar-top a:hover.current-page {
+    background-color: #e8f0fe !important;
+    color: #2473a5 !important; /* Blue text to match your theme */
+      
+    border-left: 5px solid #1DA1F2; /* Optional: adds a nice indicator bar */
+}
+
+
+
+/* 5. Sidebar Footer (The Sharon Profile Area) */
+.sidebar-footer {
+    border-top: 1px solid #ddd;
+    padding: 15px 20px;
+    background-color: #fff;
+}
+
+.profile-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: #333;
+    padding: 8px;
+    transition: 0.3s;
+}
+
+/* Hover logic: Card turns blue, Avatar turns white */
+.profile-card:hover {
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 10px;
+}
+
+.profile-card:hover .profile-avatar {
+    background-color: white;
+    color: #1DA1F2;
+}
+
+.profile-avatar {
+    width: 42px;
+    height: 42px;
+    background-color: #1DA1F2;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: 0.3s;
+}
+
+.profile-name {
+    font-weight: 500;
+    font-size: 14px;
+}
+
+
 
 /* NAVIGATION BAR */
 .container {
@@ -47,7 +175,9 @@ body {
 .brill {
     display: flex;
     justify-content: center;  
-    margin-top: 50px;        
+        
+    margin-left: 170px;
+    
 }
 
 .banana {
@@ -55,14 +185,56 @@ body {
     border: 1px solid #ccc;          
     border-radius: 15px;              
     padding: 20px 30px;               
-    max-width: 600px;                 
-    text-align: center;            
+    /* max-width: 600px;       */
+    width: 70%;           
+    text-align: left;            
     /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); */
 }
 
+
+
+
+.ban-img{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 30px;
+    /* justify-content: space-around; */
+    gap: 30px;
+    text-align: center;
+    /* padding-bottom: 10px; */
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+.ai-img{
+    border-radius: 15px;
+    /* padding-top: 20px; */
+}
 .banana h2 {
     margin-bottom: 15px;
     font-size: 26px;
+    margin-top: 10px;
+}
+
+.banana h3 {
+    margin-bottom: 15px;
+    font-size: 26px;
+    
+}
+
+.banana h4{
+    border-left: 8px solid rgba(94, 94, 211, 0.966);
+    border-radius: 3px;
+    padding-left: 10px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    font-size: 20px;
+}
+
+.banana p{
+    margin-left: 50px;
+    padding-bottom: 10px;
 }
 
 .banana p {
@@ -77,11 +249,81 @@ body {
     border: none;
     padding: 12px;
     margin-top: 20px;
+    margin-left: 310px;
+    margin-bottom: 10px;
 }
 
 .banana button:hover{
     background-color: rgb(25, 25, 90);
 }
 
+/* profile icon */
+
+.profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    /* space between icon and text */
+    font-family: Arial, sans-serif;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #1da1f2;
+    
+    color: white;
+    border-radius: 50%;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.profile-text {
+    font-size: 16px;
+    color: #333;
+    margin-right: 20px;
+}
+
+.all-in{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+}
+
+
+/* SEARCH BOX */
+.search-box {
+    width: 100%;
+    max-width: 400px;
+    background: white;
+    padding: 10px 15px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    margin-left: 250px;
+    margin-top: 20px ;
+
+}
+
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 15px;
+}
+
+.search-icon {
+    color: #6b7280;
+    margin-right: 10px;
+
+}
 
 

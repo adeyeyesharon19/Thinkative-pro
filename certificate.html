@@ -1,143 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Certificates - Thinkative</title>
-  <link rel="stylesheet" href="css/certificate.css">
-  <style>
-    /* Ensuring the table container is professional and scrollable */
-    .table-container {
-      width: 100%;
-      overflow-x: auto;
-      margin-top: 20px;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 15px;
-      border-bottom: 1px solid #eee;
-    }
-
-    th {
-      background-color: #f8f9fa;
-      color: #333;
-      font-weight: 600;
-    }
-
-    .icon-img {
-      width: 24px;
-      height: 24px;
-      cursor: pointer;
-      margin-right: 10px;
-      transition: transform 0.2s;
-    }
-
-    .icon-img:hover {
-      transform: scale(1.1);
-    }
-
-    /* Professional Sidebar Active State */
-    .sidebar a.active {
-      background: #4a90e2;
-      color: white;
-      border-radius: 8px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates</title>
+    <link rel="stylesheet" href="css/certificate.css">
+    <style>
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background: #f9f9f9;
+            border-radius: 15px;
+            border: 2px dashed #ccc;
+            margin-top: 20px;
+        }
+        .empty-state h3 { color: #888; margin-bottom: 10px; }
+        .btn-browse {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #4a90e2;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .hidden { display: none; }
+        .icon-img { width: 20px; cursor: pointer; margin: 0 5px; }
+    </style>
 </head>
-
 <body>
-  <div class="sidebar">
-    <h2>Dashboard</h2>
-    <a href="dash.html">Home</a>
-    <a href="profile.html">My Profile</a>
-    <a href="courses.html">Courses</a>
-    <a href="enrolled.html">Enrolled courses</a>
-    <a href="certificate.html" class="active">My Certificate</a>
-    <a href="review.html">Review</a>
-    <a href="#">Reports</a>
-    <a href="#">Settings</a>
-    <a href="#">Logout</a>
-  </div>
-
-  <main>
-    <section>
-      <div class="my">
-        <h2>My Certificates</h2>
-
-        <div class="table-container">
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Course Name</th>
-                <th>Date</th>
-                <th>Marks</th>
-                <th>Out of</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody id="certificate-table-body">
-              </tbody>
-          </table>
+    <header>
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <h2>Dashboard</h2>
+                <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+                <p>Academics</p>
+                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
+                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
+                <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
+                <p>Management</p>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/repository.svg" alt="">Reports</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
+                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg" alt="">Logout</a>
+            </div>
+            <div class="sidebar-footer">
+                <a href="profile.html" class="profile-card">
+                    <div class="profile-avatar">S</div>
+                    <span class="profile-name">Sharon Adeyeye</span>
+                </a>
+            </div>
         </div>
-      </div>
-    </section>
-  </main>
+    </header>
 
-  <script>
-    // 1. Data Structure: Default certificates + Dynamically added ones
-    const defaultCertificates = [
-      { id: '01', name: 'Anagram Intelligence', date: '22 Aug 2025', marks: 20, total: 20 },
-      { id: '02', name: 'Split Decision', date: '10 Aug 2025', marks: 18, total: 20 },
-      { id: '03', name: 'Supply skill', date: '26 Jul 2025', marks: 25, total: 30 },
-      { id: '04', name: 'Mind Bloom', date: '14 Jul 2025', marks: 15, total: 20 },
-      { id: '05', name: 'Hue Hack', date: '19 Jun 2025', marks: 20, total: 30 },
-      { id: '06', name: 'Digital Developer', date: '12 Jun 2025', marks: 20, total: 20 }
-    ];
+    <main>
+        <section class="my">
+            <h2>My Certificates</h2>
 
-    function renderCertificates() {
-      const tableBody = document.getElementById('certificate-table-body');
-      
-      // Get dynamic certificates from localStorage (added when user finishes a course)
-      const dynamicCerts = JSON.parse(localStorage.getItem('completed_courses')) || [];
-      
-      // Combine both lists
-      const allCertificates = [...defaultCertificates, ...dynamicCerts];
+            <div id="no-certificates" class="empty-state hidden">
+                <h3>No courses completed yet.</h3>
+                <p>Start learning and finish a course to earn your certificate!</p><br>
+                <a href="courses.html" class="btn-browse">Browse Courses</a>
+            </div>
 
-      // Clear table
-      tableBody.innerHTML = '';
+            <div id="certificate-container" class="table-container hidden">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Date</th>
+                            <th>Marks</th>
+                            <th>Out of</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="certificate-list"></tbody>
+                </table>
+            </div>
+        </section>
+    </main>
 
-      // Loop through and create rows
-      allCertificates.forEach((cert) => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${cert.id}</td>
-          <td>${cert.name} Certificate</td>
-          <td>${cert.date}</td>
-          <td>${cert.marks}</td>
-          <td>${cert.total}</td>
-          <td>
-            <img src="hugeicons-static-main/icons/eye.svg" alt="View" class="icon-img" title="View Certificate">
-            <img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="Download" class="icon-img" title="Download">
-          </td>
-        `;
-        tableBody.appendChild(row);
-      });
-    }
 
-    // Load the table when the page opens
-    document.addEventListener('DOMContentLoaded', renderCertificates);
-  </script>
 </body>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.getElementById('certificate-list');
+            const noCertMsg = document.getElementById('no-certificates');
+            const tableContainer = document.getElementById('certificate-container');
+
+            // 1. Retrieve the completed courses array from localStorage
+            const completed = JSON.parse(localStorage.getItem('completed_courses')) || [];
+
+            if (completed.length === 0) {
+                // Show "No certificates" message if array is empty
+                noCertMsg.classList.remove('hidden');
+            } else {
+                // Show table and populate rows
+                tableContainer.classList.remove('hidden');
+                
+                // Clear any existing content just in case
+                tableBody.innerHTML = '';
+
+                completed.forEach(cert => {
+                    const row = `
+                        <tr>
+                            <td>${cert.id}</td>
+                            <td>${cert.name}</td>
+                            <td>${cert.date}</td>
+                            <td style="font-weight: bold; color: #2193b0;">${cert.marks}</td>
+                            <td>${cert.total}</td>
+                            <td>
+                                <img src="hugeicons-static-main/icons/eye.svg" alt="View" class="icon-img">
+                                <img src="hugeicons-static-main/icons/circle-arrow-down-03.svg" alt="Download" class="icon-img">
+                            </td>
+                        </tr>
+                    `;
+                    tableBody.innerHTML += row;
+                });
+            }
+        });
+    </script>
 </html>

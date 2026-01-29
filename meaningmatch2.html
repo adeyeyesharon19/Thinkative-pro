@@ -10,7 +10,7 @@
 <body>
       <section>
         <div class="dash-trigger" id="openDash">
-            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Menu" id="menuIcon">
+            <img src="hugeicons-static-main/icons/menu-01.svg" alt="Menu" id="menuIcon">
         </div>
 
         <!-- <span class="welcome-label" id="welcomeText">Welcome to your courses</span>  -->
@@ -20,6 +20,15 @@
   <section>
         <div class="side-dashboard" id="sideDash">
             <div class="dash-inner">
+
+                  <a href="dash.html" id="homeLink" style="text-decoration: none;">
+                    <div class="home-button" id="homeBtn">
+                        <span class="icon">
+                            <img src="hugeicons-static-main/icons/arrow-left-01.svg" alt="Back">
+                        </span>
+                        <span class="text">Back to Home</span>
+                    </div>
+                </a>
                 <header class="dash-nav-header">
                     <h2>Courses content</h2>
                 </header>
@@ -60,6 +69,10 @@
                         </ul>
                     </details>
                 </div>
+
+                   <header class="dash-nav-header">
+                    <h2>Test</h2>
+                </header>
 
                 <div class="course-container">
                     <details class="module" open>
@@ -300,6 +313,7 @@
         </section>
     
     </main>
+     <script src="js/course-lock.js"></script>
 </body>
 
   <script>
@@ -392,6 +406,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+       
+     const homeLink = document.getElementById('homeLink');
+        const homeBtn = document.getElementById('homeBtn');
+
+        homeLink.addEventListener('click', function (e) {
+            // If the button is NOT yet active (first click)
+            if (!homeBtn.classList.contains('active')) {
+                // Stop the browser from going to dash.html
+                e.preventDefault();
+
+                // Show the text
+                homeBtn.classList.add('active');
+            }
+            // If it IS active (second click), the browser will naturally go to dash.html
+        });
 
 });
 </script>

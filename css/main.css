@@ -44,7 +44,7 @@ body {
 .start-btn {
     border-radius: 20px;
     padding: 12px 20px;
-    background-color: blue;
+    background-color:  rgb(53, 53, 192);
     color: #fff;
     border: none;
     font-size: 15px;
@@ -82,7 +82,7 @@ body {
 .hero .hero-1 button {
     border-radius: 20px;
     padding: 12px 20px;
-    background-color: blue;
+    background-color: rgb(28, 28, 180);
     color: #fff;
     border: none;
     font-size: 15px;
@@ -91,7 +91,7 @@ body {
 }
 
 .hero .hero-1 button:hover{
-  background-color: rgb(72, 72, 102);
+  background-color: #1DA1F2;
   color: #fff;
 }
 
@@ -388,7 +388,7 @@ background-attachment: fixed;
 .star-btn{
     border-radius: 20px;
     padding: 12px 20px;
-    background-color: blue;
+    background-color:  rgb(28, 28, 180);
     color: #fff;
     border: none;
     font-size: 15px;
@@ -397,7 +397,7 @@ background-attachment: fixed;
 }
 
 .star-btn:hover{
-  background-color: rgb(72, 72, 102);
+  background-color: #1DA1F2;
   color: #fff;
 }
 
