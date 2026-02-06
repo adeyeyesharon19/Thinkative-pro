@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="css/learning.css">
 
     <style>
-       
+
     </style>
 </head>
 
@@ -325,8 +325,10 @@
 
 <div class="dash-overlay" id="dashOverlay"></div> -->
 
- <script src="js/course-lock.js"></script>
+    <script src="js/course-lock.js"></script>
+<script src="tracker.js"></script>
 </body>
+
 
 <script>
 
@@ -406,6 +408,9 @@
             }
             // If it IS active (second click), the browser will naturally go to dash.html
         });
+
+        // When user starts the course
+        startActiveCourse('Anagram Intelligence');
     });
 </script>
 

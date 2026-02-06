@@ -10,16 +10,14 @@
 </head>
 
 <body>
-       <header>
-      
-
+    <header>
         <div class="sidebar">
             <div class="sidebar-top">
                 <h2>Dashboard</h2>
 
-                <a href="dash.html" ><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+                <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
                
-                 <p>Academics</p>
+                <p>Academics</p>
                 <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
                 <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
                 <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
@@ -30,121 +28,137 @@
                 <a href="#" class="current-page">Logout</a>
             </div>
 
-          <div class="sidebar-footer">
-        <a href="profile.html" class="profile-card">
-            <div class="profile-avatar">S</div>
-            <span class="profile-name">Sharon Adeyeye</span>
-        </a>
-
+            <div class="sidebar-footer">
+                <a href="profile.html" class="profile-card">
+                    <div class="profile-avatar" id="sidebar-avatar">UN</div>
+                    <span class="profile-name" id="sidebar-name">User Name</span>
+                </a>
+            </div>
         </div>
     </header>
+    
 
     <main>
         <section>
-            <div>
+            <div class="all">
+                <div class="profile-container">
+                    <h1>My Profile</h1>
+                    <form action="#" method="post" class="profile-form">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name" placeholder="Loading..." readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name" placeholder="Loading..." readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="registration-date">Registration Date</label>
+                            <input type="text" id="registration-date" name="registration-date" placeholder="---" readonly>
+                        </div>
 
-            <div class="profile-container">
-                <h1>My Profile</h1>
-                <form action="#" method="post" class="profile-form">
-                    <div class="form-group">
-                        <label for="first-name">First Name</label>
-                        <input type="text" id="first-name" name="first-name" placeholder="Loading..." readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="last-name">Last Name</label>
-                        <input type="text" id="last-name" name="last-name" placeholder="Loading..." readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="registration-date">Registration Date</label>
-                        <input type="text" id="registration-date" name="registration-date" placeholder="---" readonly>
-                    </div>
+                        <div class="form-group">
+                            <label for="username">User Name</label>
+                            <input type="text" id="username" name="username" placeholder="---" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Not Provided" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Loading..." readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="username">User Name</label>
-                        <input type="text" id="username" name="username" placeholder="---" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Not Provided" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Loading..." readonly>
-                    </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <input type="text" id="gender" name="gender" placeholder="Not Set" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">DOB</label>
+                            <input type="text" id="dob" name="dob" placeholder="---" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="age">Age</label>
+                            <input type="number" id="age" name="age" placeholder="0" readonly>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="gender">Gender</label>
-                        <input type="text" id="gender" name="gender" placeholder="Not Set" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="dob">DOB</label>
-                        <input type="text" id="dob" name="dob" placeholder="---" readonly>
-                    </div>
-                    <div class="form-group">
-                        <label for="age">Age</label>
-                        <input type="number" id="age" name="age" placeholder="0" readonly>
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label for="bio">Bio</label>
-                        <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..." readonly></textarea>
-                    </div>
-                </form>
+                        <div class="form-group full-width">
+                            <label for="bio">Bio</label>
+                            <textarea id="bio" name="bio" rows="4" placeholder="Tell us about yourself..." readonly></textarea>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
     </main>
-
-    
+ <script src="js/dash.js"></script>
+<script src="tracker.js"></script>
 </body>
-<script>
-    window.onload = function () {
-        // 1. Pull the new user object from storage
-        const storedUser = localStorage.getItem('thinkative_user');
 
-        if (storedUser) {
-            const user = JSON.parse(storedUser);
 
-            // 2. Fill Name Fields directly (No more guessing!)
-            // We now use the specific firstName and lastName keys
-            document.getElementById('first-name').value = user.firstName || "";
-            document.getElementById('last-name').value = user.lastName || "";
+    <script>
+        window.onload = function () {
+            // 1. Pull the new user object from storage
+            const storedUser = localStorage.getItem('thinkative_user');
 
-            // 3. Fill the Gender field
-            if (document.getElementById('gender')) {
-                document.getElementById('gender').value = user.gender || "Not Set";
-            }
+            if (storedUser) {
+                const user = JSON.parse(storedUser);
 
-            // 4. Fill Basic Info
-            document.getElementById('email').value = user.email || "";
-            document.getElementById('registration-date').value = user.regDate || "Recently Joined";
-            document.getElementById('dob').value = user.dob || "---";
+                // 2. Fill Name Fields directly
+                document.getElementById('first-name').value = user.firstName || "";
+                document.getElementById('last-name').value = user.lastName || "";
 
-            // 5. Generate Username (using the stored firstName)
-            if (user.firstName) {
-                const cleanName = user.firstName.toLowerCase();
-                document.getElementById('username').value = cleanName + Math.floor(Math.random() * 100);
-            }
-
-            // 6. Calculate Age from the stored DOB
-            if (user.dob) {
-                const dobParts = user.dob.split(" ");
-                // The year is the last part of the string (e.g., "12 January 2005")
-                const birthYear = parseInt(dobParts[dobParts.length - 1]);
-                const currentYear = new Date().getFullYear();
-                if (!isNaN(birthYear)) {
-                    document.getElementById('age').value = currentYear - birthYear;
+                // 3. Fill the Gender field
+                if (document.getElementById('gender')) {
+                    document.getElementById('gender').value = user.gender || "Not Set";
                 }
-            }
 
-            // 7. Set default Phone and Bio
-            document.getElementById('phone').value = "Not Provided";
-            document.getElementById('bio').value = "Welcome to my profile! I am ready to train my brain.";
-            
-            console.log("Profile successfully loaded for: " + user.firstName);
-        } else {
-            console.log("No user data found. Please complete the Get Started page.");
-        }
-    };
-</script>
-</body>
+                // 4. Fill Basic Info
+                document.getElementById('email').value = user.email || "";
+                document.getElementById('registration-date').value = user.regDate || "Recently Joined";
+                document.getElementById('dob').value = user.dob || "---";
+
+                // 5. Generate Username
+                if (user.firstName) {
+                    const cleanName = user.firstName.toLowerCase();
+                    document.getElementById('username').value = cleanName + Math.floor(Math.random() * 100);
+                }
+
+                // 6. Calculate Age from DOB
+                if (user.dob) {
+                    const dobParts = user.dob.split(" ");
+                    const birthYear = parseInt(dobParts[dobParts.length - 1]);
+                    const currentYear = new Date().getFullYear();
+                    if (!isNaN(birthYear)) {
+                        document.getElementById('age').value = currentYear - birthYear;
+                    }
+                }
+
+                // 7. Set default Phone and Bio
+                document.getElementById('phone').value = "Not Provided";
+                document.getElementById('bio').value = "Welcome to my profile! I am ready to train my brain.";
+
+                // ✅ 8. UPDATE SIDEBAR PROFILE (FIXED!)
+                const fullName = `${user.firstName} ${user.lastName}`;
+                const initials = `${user.firstName.charAt(0)}${user.lastName.charAt(0)}`.toUpperCase();
+                
+                // Update sidebar name
+                const sidebarName = document.getElementById('sidebar-name');
+                if (sidebarName) {
+                    sidebarName.textContent = fullName;
+                }
+                
+                // Update sidebar avatar initials
+                const sidebarAvatar = document.getElementById('sidebar-avatar');
+                if (sidebarAvatar) {
+                    sidebarAvatar.textContent = initials;
+                }
+                
+                console.log("✅ Profile successfully loaded for: " + user.firstName);
+            } else {
+                console.log("❌ No user data found. Please complete the Get Started page.");
+            }
+        };
+    </script>
 </html>

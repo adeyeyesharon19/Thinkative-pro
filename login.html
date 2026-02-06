@@ -56,24 +56,60 @@
 
     </form>
   </section>
+<script src="tracker.js"></script>
 </body>
+
 <script>
-// Add this script to your Login page
-const loginForm = document.getElementById('login-form');
+document.addEventListener("DOMContentLoaded", () => {
 
-loginForm.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevents the page from reloading immediately
+  const loginForm = document.getElementById('login-form');
 
-    // Capture the information from your input fields
-    const userName = document.getElementById('Name').value;
-    const userPass = document.getElementById('password').value; 
+  loginForm.addEventListener('submit', function(event) {
+    event.preventDefault();
 
-    // Save the information into the browser's memory (localStorage)
-    localStorage.setItem('savedUserName', userName);
-    localStorage.setItem('savedPassword', userPass); 
+    const enteredEmail = document.getElementById('Name').value.trim();
+    const enteredPassword = document.getElementById('password').value;
 
-    // Now manually tell the browser to go to your dashboard/profile
-    window.location.href = 'in.html'; 
+    // Get saved account from signup
+    const savedUser = JSON.parse(localStorage.getItem('thinkative_user'));
+
+    // ==============================
+    // CHECK IF ACCOUNT EXISTS
+    // ==============================
+    if (!savedUser) {
+      alert("No account found. Please sign up first.");
+      return;
+    }
+
+    // ==============================
+    // EMAIL CHECK
+    // ==============================
+    if (enteredEmail !== savedUser.email) {
+      alert("Account not found");
+      return;
+    }
+
+    // ==============================
+    // PASSWORD CHECK
+    // ==============================
+    if (enteredPassword !== savedUser.password) {
+      alert("Password is incorrect");
+      return;
+    }
+
+    // ==============================
+    // SUCCESS LOGIN
+    // ==============================
+    localStorage.setItem("thinkative_logged_in", "true");
+
+    // Redirect to last page visited
+    const lastPage = localStorage.getItem("lastPage");
+
+    window.location.href = lastPage ? lastPage : "in.html";
+
+  });
+
 });
 </script>
+
 </html>

@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Academic Performance Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/dash.css">
+    <link rel="stylesheet" href="css/report.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR (UNCHANGED) -->
+
+
+    <!-- MAIN CONTENT -->
+    <div class="all">
+        <div class="main-content">
+
+            <div class="page-header">
+                <h1>Academic Performance</h1>
+                <p class="subtitle">Track your progress and global rankings</p>
+            </div>
+            <header>
+                <div class="sidebar">
+                    <div class="sidebar-top">
+                        <h2>Dashboard</h2>
+
+                        <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+
+                        <p>ACADEMICS</p>
+                        <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg"
+                                alt="">Courses</a>
+                        <a href="enrolled.html" class="current-page"><img
+                                src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled
+                            <span>courses</span></a>
+                        <a href="certificate.html" class="current-page"><img
+                                src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span>
+                                Certificate</span></a>
+                        <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg"
+                                alt="">Review</a>
+                        <p>MANAGMENT</p>
+                        <a href="report.html" class="current-page"><img src="hugeicons-static-main/icons/repository.svg"
+                                alt="">Reports</a>
+                        <a href="setting.html" class="current-page"><img
+                                src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
+                        <a href="logout.html" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg"
+                                alt="">Logout</a>
+                    </div>
+
+                    <div class="sidebar-footer">
+                        <a href="profile.html" class="profile-card">
+                            <div class="profile-avatar">UN</div>
+                            <span class="profile-name">User Name</span>
+                        </a>
+                    </div>
+                </div>
+            </header>
+            <!-- ANIMATED STATS -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">👥</div>
+                    <div class="stat-label">Total Students</div>
+                    <div class="stat-value" data-target="1247">0</div>
+                    <div class="stat-change">↑ 12% from last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div class="stat-label">Active Courses</div>
+                    <div class="stat-value" data-target="24">0</div>
+                    <div class="stat-change">↑ 8% from last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-label">Completion Rate</div>
+                    <div class="stat-value" data-target="87">0</div>
+                    <div class="stat-change">↑ 5% from last month</div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-label">Average Score</div>
+                    <div class="stat-value" data-target="84">0</div>
+                    <div class="stat-change">↑ 3% from last month</div>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE CHART -->
+            <div class="chart-section">
+                <h2>📊 Performance Over Time</h2>
+                <canvas id="performanceChart" class="chart-canvas"></canvas>
+            </div>
+
+            <!-- RANKINGS -->
+            <div class="rankings-grid">
+
+                <!-- COUNTRY RANKING -->
+                <div class="ranking-card">
+                    <div class="ranking-header">
+                        <h3>🇳🇬 Country Ranking</h3>
+                        <p class="ranking-subtitle">Your position in Nigeria</p>
+                    </div>
+
+                    <div class="user-rank-highlight">
+                        <div class="rank-position">Your Current Position</div>
+                        <div class="user-stats">
+                            <div class="user-info">
+                                <strong>Sharon Adeyeye</strong>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="user-score">#12</div>
+                                <div style="font-size: 14px; opacity: 0.9;">Score: 94.5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ranking-list">
+                        <div class="rank-item top-3">
+                            <div class="rank-number">1</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Chioma Okafor</div>
+                                <div class="rank-country">Lagos, Nigeria</div>
+                            </div>
+                            <div class="rank-score">98.7</div>
+                        </div>
+
+                        <div class="rank-item top-3">
+                            <div class="rank-number">2</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Tunde Bakare</div>
+                                <div class="rank-country">Abuja, Nigeria</div>
+                            </div>
+                            <div class="rank-score">97.2</div>
+                        </div>
+
+                        <div class="rank-item top-3">
+                            <div class="rank-number">3</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Fatima Hassan</div>
+                                <div class="rank-country">Kano, Nigeria</div>
+                            </div>
+                            <div class="rank-score">96.8</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">4</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Emmanuel Nwosu</div>
+                                <div class="rank-country">Port Harcourt, Nigeria</div>
+                            </div>
+                            <div class="rank-score">96.1</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">5</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Aisha Mohammed</div>
+                                <div class="rank-country">Lagos, Nigeria</div>
+                            </div>
+                            <div class="rank-score">95.9</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">6</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Adekunle Williams</div>
+                                <div class="rank-country">Ibadan, Nigeria</div>
+                            </div>
+                            <div class="rank-score">95.6</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">7</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Ngozi Eze</div>
+                                <div class="rank-country">Enugu, Nigeria</div>
+                            </div>
+                            <div class="rank-score">95.4</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">8</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Ibrahim Yusuf</div>
+                                <div class="rank-country">Kaduna, Nigeria</div>
+                            </div>
+                            <div class="rank-score">95.1</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">9</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Grace Okonkwo</div>
+                                <div class="rank-country">Lagos, Nigeria</div>
+                            </div>
+                            <div class="rank-score">94.9</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">10</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Daniel Adeleke</div>
+                                <div class="rank-country">Benin City, Nigeria</div>
+                            </div>
+                            <div class="rank-score">94.8</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- GLOBAL RANKING -->
+                <div class="ranking-card">
+                    <div class="ranking-header">
+                        <h3>🌍 Global Ranking</h3>
+                        <p class="ranking-subtitle">Your position worldwide</p>
+                    </div>
+
+                    <div class="user-rank-highlight">
+                        <div class="rank-position">Your Global Position</div>
+                        <div class="user-stats">
+                            <div class="user-info">
+                                <strong>Sharon Adeyeye</strong>
+                            </div>
+                            <div style="text-align: right;">
+                                <div class="user-score">#47</div>
+                                <div style="font-size: 14px; opacity: 0.9;">Score: 94.5</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ranking-list">
+                        <div class="rank-item top-3">
+                            <div class="rank-number">1</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Li Wei</div>
+                                <div class="rank-country">Beijing, China</div>
+                            </div>
+                            <div class="rank-score">99.8</div>
+                        </div>
+
+                        <div class="rank-item top-3">
+                            <div class="rank-number">2</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Sarah Johnson</div>
+                                <div class="rank-country">New York, USA</div>
+                            </div>
+                            <div class="rank-score">99.5</div>
+                        </div>
+
+                        <div class="rank-item top-3">
+                            <div class="rank-number">3</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Rajesh Kumar</div>
+                                <div class="rank-country">Mumbai, India</div>
+                            </div>
+                            <div class="rank-score">99.2</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">4</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Emma Schmidt</div>
+                                <div class="rank-country">Berlin, Germany</div>
+                            </div>
+                            <div class="rank-score">99.0</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">5</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Carlos Rodriguez</div>
+                                <div class="rank-country">Madrid, Spain</div>
+                            </div>
+                            <div class="rank-score">98.9</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">6</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Yuki Tanaka</div>
+                                <div class="rank-country">Tokyo, Japan</div>
+                            </div>
+                            <div class="rank-score">98.8</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">7</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Sophie Dubois</div>
+                                <div class="rank-country">Paris, France</div>
+                            </div>
+                            <div class="rank-score">98.7</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">8</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Mohammed Al-Rashid</div>
+                                <div class="rank-country">Dubai, UAE</div>
+                            </div>
+                            <div class="rank-score">98.6</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">9</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Anna Kowalski</div>
+                                <div class="rank-country">Warsaw, Poland</div>
+                            </div>
+                            <div class="rank-score">98.5</div>
+                        </div>
+
+                        <div class="rank-item">
+                            <div class="rank-number">10</div>
+                            <div class="rank-details">
+                                <div class="rank-name">Lucas Silva</div>
+                                <div class="rank-country">São Paulo, Brazil</div>
+                            </div>
+                            <div class="rank-score">98.4</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ACHIEVEMENTS -->
+            <div class="achievements-section">
+                <h2>🏆 Your Achievements</h2>
+                <div class="achievements-grid">
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🎯</div>
+                        <div class="achievement-title">First Course</div>
+                        <div class="achievement-desc">Complete your first course</div>
+                    </div>
+
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">🔥</div>
+                        <div class="achievement-title">7-Day Streak</div>
+                        <div class="achievement-desc">Learn for 7 days straight</div>
+                    </div>
+
+                    <div class="achievement-card unlocked">
+                        <div class="achievement-icon">💯</div>
+                        <div class="achievement-title">Perfect Score</div>
+                        <div class="achievement-desc">Score 100% on a quiz</div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🌟</div>
+                        <div class="achievement-title">Top 10</div>
+                        <div class="achievement-desc">Reach top 10 in country</div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">👑</div>
+                        <div class="achievement-title">Champion</div>
+                        <div class="achievement-desc">Become #1 in your country</div>
+                    </div>
+
+                    <div class="achievement-card">
+                        <div class="achievement-icon">🚀</div>
+                        <div class="achievement-title">Global Elite</div>
+                        <div class="achievement-desc">Reach top 100 globally</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <!-- Enhanced Interactivity -->
+    <script src="js/report.js"></script>
+    <script src="js/dash.js"></script>
+<script src="tracker.js"></script>
+</body>
+
+
+</html>

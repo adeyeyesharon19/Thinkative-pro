@@ -50,7 +50,7 @@ body {
     
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px; 
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     text-align: center;
 }
@@ -61,7 +61,7 @@ body {
     display: block;
     text-decoration: none;
     color: #000;
-    font-size: 16px;
+    font-size: 14px;
     transition: 0.3s;
     margin: 15px;
 }
@@ -141,9 +141,14 @@ body {
 }
 
 
+.all{
+    margin-left: 30px;
+    transition: margin-left .3s ease;
+}
+
 
 .roll{
-    margin-left: 300px;
+    /* margin-left: 300px; */
    margin-right: 100px;
 }
 
@@ -154,6 +159,7 @@ body {
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #ccc;
+    margin-left: 30px;
 }
 
 .en button {
@@ -166,6 +172,10 @@ body {
      margin-right: 20px;
     text-align: center;
 
+}
+
+.en{
+    margin-left: 30px;
 }
 
 .tv{
@@ -273,6 +283,6 @@ body {
     flex-direction: row;
 }
 
-.course-grid{
-    margin-left: 230px;
+.coursegrid{
+     margin-left: 30px; 
 }

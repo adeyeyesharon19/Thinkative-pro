@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Settings | Educational App</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=DM+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/setting.css">
+
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+
+    <header>
+        <div class="sidebar">
+            <div class="sidebar-top">
+                <h2>Dashboard</h2>
+
+                <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+
+                <p>ACADEMICS</p>
+                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg"
+                        alt="">Courses</a>
+                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg"
+                        alt="">Enrolled <span>courses</span></a>
+                <a href="certificate.html" class="current-page"><img
+                        src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg"
+                        alt="">Review</a>
+                <p>MANAGMENT</p>
+                <a href="report.html" class="current-page"><img src="hugeicons-static-main/icons/repository.svg"
+                        alt="">Reports</a>
+                <a href="setting.html" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg"
+                        alt="">Settings</a>
+                <a href="logout.html" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg"
+                        alt="">Logout</a>
+            </div>
+
+            <div class="sidebar-footer">
+                <a href="profile.html" class="profile-card">
+                    <div class="profile-avatar">UN</div>
+                    <span class="profile-name">User Name</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <div class="all">
+        <div class="main">
+            <h1>⚙️ Settings</h1>
+            <p class="subtitle">Customize your learning experience</p>
+
+            <!-- PROFILE -->
+            <div class="card">
+                <h3>👤 Student Profile</h3>
+
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" id="name">
+                </div>
+
+                <div class="form-group">
+                    <label>Class Level</label>
+                    <select id="level">
+                        <option>Junior</option>
+                        <option>Senior</option>
+                        <option>Undergraduate</option>
+                    </select>
+                </div>
+
+                <button class="btn btn-primary" onclick="saveProfile()">Save Profile</button>
+                <div id="profileMsg" class="success"></div>
+            </div>
+
+            <!-- LEARNING PREFERENCES -->
+            <div class="card">
+                <h3>🎓 Learning Preferences</h3>
+
+                <div class="toggle">
+                    <span>Enable Sound Effects</span>
+                    <input type="checkbox" id="sound">
+                </div>
+
+                <div class="toggle">
+                    <span>Show Hints During Quizzes</span>
+                    <input type="checkbox" id="hints">
+                </div>
+
+                <div class="toggle">
+                    <span>Enable Animations</span>
+                    <input type="checkbox" id="animations">
+                </div>
+
+                <button class="btn btn-primary" onclick="savePreferences()">Save Preferences</button>
+            </div>
+
+            <!-- RESET -->
+            <div class="card">
+                <h3>♻️ Reset Learning Progress</h3>
+                <p style="margin-bottom: 16px; color:#64748b;">
+                    This will clear quiz scores and progress data only.
+                </p>
+                <button class="btn btn-danger" onclick="resetProgress()">Reset Progress</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/dash.js"></script>
+
+<script src="tracker.js"></script>
+</body>
+
+<script>
+    // ==============================
+    // LOAD SAVED SETTINGS
+    // ==============================
+    window.onload = () => {
+        document.getElementById('name').value = localStorage.getItem('studentName') || '';
+        document.getElementById('level').value = localStorage.getItem('studentLevel') || 'Junior';
+
+        document.getElementById('sound').checked = localStorage.getItem('sound') === 'true';
+        document.getElementById('hints').checked = localStorage.getItem('hints') === 'true';
+        document.getElementById('animations').checked = localStorage.getItem('animations') !== 'false';
+    };
+
+    // ==============================
+    // SAVE PROFILE
+    // ==============================
+    function saveProfile() {
+        localStorage.setItem('studentName', document.getElementById('name').value);
+        localStorage.setItem('studentLevel', document.getElementById('level').value);
+        document.getElementById('profileMsg').textContent = "Profile saved successfully ✔";
+    }
+
+    // ==============================
+    // SAVE PREFERENCES
+    // ==============================
+    function savePreferences() {
+        localStorage.setItem('sound', document.getElementById('sound').checked);
+        localStorage.setItem('hints', document.getElementById('hints').checked);
+        localStorage.setItem('animations', document.getElementById('animations').checked);
+        alert("Learning preferences saved ✔");
+    }
+
+    // ==============================
+    // RESET PROGRESS
+    // ==============================
+    function resetProgress() {
+        if (confirm("Are you sure you want to reset your learning progress?")) {
+            localStorage.removeItem('quizScores');
+            localStorage.removeItem('progress');
+            alert("Progress reset successfully ✔");
+        }
+    }
+</script>
+
+</html>

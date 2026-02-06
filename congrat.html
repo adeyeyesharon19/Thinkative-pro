@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Congratulations</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            margin: 0; padding: 0;
-            display: flex; align-items: center; justify-content: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             min-height: 100vh;
             background: radial-gradient(circle at top, #ffffff 0%, #e3f2fd 40%, #bbdefb 100%);
             font-family: 'Segoe UI', sans-serif;
@@ -19,22 +23,30 @@
             padding: 50px 40px;
             border-radius: 35px;
             box-shadow: 0 20px 40px rgba(0, 80, 180, 0.1);
-            width: 90%; max-width: 440px;
+            width: 90%;
+            max-width: 440px;
             text-align: center;
             border: 1px solid rgba(255, 255, 255, 0.8);
-            position: relative; z-index: 10;
+            position: relative;
+            z-index: 10;
         }
 
         #completionSlide {
-            position: fixed; top: 50%; left: 50%;
+            position: fixed;
+            top: 50%;
+            left: 50%;
             transform: translate(-50%, -50%) scale(0.5);
             background: #ffffff;
-            padding: 40px; border-radius: 35px;
+            padding: 40px;
+            border-radius: 35px;
             box-shadow: 0 40px 80px rgba(0, 20, 50, 0.3);
-            width: 85%; max-width: 400px;
-            z-index: 100; text-align: center;
-            opacity: 0; display: none; 
-            border: 5px solid #001f3f; 
+            width: 85%;
+            max-width: 400px;
+            z-index: 100;
+            text-align: center;
+            opacity: 0;
+            display: none;
+            border: 5px solid #001f3f;
         }
 
         #completionSlide.show {
@@ -43,29 +55,44 @@
         }
 
         @keyframes popCenter {
-            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+            to {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
         }
 
         #scoreText {
-            font-size: 1.6rem; font-weight: 800;
-            color: #2c3e50; background: #f0f7ff; 
-            display: inline-block; padding: 12px 35px;
-            border-radius: 100px; border: 2px solid #001f3f; 
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2c3e50;
+            background: #f0f7ff;
+            display: inline-block;
+            padding: 12px 35px;
+            border-radius: 100px;
+            border: 2px solid #001f3f;
             margin-bottom: 30px;
         }
 
-        button#mainBtn, .slide-btn {
-            width: 100%; padding: 18px;
-            font-size: 1.1rem; font-weight: 700;
-            cursor: pointer; background: #001f3f; 
-            color: #ffffff; border: none;
-            border-radius: 18px; text-transform: uppercase;
+        button#mainBtn,
+        .slide-btn {
+            width: 100%;
+            padding: 18px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            background: #001f3f;
+            color: #ffffff;
+            border: none;
+            border-radius: 18px;
+            text-transform: uppercase;
         }
     </style>
 </head>
+
 <body>
 
-    <canvas id="confetti-canvas" style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></canvas>
+    <canvas id="confetti-canvas"
+        style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></canvas>
 
     <div class="info-card" id="mainCard">
         <h1 style="color: #1565c0;">GREAT JOB!</h1>
@@ -85,81 +112,90 @@
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 
- 
+
+<script src="tracker.js"></script>
 </body>
 
-   <script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const scoreDisplay = document.getElementById('scoreText');
+        const referrer = document.referrer.toLowerCase();
+        const allKeys = Object.keys(localStorage);
+
+        // 1. Find the current level score key
+        const lastSetKey = allKeys.find(k => k.endsWith('_lastSetScore'));
+
+        if (lastSetKey) {
+            const rawScore = parseInt(localStorage.getItem(lastSetKey)) || 0;
+            const accurateScore = rawScore > 5 ? rawScore % 6 : rawScore;
+
+            scoreDisplay.textContent = `SCORE: ${accurateScore} / 5`;
+
+            // --- BANKING LOGIC: Add to the Master Score ---
+            let masterScore = parseInt(localStorage.getItem('master_cumulative_score')) || 0;
+            masterScore += accurateScore;
+            localStorage.setItem('master_cumulative_score', masterScore);
+
+            // 2. DEEP CLEAN: Wipe level keys so next set starts at 0
+            const prefix = lastSetKey.split('_')[0];
+            allKeys.forEach(key => {
+                if (key.startsWith(prefix)) {
+                    localStorage.removeItem(key);
+                }
+            });
+        }
+
+        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+        // FINAL MODULE DETECTION
+        if (referrer.includes('riddlegram5')) {
+            setTimeout(() => {
+                document.getElementById('mainCard').style.opacity = "0.2";
+                document.getElementById('completionSlide').classList.add('show');
+                confetti({ particleCount: 200, colors: ['#001f3f', '#ffffff'] });
+
+                // Finalize the certificate data
+                const finalTotal = localStorage.getItem('master_cumulative_score') || 0;
+                let certificates = JSON.parse(localStorage.getItem('completed_courses')) || [];
+
+                const newCert = {
+                    id: 'AI' + Math.floor(1000 + Math.random() * 9000),
+                    name: 'Anagram Intelligence',
+                    date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
+                    marks: finalTotal,
+                    total: 45
+                };
+
+                certificates.push(newCert);
+                localStorage.setItem('completed_courses', JSON.stringify(certificates));
+            }, 1800);
+        }
+
+        window.goNext = function () {
+            if (referrer.includes('riddlegram5')) { window.location.href = 'certificate.html'; }
+            else if (referrer.includes('back')) { window.location.href = 'anagramplugintro.html'; }
+            else if (referrer.includes('plug')) { window.location.href = 'flipconnectintro.html'; }
+            else if (referrer.includes('flip')) { window.location.href = 'wordpickIQintro.html'; }
+            else if (referrer.includes('wordpick')) { window.location.href = 'anagramathintro.html'; }
+            else if (referrer.includes('math')) { window.location.href = 'smartphraseintro.html'; }
+            else if (referrer.includes('smart')) { window.location.href = 'meaningmathintro.html'; }
+            else if (referrer.includes('meaning')) { window.location.href = 'splitanagramintro.html'; }
+            else if (referrer.includes('split')) { window.location.href = 'riddlegramintro.html'; }
+            else { window.location.href = 'enroll.html'; }
+        };
+
+        window.goToCertificate = function () {
+            window.location.href = 'certificate.html';
+        };
+
+
         document.addEventListener('DOMContentLoaded', () => {
-            const scoreDisplay = document.getElementById('scoreText');
-            const referrer = document.referrer.toLowerCase();
-            const allKeys = Object.keys(localStorage);
-            
-            // 1. Find the current level score key
-            const lastSetKey = allKeys.find(k => k.endsWith('_lastSetScore'));
-
-            if (lastSetKey) {
-                const rawScore = parseInt(localStorage.getItem(lastSetKey)) || 0;
-                const accurateScore = rawScore > 5 ? rawScore % 6 : rawScore;
-                
-                scoreDisplay.textContent = `SCORE: ${accurateScore} / 5`;
-
-                // --- BANKING LOGIC: Add to the Master Score ---
-                let masterScore = parseInt(localStorage.getItem('master_cumulative_score')) || 0;
-                masterScore += accurateScore;
-                localStorage.setItem('master_cumulative_score', masterScore);
-
-                // 2. DEEP CLEAN: Wipe level keys so next set starts at 0
-                const prefix = lastSetKey.split('_')[0];
-                allKeys.forEach(key => {
-                    if (key.startsWith(prefix)) {
-                        localStorage.removeItem(key);
-                    }
-                });
-            }
-
-            confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-            // FINAL MODULE DETECTION
-            if (referrer.includes('riddlegram5')) {
-                setTimeout(() => {
-                    document.getElementById('mainCard').style.opacity = "0.2"; 
-                    document.getElementById('completionSlide').classList.add('show');
-                    confetti({ particleCount: 200, colors: ['#001f3f', '#ffffff'] });
-
-                    // Finalize the certificate data
-                    const finalTotal = localStorage.getItem('master_cumulative_score') || 0;
-                    let certificates = JSON.parse(localStorage.getItem('completed_courses')) || [];
-                    
-                    const newCert = {
-                        id: 'AI' + Math.floor(1000 + Math.random() * 9000),
-                        name: 'Anagram Intelligence',
-                        date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
-                        marks: finalTotal,
-                        total: 45
-                    };
-
-                    certificates.push(newCert);
-                    localStorage.setItem('completed_courses', JSON.stringify(certificates));
-                }, 1800);
-            }
-
-            window.goNext = function () {
-                if (referrer.includes('riddlegram5')) { window.location.href = 'certificate.html'; } 
-                else if (referrer.includes('back')) { window.location.href = 'anagramplugintro.html'; } 
-                else if (referrer.includes('plug')) { window.location.href = 'flipconnectintro.html'; }
-                else if (referrer.includes('flip')) { window.location.href = 'wordpickIQintro.html'; }
-                else if (referrer.includes('wordpick')) { window.location.href = 'anagramathintro.html'; }
-                else if (referrer.includes('math')) { window.location.href = 'smartphraseintro.html'; }
-                else if (referrer.includes('smart')) { window.location.href = 'meaningmathintro.html'; }
-                else if (referrer.includes('meaning')) { window.location.href = 'splitanagramintro.html'; }
-                else if (referrer.includes('split')) { window.location.href = 'riddlegramintro.html'; }
-                else { window.location.href = 'enroll.html'; }
-            };
-
-            window.goToCertificate = function() {
-                window.location.href = 'certificate.html';
-            };
+            // Call this when course is complete
+            completeCourse('Anagram Intelligence');
         });
-    </script>
-    
+
+    });
+</script>
+
 </html>

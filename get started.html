@@ -6,10 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Get started</title>
   <link rel="stylesheet" href="css/getstarted.css">
-  
-  <script src="js/register.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 
 </head>
 
@@ -31,15 +27,11 @@
           <input type="text" id="LastName" name="LastName" placeholder="Last Name" required>
         </div>
 
-        <input type="email" id="email" name="email" placeholder="Email" required style=" padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;">
+        <input type="email" id="email" name="email" placeholder="Email" required
+          style=" padding:12px; margin-bottom:10px; border-radius:8px; border:1px solid #ccc;">
 
-       
-
-        <input type="password" id="password" name="password" placeholder="Password" required style=" padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
-
-
-
-
+        <input type="password" id="password" name="password" placeholder="Password" required
+          style=" padding:12px; margin-bottom:15px; border-radius:8px; border:1px solid #ccc;">
 
         <div class="dob-container">
           <label for="dob-month">What is your date of birth?</label>
@@ -62,31 +54,65 @@
 
             <select id="dob-day" name="day" required>
               <option value="" disabled selected>Day</option>
-              <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
-              <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
-              <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
-              <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
-              <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
-              <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+              <option>6</option>
+              <option>7</option>
+              <option>8</option>
+              <option>9</option>
+              <option>10</option>
+              <option>11</option>
+              <option>12</option>
+              <option>13</option>
+              <option>14</option>
+              <option>15</option>
+              <option>16</option>
+              <option>17</option>
+              <option>18</option>
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+              <option>22</option>
+              <option>23</option>
+              <option>24</option>
+              <option>25</option>
+              <option>26</option>
+              <option>27</option>
+              <option>28</option>
+              <option>29</option>
+              <option>30</option>
+              <option>31</option>
             </select>
 
             <select id="dob-year" name="year" required>
               <option value="" disabled selected>Year</option>
-              <option>2013</option><option>2012</option><option>2011</option><option>2010</option>
-              <option>2009</option><option>2008</option><option>2007</option><option>2006</option>
-              <option>2005</option><option>2004</option><option>2003</option><option>2002</option>
-              <option>2001</option><option>2000</option>
+              <option>2013</option>
+              <option>2012</option>
+              <option>2011</option>
+              <option>2010</option>
+              <option>2009</option>
+              <option>2008</option>
+              <option>2007</option>
+              <option>2006</option>
+              <option>2005</option>
+              <option>2004</option>
+              <option>2003</option>
+              <option>2002</option>
+              <option>2001</option>
+              <option>2000</option>
             </select>
           </div>
 
-          
-         <select id="gender" name="gender" class="gender-select" required>
-          <option value="" disabled selected>Select Gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
-        </select>
-          
+          <select id="gender" name="gender" class="gender-select" required>
+            <option value="" disabled selected>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+
           <button class="create-acc" type="submit" style="margin-top: 20px;">Create your account</button>
         </div>
       </form>
@@ -94,67 +120,184 @@
   </section>
 
   <div id="overlay" class="overlay"></div>
+  
   <div id="otp-drawer" class="otp-drawer">
     <div class="drawer-content">
       <h3>Verify your Email</h3>
       <p>Code sent to: <strong id="user-email-display"></strong></p>
-      <input type="text" id="otp-input" class="otp-input-field" placeholder="0000" maxlength="4">
+      <input type="text" id="otp-input" class="otp-input-field" placeholder="000000" maxlength="6" inputmode="numeric">
       <button id="verify-btn">Verify Code</button>
-      <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Incorrect code. Please try '1234'.</p>
+      <p id="error-msg" style="color: red; display: none; margin-top: 10px;">Incorrect code. Please try again.</p>
     </div>
   </div>
 
-  <div id="success-screen" class="success-screen">
-    <h2>🎉 Success!</h2>
-    <p>Account created successfully.</p>
-    <button class="create-acc" style="width: 200px; color: #fff; background-color: #4a90e2; border: none; border-radius: 20px; padding: 10px; margin-top: 20px;" onclick="window.location.href='in.html'">Continue</button>
+  <div id="code-sent-toast" style="
+  display:none;
+  position:fixed;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  background:#0b1f3a;
+  color:#ffffff;
+  padding:20px 30px;
+  border-radius:12px;
+  font-size:16px;
+  font-weight:600;
+  z-index:9999;
+  box-shadow:0 10px 30px rgba(0,0,0,0.3);
+  text-align:center;
+">
+    ✅ Code sent successfully
   </div>
 
- 
+<script src="tracker.js"></script>
 </body>
- <script>
-    (function () { emailjs.init("YOUR_PUBLIC_KEY"); })();
-    let generatedOTP;
 
-    document.getElementById('registration-form').addEventListener('submit', function (e) {
-      e.preventDefault();
-      
-      const userData = {
-        firstName: document.getElementById('FirstName').value,
-        lastName: document.getElementById('LastName').value,
-        email: document.getElementById('email').value,
-        gender: document.getElementById('gender').value,
-        dob: document.getElementById('dob-day').value + " " + document.getElementById('dob-month').value + " " + document.getElementById('dob-year').value,
-        regDate: new Date().toLocaleDateString()
-      };
 
-      // Save to temp storage
-      localStorage.setItem('temp_user', JSON.stringify(userData));
+<script>
 
-      document.getElementById('user-email-display').innerText = userData.email;
-      generatedOTP = Math.floor(1000 + Math.random() * 9000).toString();
-      
-      emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", {
-        to_email: userData.email,
-        otp_code: generatedOTP,
+  document.getElementById('registration-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const userData = {
+      firstName: document.getElementById('FirstName').value.trim(),
+      lastName: document.getElementById('LastName').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value,
+      gender: document.getElementById('gender').value,
+      dob: document.getElementById('dob-day').value + " " +
+        document.getElementById('dob-month').value + " " +
+        document.getElementById('dob-year').value,
+      regDate: new Date().toLocaleDateString()
+    };
+
+    localStorage.setItem('temp_user', JSON.stringify(userData));
+
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    submitButton.textContent = 'Sending code...';
+    submitButton.disabled = true;
+
+    try {
+      const response = await fetch('http://localhost:5000/send-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: userData.email })
       });
 
-      document.getElementById('overlay').style.display = 'block';
-      document.getElementById('otp-drawer').classList.add('active');
-    });
-
-    document.getElementById('verify-btn').addEventListener('click', function () {
-      const enteredCode = document.getElementById('otp-input').value;
-      if (enteredCode === '1234') { // Changed to match your test logic
-        const data = localStorage.getItem('temp_user');
-        localStorage.setItem('thinkative_user', data);
-
-        document.getElementById('otp-drawer').classList.remove('active');
-        document.getElementById('overlay').style.display = 'none';
-        document.getElementById('success-screen').style.display = 'flex';
-      } else {
-        document.getElementById('error-msg').style.display = 'block';
+      // ✅ CHECK IF RESPONSE IS OK
+      if (!response.ok) {
+        throw new Error('Server responded with status: ' + response.status);
       }
-    });
-  </script>
+
+      const result = await response.json();
+
+      if (result.success) {
+        console.log('✅ Code sent');
+        console.log('🔑 Test Code:', result.testCode);
+
+        const toast = document.getElementById('code-sent-toast');
+        toast.style.display = 'block';
+
+        setTimeout(() => {
+          toast.style.display = 'none';
+        }, 2500);
+
+        if (result.previewUrl) {
+          console.log('📬 Preview email:', result.previewUrl);
+        }
+
+        document.getElementById('user-email-display').innerText = userData.email;
+        document.getElementById('overlay').style.display = 'block';
+        document.getElementById('otp-drawer').classList.add('active');
+
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
+      } else {
+        throw new Error(result.message || 'Failed to send code');
+      }
+
+    } catch (error) {
+      console.error('❌ Error:', error);
+      console.error('❌ Error details:', error.message);
+      alert('❌ Failed to send verification code.\n\nError: ' + error.message + '\n\nMake sure:\n1. Backend is running (check terminal)\n2. You see "Server running on http://localhost:5000"\n3. No CORS errors in browser console');
+      submitButton.textContent = originalButtonText;
+      submitButton.disabled = false;
+    }
+  });
+
+  document.getElementById('verify-btn').addEventListener('click', async function () {
+    const enteredCode = document.getElementById('otp-input').value.trim();
+    const errorMsg = document.getElementById('error-msg');
+
+    errorMsg.style.display = 'none';
+
+    if (!enteredCode) {
+      errorMsg.textContent = 'Please enter the verification code';
+      errorMsg.style.display = 'block';
+      return;
+    }
+
+    this.textContent = 'Verifying...';
+    this.disabled = true;
+
+    try {
+      const tempData = localStorage.getItem('temp_user');
+      const userData = JSON.parse(tempData);
+
+      const response = await fetch('http://localhost:5000/verify-code', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email: userData.email,
+          code: enteredCode
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.verified) {
+        // ✅ SAVE DATA AND GO DIRECTLY TO in.html
+        localStorage.setItem('userData', JSON.stringify({
+          firstName: userData.firstName,
+          lastName: userData.lastName,
+          email: userData.email,
+          gender: userData.gender,
+          dob: userData.dob,
+          regDate: userData.regDate
+        }));
+
+        localStorage.setItem('thinkative_user', tempData);
+
+        localStorage.setItem('courseStats', JSON.stringify({
+          enrolled: 0,
+          active: 0,
+          completed: 0
+        }));
+
+        localStorage.removeItem('temp_user');
+
+        // ✅ GO DIRECTLY TO in.html
+        window.location.href = 'in.html';
+
+      } else {
+        // ✅ Code is incorrect - show error
+        errorMsg.textContent = 'Invalid verification code';
+        errorMsg.style.display = 'block';
+        this.textContent = 'Verify Code';
+        this.disabled = false;
+        document.getElementById('otp-input').value = '';
+      }
+
+    } catch (error) {
+      console.error('❌ Error:', error);
+      errorMsg.textContent = 'Verification failed. Please try again.';
+      errorMsg.style.display = 'block';
+      this.textContent = 'Verify Code';
+      this.disabled = false;
+    }
+  });
+
+</script>
+
 </html>

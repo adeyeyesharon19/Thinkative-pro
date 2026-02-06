@@ -6,40 +6,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Courses</title>
     <link rel="stylesheet" href="css/courses.css">
+    
 </head>
 
 <body>
 
     <header>
-      
+    <div class="sidebar">
+        <div class="sidebar-top">
+            <h2>Dashboard</h2>
 
-        <div class="sidebar">
-            <div class="sidebar-top">
-                <h2>Dashboard</h2>
-
-                <a href="dash.html" ><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
-               
-                 <p>Academics</p>
-                <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
-                <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
-                <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
-                <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
-                <p>Managment</p>
-                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/repository.svg" alt="">Reports</a>
-                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
-                <a href="#" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg" alt="">Logout</a>
-            </div>
-
-          <div class="sidebar-footer">
-        <a href="profile.html" class="profile-card">
-            <div class="profile-avatar">S</div>
-            <span class="profile-name">Sharon Adeyeye</span>
-        </a>
-
+            <a href="dash.html"><img src="hugeicons-static-main/icons/home-10.svg" alt="">Home</a>
+           
+            <p>ACADEMICS</p>
+            <a href="courses.html" class="current-page"><img src="hugeicons-static-main/icons/course.svg" alt="">Courses</a>
+            <a href="enrolled.html" class="current-page"><img src="hugeicons-static-main/icons/court-house.svg" alt="">Enrolled <span>courses</span></a>
+            <a href="certificate.html" class="current-page"><img src="hugeicons-static-main/icons/certificate-01.svg" alt="">My <span> Certificate</span></a>
+            <a href="review.html" class="current-page"><img src="hugeicons-static-main/icons/comment-01.svg" alt="">Review</a>
+            <p>MANAGMENT</p>
+            <a href="report.html" class="current-page"><img src="hugeicons-static-main/icons/repository.svg" alt="">Reports</a>
+            <a href="setting.html" class="current-page"><img src="hugeicons-static-main/icons/setting-07.svg" alt="">Settings</a>
+            <a href="logout.html" class="current-page"><img src="hugeicons-static-main/icons/logout-05.svg" alt="">Logout</a>
         </div>
-    </header>
 
-    <main>
+        <div class="sidebar-footer">
+            <a href="profile.html" class="profile-card">
+                <div class="profile-avatar">UN</div>
+                <span class="profile-name">User Name</span>
+            </a>
+        </div>
+    </div>
+</header>
+
+    <main class="all">
         <section class="roll">
             <div class="arc">
                 <h2>Courses</h2>
@@ -232,83 +231,13 @@
 
         </section>
     </main>
-    <!-- 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-    const buttons = document.querySelectorAll('.get-started');
-    const enrolledCounter = document.querySelector('.end');
-
-    // Load enrolled courses from localStorage
-    let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-    enrolledCounter.textContent = `Enrolled(${enrolledCourses.length})`;
-
-    buttons.forEach(button => {
-        button.addEventListener('click', () => {
-            const courseDiv = button.closest('.sum');
-            const courseName = courseDiv.dataset.name;
-            const coursePrice = courseDiv.dataset.price;
-
-            // Ensure both data attributes exist
-            if (!courseName || !coursePrice) {
-                alert("Course data missing!");
-                return;
-            }
-
-            // Simulate payment confirmation
-            const paid = confirm(`Do you want to pay ${coursePrice} for ${courseName}?`);
-            if (!paid) return;
-
-            // Check if already enrolled
-            if (!enrolledCourses.find(c => c.name === courseName)) {
-                enrolledCourses.push({ name: courseName, price: coursePrice });
-                localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
-
-                alert(`You have successfully paid ${coursePrice} for ${courseName}. It will show on your Enrolled Courses.`);
-
-                // Update enrolled counter
-                enrolledCounter.textContent = `Enrolled(${enrolledCourses.length})`;
-            } else {
-                alert(`${courseName} is already in your Enrolled Courses.`);
-            }
-        });
-    });
-});
-</script> -->
-    <!-- <script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const payBtn = document.getElementById('payButton');
-
-    payBtn.addEventListener('click', () => {
-        // 1. Show the success message
-        alert('Payment Successful! "Mind Mosaic" has been added to your enrolled courses.');
-
-        // 2. Define the course data
-        const purchasedCourse = {
-            title: "Mind Mosaic",
-            price: "$300",
-            image: "image/carrot.jpg"
-        };
-
-        // 3. Get existing courses from localStorage or start a new list
-        let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-
-        // 4. Add the new course to the list
-        enrolledCourses.push(purchasedCourse);
-
-        // 5. Save back to localStorage
-        localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
-
-        // 6. Optional: Redirect to the enrolled courses page
-        // window.location.href = "enrolled-courses.html";
-        
-        payBtn.disabled = true;
-        payBtn.textContent = 'Paid';
-    });
-});
-  </script> -->
+   
 
 
+ <script src="js/dash.js"></script>
+<script src="tracker.js"></script>
 </body>
+
   <script>
     // Get the current URL of the page
     const currentPath = window.location.pathname.split("/").pop();

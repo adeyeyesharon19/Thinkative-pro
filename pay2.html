@@ -7,17 +7,25 @@
     <title>pay</title>
     <link rel="stylesheet" href="css/pay.css">
 
+    <!-- Paystack Popup -->
+    <script src="https://js.paystack.co/v1/inline.js"></script>
+
     <script src="pay.js"></script>
 </head>
 
 <body>
 
-     <div class="home">
-                <a href="dash.html"><button class="back"><img src="hugeicons-static-main/icons/arrow-left-02.svg"
-                            alt="">Back to Home</button></a>
-            </div>
+    <div class="home">
+        <a href="dash.html">
+            <button class="back">
+                <img src="hugeicons-static-main/icons/arrow-left-02.svg" alt="">
+                Back to Home
+            </button>
+        </a>
+    </div>
+
     <div class="checkout-container">
-        
+
         <div class="order-summary">
             <h2>Order Summary</h2>
 
@@ -34,9 +42,9 @@
 
             <div class="gift">
                 <input type="text" id="gift-number" placeholder="Gift or Discount code" maxlength="30">
-
                 <button>Apply</button>
             </div>
+
             <div class="sub">
                 <h5>Subtotal</h5>
                 <p>$300</p>
@@ -51,16 +59,7 @@
                     <h4>$302.35</h4>
                 </div>
             </div>
-           
         </div>
-
-
-
-
-
-
-
-
 
         <div class="payment-section">
             <h2>Payment</h2>
@@ -82,6 +81,16 @@
                     </label>
                 </div>
 
+                <!-- ✅ ADDED EMAIL INPUT (REQUIRED FOR MANY CUSTOMERS) -->
+                <input
+                    type="email"
+                    id="customerEmail"
+                    placeholder="Enter your email"
+                    style="width:100%; padding:12px; margin:15px 0;"
+                    required
+                >
+
+                <!-- These inputs stay (UI only, Paystack ignores them) -->
                 <div class="card-number-wrapper">
                     <label for="card-number">Card Number</label>
                     <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="30">
@@ -98,70 +107,99 @@
                         <input type="text" id="cvv" placeholder="123" maxlength="3">
                     </div>
                 </div>
+
                 <div class="show-details">
                     <label class="checkbox-container">
                         <input type="checkbox" id="show-details-checkbox">
                         Save Card Details
                     </label>
                 </div>
-                <button class="pay-btn" id="payButton">Pay USD59.28</button>
 
-                <h5 class="your">Your personal will be used to process your order, support your experience throughout
-                    this website, and for other purposes described in our private policy.</h5>
+                <button class="pay-btn" id="payButton">Pay ₦100</button>
+
+                <h5 class="your">
+                    Your personal data will be used to process your order, support your experience throughout
+                    this website, and for other purposes described in our privacy policy.
+                </h5>
             </div>
-
         </div>
 
-
-
     </div>
 
+    <!-- SUCCESS MODAL -->
+    <div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+        background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:white; padding:30px; border-radius:15px; text-align:center;
+            width:350px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+            <h2 style="color: #28a745;">Payment Successful!</h2>
+            <p><strong>Anagram Intelligence</strong> has been added to your courses.</p>
+            <button id="goToEnrolled" style="background:#1DA1F2; color:white; border:none; padding:12px 20px;
+                border-radius:8px; cursor:pointer; font-weight:bold; margin-top:15px; width:100%;">
+                GO TO ENROLLED COURSES
+            </button>
+        </div>
     </div>
 
-    </div>
-    </div>
+    <!-- PAYSTACK LOGIC -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const payBtn = document.getElementById('payButton');
+            const modal = document.getElementById('successModal');
+            const redirectBtn = document.getElementById('goToEnrolled');
 
-    <div id="successModal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
-    <div style="background:white; padding:30px; border-radius:15px; text-align:center; width:350px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-        <h2 style="color: #28a745;">Payment Successful!</h2>
-        <p><strong>Anagram Intelligence</strong> has been added to your courses.</p>
-        <button id="goToEnrolled" style="background:#1DA1F2; color:white; border:none; padding:12px 20px; border-radius:8px; cursor:pointer; font-weight:bold; margin-top:15px; width:100%;">
-            GO TO ENROLLED COURSES
-        </button>
-    </div>
-</div>
+            payBtn.addEventListener('click', () => {
+                payWithPaystack();
+            });
+
+            function payWithPaystack() {
+                const email = document.getElementById('customerEmail').value.trim();
+
+                if (!email) {
+                    alert('Please enter your email');
+                    return;
+                }
+
+                let handler = PaystackPop.setup({
+                    key: 'pk_test_84589137530b6c9c593cca06436c9c940ae09259', // 🔴 PUT YOUR REAL PUBLIC KEY
+                    email: email,
+                    amount: 100 * 100, // ₦100
+                    currency: 'NGN',
+                    ref: 'THINKATIVE_' + Date.now(),
+
+                    callback: function (response) {
+                        // ✅ SUCCESS
+                        const purchasedCourse = {
+                            title: "Anagram Intelligence",
+                            price: "₦100",
+                            image: "image/ai.jpeg",
+                            reference: response.reference
+                        };
+
+                        let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+                        enrolledCourses.push(purchasedCourse);
+                        localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
+
+                        modal.style.display = 'flex';
+                        payBtn.disabled = true;
+                        payBtn.textContent = 'Paid';
+                    },
+
+                    onClose: function () {
+                        alert('Payment cancelled');
+                    }
+                });
+
+                handler.openIframe();
+            }
+
+            redirectBtn.addEventListener('click', () => {
+                window.location.href = "enrolled.html";
+            });
+        });
+    </script>
+
+<script src="tracker.js"></script>
 </body>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const payBtn = document.getElementById('payButton');
-        const modal = document.getElementById('successModal');
-        const redirectBtn = document.getElementById('goToEnrolled');
-
-        payBtn.addEventListener('click', () => {
-            // 1. Data Logic (Keeping your code exactly as it was)
-            const purchasedCourse = {
-                title: "Anagram Intelligence",
-                price: "$300",
-                image: "image/ai.jpeg"
-            };
-            let enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-            enrolledCourses.push(purchasedCourse);
-            localStorage.setItem('enrolledCourses', JSON.stringify(enrolledCourses));
-
-            // 2. SHOW THE CUSTOM POPUP (No more "OK" button)
-            modal.style.display = 'flex';
-
-            // 3. Update the main Pay button state
-            payBtn.disabled = true;
-            payBtn.textContent = 'Paid';
-        });
-
-        // 4. Make the NEW button go to the page
-        redirectBtn.addEventListener('click', () => {
-            window.location.href = "enrolled.html";
-        });
-    });
-</script>
 
 </html>

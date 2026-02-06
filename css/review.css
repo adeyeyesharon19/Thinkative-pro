@@ -46,7 +46,7 @@ body {
     
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px; 
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
     text-align: center;
 }
@@ -57,7 +57,7 @@ body {
     display: block;
     text-decoration: none;
     color: #000;
-    font-size: 16px;
+    font-size: 14px;
     transition: 0.3s;
     margin: 15px;
 }
@@ -140,7 +140,7 @@ body {
 
 .reviews-section {
   max-width: 700px;
-  margin-left: 350px;
+  margin-left: 250px;
   background: #ffffff;
   padding: 25px;
   border-radius: 8px;
@@ -279,4 +279,19 @@ body {
 
 .hidden-review {
     display: none;
+}
+
+.review-options {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.review-options label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
 }
