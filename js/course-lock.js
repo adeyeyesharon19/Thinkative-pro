@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🚀 Course Lock Script Loaded'); // Debug log
 
     // ===================================
     // 🎨 INJECT CSS STYLES
@@ -139,17 +138,12 @@ document.addEventListener('DOMContentLoaded', () => {
         "riddlegram5.html"
     ];
 
-    // Get current page - handle both with and without paths
     const currentPage = decodeURIComponent(
         window.location.pathname.split('/').pop()
     );
 
-    console.log('📄 Current Page:', currentPage); // Debug log
-
     let progress = parseInt(localStorage.getItem('courseProgress'), 10);
     if (isNaN(progress)) progress = 1;
-
-    console.log('📊 Current Progress:', progress); // Debug log
 
     const currentIndex = courseSequence.indexOf(currentPage);
 
@@ -157,13 +151,11 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentIndex > progress) {
         progress = currentIndex;
         localStorage.setItem('courseProgress', progress);
-        console.log('✅ Progress Updated:', progress);
     }
 
     // ===================================
     // 🌫️ BLUR EFFECT FOR LOCKED LESSONS
     // ===================================
-    let lockedCount = 0;
     document.querySelectorAll('.lesson-list a, .sub-lesson-list a')
         .forEach(link => {
             const target = link.getAttribute('href');
@@ -171,17 +163,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (index !== -1 && index > progress) {
                 link.classList.add('locked-element');
-                lockedCount++;
                 
                 if (!link.innerHTML.includes('🔒')) {
                     link.innerHTML += ' <span class="lock-icon">🔒</span>';
                 }
-            } else {
-                link.classList.remove('locked-element');
             }
         });
-
-    console.log('🔒 Locked Elements:', lockedCount); // Debug log
 
     // ===================================
     // 🔒 BLUR TEST SECTION HEADERS
@@ -206,8 +193,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!summary.innerHTML.includes('🔒')) {
                 summary.innerHTML += ' <span class="lock-icon">🔒</span>';
             }
-        } else if (summary) {
-            summary.classList.remove('locked-element');
         }
     });
 
@@ -231,19 +216,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
-    // ⏱️ TEST TIMERS - CASE INSENSITIVE
+    // ⏱️ TEST TIMERS ONLY - FIXED VERSION
     // ===================================
     (function () {
-        // Normalize function - make case insensitive
+
         const normalize = v =>
             decodeURIComponent(v || "").toLowerCase().trim();
 
-        const page = normalize(window.location.pathname.split("/").pop());
-        
-        console.log('⏱️ Timer Page Check:', page); // Debug log
+        const page = normalize(location.pathname.split("/").pop());
 
         const phases = [
-            // SPARK LEVEL - 15 MINUTES
+            // ===================================
+            // ⏱️ SPARK LEVEL - 15 MINUTES
+            // ===================================
             {
                 name: "spark_test",
                 duration: 15 * 60 * 1000,
@@ -255,10 +240,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     "anagramplug3.html", "anagramplug4.html", "anagramplug5.html",
                     "flipconnectintro.html", "flipconnect1.html", "flipconnect2.html",
                     "flipconnect3.html", "flipconnect4.html", "flipconnect5.html"
-                ].map(normalize),
+                ],
                 redirect: "wordpickIQintro.html"
             },
-            // FLAME LEVEL - 15 MINUTES
+            // ===================================
+            // ⏱️ FLAME LEVEL - 15 MINUTES
+            // ===================================
             {
                 name: "flame_test",
                 duration: 15 * 60 * 1000,
@@ -270,10 +257,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     "anagramath3.html", "anagramath4.html", "anagramath5.html",
                     "smartphraseintro.html", "smartphrase1.html", "smartphrase2.html",
                     "smartphrase3.html", "smartphrase4.html", "smartphrase5.html"
-                ].map(normalize),
+                ],
                 redirect: "meaningmathintro.html"
             },
-            // BLAZE LEVEL - 15 MINUTES
+            // ===================================
+            // ⏱️ BLAZE LEVEL - 15 MINUTES
+            // ===================================
             {
                 name: "blaze_test",
                 duration: 15 * 60 * 1000,
@@ -285,25 +274,27 @@ document.addEventListener('DOMContentLoaded', () => {
                     "splitanagram3.html", "splitanagram4.html", "splitanagram5.html",
                     "riddlegramintro.html", "riddlegram1.html", "riddlegram2.html",
                     "riddlegram3.html", "riddlegram4.html", "riddlegram5.html"
-                ].map(normalize),
+                ],
                 redirect: "completion.html"
             }
         ];
 
-        const phase = phases.find(p => p.pages.includes(page));
-        
-        if (!phase) {
-            console.log('❌ No timer phase found for this page');
-            return;
-        }
+        // Normalize all pages to lowercase
+        phases.forEach(phase => {
+            phase.startPage = normalize(phase.startPage);
+            phase.pages = phase.pages.map(p => normalize(p));
+        });
 
-        console.log('✅ Timer Phase Found:', phase.name);
+        const phase = phases.find(p => p.pages.includes(page));
+        if (!phase) return; // No timer for non-test pages (Foundation, Life App, etc.)
 
         const START_KEY = `phaseStart_${phase.name}`;
 
-        // Clear old timers and start new timer on intro pages
-        if (page === normalize(phase.startPage)) {
-            console.log('🆕 Starting new timer for:', phase.name);
+        // -------------------------------
+        // ✅ START NEW TIMER ON INTRO PAGES
+        // -------------------------------
+        if (page === phase.startPage) {
+            // Clear ALL previous phase timers
             phases.forEach(p => {
                 const key = `phaseStart_${p.name}`;
                 if (key !== START_KEY) {
@@ -311,22 +302,23 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
+            // Start this phase's timer
             localStorage.setItem(START_KEY, Date.now());
         }
 
-        // Prevent timer start on non-start pages
-        if (!localStorage.getItem(START_KEY) && page !== normalize(phase.startPage)) {
-            console.log('⏸️ Timer not started yet');
+        // -------------------------------
+        // ⛔ PREVENT TIMER START ON NON-START PAGES
+        // -------------------------------
+        if (!localStorage.getItem(START_KEY) && page !== phase.startPage) {
             return;
         }
 
         let startTime = parseInt(localStorage.getItem(START_KEY), 10);
-        if (!startTime) {
-            console.log('❌ No start time found');
-            return;
-        }
+        if (!startTime) return;
 
-        // Create Timer UI
+        // -------------------------------
+        // 🎨 TIMER UI
+        // -------------------------------
         const timer = document.createElement("div");
         timer.className = "timer-mobile";
         Object.assign(timer.style, {
@@ -340,13 +332,11 @@ document.addEventListener('DOMContentLoaded', () => {
             fontFamily: "monospace",
             fontSize: "14px",
             fontWeight: "bold",
-            zIndex: "9999",
+            zIndex: 9999,
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             transition: "background 0.3s ease"
         });
         document.body.appendChild(timer);
-        
-        console.log('⏰ Timer UI Created');
 
         function format(ms) {
             const s = Math.max(0, Math.floor(ms / 1000));
@@ -356,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function tick() {
             const remaining = phase.duration - (Date.now() - startTime);
             
-            // Warning colors
+            // ⚠️ WARNING COLORS
             if (remaining <= 60000) {
                 timer.style.background = "#dc2626";
                 timer.style.animation = "pulse 1s infinite";
@@ -368,6 +358,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (remaining <= 0 && phase.redirect) {
                 localStorage.removeItem(START_KEY);
+                
                 timer.textContent = "⏰ TIME'S UP!";
                 timer.style.background = "#dc2626";
                 
@@ -379,26 +370,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tick();
         setInterval(tick, 1000);
+
     })();
 
-    // ===================================
-    // 📊 DISPLAY TOTAL TEST TIME
-    // ===================================
-    function displayTotalTestTime() {
-        const totalTestTime = 45;
-        const infoDiv = document.querySelector('.one');
-        
-        if (infoDiv && currentPage.includes('intro')) {
-            const timeInfo = document.createElement('p');
-            timeInfo.style.color = '#666';
-            timeInfo.style.fontSize = '14px';
-            timeInfo.style.marginTop = '10px';
-            timeInfo.textContent = `⏱ Total test time: ${totalTestTime} minutes across 3 levels`;
-            infoDiv.appendChild(timeInfo);
-        }
-    }
-
-    displayTotalTestTime();
-
-    console.log('✅ Course Lock Script Initialization Complete');
 });
