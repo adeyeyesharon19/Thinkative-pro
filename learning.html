@@ -9,7 +9,12 @@
     <link rel="stylesheet" href="css/learning.css">
 
     <style>
-
+        .lesson-list a.locked-element,
+        .sub-lesson-list a.locked-element {
+            filter: blur(1px);
+            opacity: 0.75;
+            pointer-events: none;
+        }
     </style>
 </head>
 
@@ -325,8 +330,8 @@
 
 <div class="dash-overlay" id="dashOverlay"></div> -->
 
-    <script src="js/course-lock.js"></script>
-<script src="tracker.js"></script>
+    <script src="./js/course-lock.js"></script>
+    <script src="tracker.js"></script>
 </body>
 
 

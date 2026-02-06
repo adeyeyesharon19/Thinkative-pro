@@ -523,36 +523,11 @@ body {
     color: #E1306C;
 }
 
-/* Responsive Design */
-@media (max-width: 1400px) {
-    .start {
-        grid-template-columns: repeat(2, 1fr);
-    }
+@media (max-width: 900px) {
+    .start { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 1200px) {
-    .boxes {
-        grid-template-columns: repeat(2, 1fr);
-    }
+@media (max-width: 600px) {
+    .start { grid-template-columns: 1fr; }
 }
 
-@media (max-width: 768px) {
-    .all {
-        margin-left: 0;
-        padding: 15px;
-    }
-    
-    .boxes,
-    .start,
-    .voice {
-        grid-template-columns: 1fr;
-    }
-    
-    .sidebar {
-        transform: translateX(-100%);
-    }
-    
-    .sidebar.active {
-        transform: translateX(0);
-    }
-}
