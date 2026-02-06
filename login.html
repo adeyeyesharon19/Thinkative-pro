@@ -7,9 +7,76 @@
   <title>LOGIN</title>
   <link rel="stylesheet" href="css/Login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+  
+  <style>
+    /* Notification styles */
+    .notification {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      z-index: 9999;
+      animation: slideIn 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: none;
+    }
+
+    .notification.error {
+      background: #dc2626;
+      color: white;
+    }
+
+    .notification.success {
+      background: #16a34a;
+      color: white;
+    }
+
+    .notification.show {
+      display: block;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(400px);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    /* Password error styling */
+    input.error {
+      border: 2px solid #dc2626 !important;
+      animation: shake 0.5s;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
+    }
+
+    .error-message {
+      color: #dc2626;
+      font-size: 13px;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+  </style>
 </head>
 
 <body>
+  <!-- Notification element -->
+  <div id="notification" class="notification"></div>
+
   <section class="log-in">
     <div class="wel-back">
       <h2>Thinkative</h2>
@@ -18,57 +85,101 @@
 
     <div class="log-box">
       <h4>New to Thinkative?
-        <!-- <a href="get started.html"><button>Sign up</button></a></h4> -->
-
         <a href="get started.html">Sign up now➡️</a>
+      </h4>
 
-        <h3>Log in to continue</h3>
-        <p>How would you like to sign in?</p>
-        <form id="login-form" action="in.html" method="GET">
-          <label for="Name"></label>
-          <input type="text" id="Name" name="Name" placeholder="Name" required>
+      <h3>Log in to continue</h3>
+      <p>How would you like to sign in?</p>
+      
+      <form id="login-form" action="in.html" method="GET">
+        <label for="Name"></label>
+        <input type="text" id="Name" name="Name" placeholder="Name or Email" required>
+        <div class="error-message" id="name-error"></div>
 
+        <label for="password"></label>
+        <input type="password" id="password" name="password" placeholder="Password" required>
+        <div class="error-message" id="password-error"></div>
 
+        <button type="submit">LOG IN</button>
+        <h5>Forgot password?</h5>
 
-          <label for="password"></label>
-          <input type="password" id="password" name="password" placeholder="Password" required>
+        <div class="social-icons">
+          <!-- Twitter -->
+          <a href="https://twitter.com" class="twitter" target="_blank">
+            <i class="fa-brands fa-x-twitter"></i>
+          </a>
 
-          <button type="submit">LOG IN</button>
-          <h5>Forgot password?</h5>
-
-          <div class="social-icons">
-            <!-- Twitter -->
-            <a href="https://twitter.com" class="twitter" target="_blank">
-              <i class="fa-brands fa-x-twitter"></i>
-            </a>
-
-            <!-- Instagram -->
-            <a href="https://instagram.com" class="instagram" target="_blank">
-              <i class="fa-brands fa-instagram"></i>
-            </a>
-          </div>
-          <h6>By logging in, you agree to our <span> Terms of Service</span>, <br>
-            <span>Privacy Policy</span> and <span>CA Privacy Policy</span>.
-          </h6>
+          <!-- Instagram -->
+          <a href="https://instagram.com" class="instagram" target="_blank">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+        </div>
+        
+        <h6>By logging in, you agree to our <span> Terms of Service</span>, <br>
+          <span>Privacy Policy</span> and <span>CA Privacy Policy</span>.
+        </h6>
+      </form>
     </div>
-
-
-
-    </form>
   </section>
-<script src="tracker.js"></script>
+
+  <script src="tracker.js"></script>
 </body>
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
 
   const loginForm = document.getElementById('login-form');
+  const nameInput = document.getElementById('Name');
+  const passwordInput = document.getElementById('password');
+  const nameError = document.getElementById('name-error');
+  const passwordError = document.getElementById('password-error');
+  const notification = document.getElementById('notification');
 
+  // ==============================
+  // SHOW NOTIFICATION FUNCTION
+  // ==============================
+  function showNotification(message, type) {
+    notification.textContent = message;
+    notification.className = `notification ${type} show`;
+    
+    // Auto hide after 3 seconds
+    setTimeout(() => {
+      notification.classList.remove('show');
+    }, 3000);
+  }
+
+  // ==============================
+  // CLEAR ERROR STYLING
+  // ==============================
+  function clearErrors() {
+    nameInput.classList.remove('error');
+    passwordInput.classList.remove('error');
+    nameError.classList.remove('show');
+    passwordError.classList.remove('show');
+    nameError.textContent = '';
+    passwordError.textContent = '';
+  }
+
+  // ==============================
+  // SHOW ERROR FUNCTION
+  // ==============================
+  function showError(input, errorElement, message) {
+    input.classList.add('error');
+    errorElement.textContent = message;
+    errorElement.classList.add('show');
+  }
+
+  // ==============================
+  // LOGIN FORM SUBMISSION
+  // ==============================
   loginForm.addEventListener('submit', function(event) {
     event.preventDefault();
+    clearErrors();
 
-    const enteredEmail = document.getElementById('Name').value.trim();
-    const enteredPassword = document.getElementById('password').value;
+    const enteredName = nameInput.value.trim();
+    const enteredPassword = passwordInput.value;
+
+    console.log('🔍 Login attempt:', enteredName); // Debug
 
     // Get saved account from signup
     const savedUser = JSON.parse(localStorage.getItem('thinkative_user'));
@@ -77,36 +188,69 @@ document.addEventListener("DOMContentLoaded", () => {
     // CHECK IF ACCOUNT EXISTS
     // ==============================
     if (!savedUser) {
-      alert("No account found. Please sign up first.");
+      showNotification('❌ No account found. Please sign up first.', 'error');
+      showError(nameInput, nameError, 'No account with this name/email');
       return;
     }
 
+    console.log('✅ Saved user found:', savedUser.email); // Debug
+
     // ==============================
-    // EMAIL CHECK
+    // NAME/EMAIL CHECK
     // ==============================
-    if (enteredEmail !== savedUser.email) {
-      alert("Account not found");
+    if (enteredName !== savedUser.email && enteredName !== savedUser.name) {
+      showNotification('❌ Account not found', 'error');
+      showError(nameInput, nameError, 'No account with this name/email');
       return;
     }
 
+    console.log('✅ Name/Email match'); // Debug
+
     // ==============================
-    // PASSWORD CHECK
+    // PASSWORD CHECK - THIS IS THE KEY FIX
     // ==============================
     if (enteredPassword !== savedUser.password) {
-      alert("Password is incorrect");
+      console.log('❌ Password mismatch'); // Debug
+      console.log('Entered:', enteredPassword); // Debug
+      console.log('Expected:', savedUser.password); // Debug
+      
+      showNotification('❌ Incorrect password', 'error');
+      showError(passwordInput, passwordError, 'The password you entered is wrong');
+      
+      // Shake the password field
+      passwordInput.value = '';
+      passwordInput.focus();
       return;
     }
+
+    console.log('✅ Password correct'); // Debug
 
     // ==============================
     // SUCCESS LOGIN
     // ==============================
+    showNotification('✅ Login successful! Redirecting...', 'success');
     localStorage.setItem("thinkative_logged_in", "true");
 
-    // Redirect to last page visited
-    const lastPage = localStorage.getItem("lastPage");
+    // Redirect to last page visited after 1 second
+    setTimeout(() => {
+      const lastPage = localStorage.getItem("lastPage");
+      console.log('📍 Redirecting to:', lastPage || 'in.html'); // Debug
+      window.location.href = lastPage || "in.html";
+    }, 1000);
 
-    window.location.href = lastPage ? lastPage : "in.html";
+  });
 
+  // ==============================
+  // CLEAR ERRORS ON INPUT
+  // ==============================
+  nameInput.addEventListener('input', () => {
+    nameInput.classList.remove('error');
+    nameError.classList.remove('show');
+  });
+
+  passwordInput.addEventListener('input', () => {
+    passwordInput.classList.remove('error');
+    passwordError.classList.remove('show');
   });
 
 });
