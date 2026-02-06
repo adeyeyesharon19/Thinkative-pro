@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 Course Lock Script Loaded'); // Debug log
 
     // ===================================
     // 🎨 INJECT CSS STYLES
@@ -7,17 +8,18 @@ document.addEventListener('DOMContentLoaded', () => {
     style.textContent = `
         /* Locked lesson styles */
         .locked-element {
-            position: relative;
+            position: relative !important;
             cursor: not-allowed !important;
-            transition: all 0.3s ease;
-            filter: blur(1px);
-            opacity: 0.75;
-            user-select: none;
+            transition: all 0.3s ease !important;
+            filter: blur(1px) !important;
+            opacity: 0.75 !important;
+            user-select: none !important;
+            pointer-events: none !important;
         }
 
         .locked-element:hover {
-            filter: blur(1.5px);
-            opacity: 0.65;
+            filter: blur(1.5px) !important;
+            opacity: 0.65 !important;
         }
 
         .lock-icon {
@@ -137,12 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
         "riddlegram5.html"
     ];
 
+    // Get current page - handle both with and without paths
     const currentPage = decodeURIComponent(
         window.location.pathname.split('/').pop()
     );
 
+    console.log('📄 Current Page:', currentPage); // Debug log
+
     let progress = parseInt(localStorage.getItem('courseProgress'), 10);
-    if (isNaN(progress)) progress = 1; // Start at 1 so both learning.html (0) and what ai.html (1) are unlocked
+    if (isNaN(progress)) progress = 1;
+
+    console.log('📊 Current Progress:', progress); // Debug log
 
     const currentIndex = courseSequence.indexOf(currentPage);
 
@@ -150,11 +157,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (currentIndex > progress) {
         progress = currentIndex;
         localStorage.setItem('courseProgress', progress);
+        console.log('✅ Progress Updated:', progress);
     }
 
     // ===================================
-    // 🌫️ BLUR EFFECT FOR LOCKED LESSONS AND TEST HEADERS
+    // 🌫️ BLUR EFFECT FOR LOCKED LESSONS
     // ===================================
+    let lockedCount = 0;
     document.querySelectorAll('.lesson-list a, .sub-lesson-list a')
         .forEach(link => {
             const target = link.getAttribute('href');
@@ -162,67 +171,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (index !== -1 && index > progress) {
                 link.classList.add('locked-element');
-                link.style.pointerEvents = "none";
-                
-                // ✅ ADD BLUR EFFECT
-                link.style.filter = "blur(1px)";
-                link.style.opacity = "0.75";
-                link.style.userSelect = "none";
+                lockedCount++;
                 
                 if (!link.innerHTML.includes('🔒')) {
                     link.innerHTML += ' <span class="lock-icon">🔒</span>';
                 }
             } else {
-                // Remove blur from unlocked lessons
-                link.style.filter = "none";
-                link.style.opacity = "1";
+                link.classList.remove('locked-element');
             }
         });
 
+    console.log('🔒 Locked Elements:', lockedCount); // Debug log
+
     // ===================================
-    // 🔒 BLUR TEST SECTION HEADERS (Back To Front Test, AnagramPlug Test, etc.)
+    // 🔒 BLUR TEST SECTION HEADERS
     // ===================================
     document.querySelectorAll('.lesson-dropdown').forEach(dropdown => {
         const summary = dropdown.querySelector('.lesson-summary');
         const subLessons = dropdown.querySelectorAll('.sub-lesson-list a');
         
-        // Check if ANY sub-lesson is locked
         let allLocked = true;
         subLessons.forEach(link => {
             const target = link.getAttribute('href');
             const index = courseSequence.indexOf(target);
             
             if (index !== -1 && index <= progress) {
-                allLocked = false; // At least one is unlocked
+                allLocked = false;
             }
         });
 
-        // If all sub-lessons are locked, blur and lock the header
         if (allLocked && summary) {
             summary.classList.add('locked-element');
-            summary.style.filter = "blur(1px)";
-            summary.style.opacity = "0.75";
-            summary.style.userSelect = "none";
-            summary.style.pointerEvents = "none";
             
             if (!summary.innerHTML.includes('🔒')) {
                 summary.innerHTML += ' <span class="lock-icon">🔒</span>';
             }
         } else if (summary) {
-            // Remove blur from unlocked headers
-            summary.style.filter = "none";
-            summary.style.opacity = "1";
-            summary.style.pointerEvents = "auto";
+            summary.classList.remove('locked-element');
         }
     });
 
-    // ✅ THIS IS THE KEY FIX
+    // ===================================
+    // ✅ NEXT BUTTON FIX
+    // ===================================
     const nextBtn = document.getElementById('nextBtn');
 
     if (nextBtn && currentIndex !== -1) {
         nextBtn.addEventListener('click', function (e) {
-            e.preventDefault();      // stop button default
-            e.stopPropagation();     // stop <a> navigation
+            e.preventDefault();
+            e.stopPropagation();
 
             const nextIndex = currentIndex + 1;
 
@@ -234,22 +231,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===================================
-    // ⏱️ TEST TIMERS ONLY (NO FOUNDATION/LIFE APP TIMERS)
+    // ⏱️ TEST TIMERS - CASE INSENSITIVE
     // ===================================
     (function () {
-
+        // Normalize function - make case insensitive
         const normalize = v =>
             decodeURIComponent(v || "").toLowerCase().trim();
 
-        const page = normalize(location.pathname.split("/").pop());
+        const page = normalize(window.location.pathname.split("/").pop());
+        
+        console.log('⏱️ Timer Page Check:', page); // Debug log
 
         const phases = [
-            // ===================================
-            // ⏱️ SPARK LEVEL - 15 MINUTES
-            // ===================================
+            // SPARK LEVEL - 15 MINUTES
             {
                 name: "spark_test",
-                duration: 15 * 60 * 1000, // 15 minutes
+                duration: 15 * 60 * 1000,
                 startPage: "sparkintro.html",
                 pages: [
                     "sparkintro.html", "spark.html", "backtofront1.html", 
@@ -258,15 +255,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "anagramplug3.html", "anagramplug4.html", "anagramplug5.html",
                     "flipconnectintro.html", "flipconnect1.html", "flipconnect2.html",
                     "flipconnect3.html", "flipconnect4.html", "flipconnect5.html"
-                ],
+                ].map(normalize),
                 redirect: "wordpickIQintro.html"
             },
-            // ===================================
-            // ⏱️ FLAME LEVEL - 15 MINUTES
-            // ===================================
+            // FLAME LEVEL - 15 MINUTES
             {
                 name: "flame_test",
-                duration: 15 * 60 * 1000, // 15 minutes
+                duration: 15 * 60 * 1000,
                 startPage: "wordpickiqintro.html",
                 pages: [
                     "wordpickiqintro.html", "wordpickiq1.html", "wordpickiq2.html",
@@ -275,15 +270,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "anagramath3.html", "anagramath4.html", "anagramath5.html",
                     "smartphraseintro.html", "smartphrase1.html", "smartphrase2.html",
                     "smartphrase3.html", "smartphrase4.html", "smartphrase5.html"
-                ],
+                ].map(normalize),
                 redirect: "meaningmathintro.html"
             },
-            // ===================================
-            // ⏱️ BLAZE LEVEL - 15 MINUTES
-            // ===================================
+            // BLAZE LEVEL - 15 MINUTES
             {
                 name: "blaze_test",
-                duration: 15 * 60 * 1000, // 15 minutes
+                duration: 15 * 60 * 1000,
                 startPage: "meaningmathintro.html",
                 pages: [
                     "meaningmathintro.html", "meaningmatch1.html", "meaningmatch2.html",
@@ -292,21 +285,25 @@ document.addEventListener('DOMContentLoaded', () => {
                     "splitanagram3.html", "splitanagram4.html", "splitanagram5.html",
                     "riddlegramintro.html", "riddlegram1.html", "riddlegram2.html",
                     "riddlegram3.html", "riddlegram4.html", "riddlegram5.html"
-                ],
-                redirect: "completion.html" // Redirect to completion page after all tests
+                ].map(normalize),
+                redirect: "completion.html"
             }
         ];
 
         const phase = phases.find(p => p.pages.includes(page));
-        if (!phase) return;
+        
+        if (!phase) {
+            console.log('❌ No timer phase found for this page');
+            return;
+        }
+
+        console.log('✅ Timer Phase Found:', phase.name);
 
         const START_KEY = `phaseStart_${phase.name}`;
 
-        // -------------------------------
-        // ✅ CLEAR OLD TIMERS & START NEW TIMER ON INTRO PAGES
-        // -------------------------------
-        if (page === phase.startPage) {
-            // Clear ALL previous phase timers
+        // Clear old timers and start new timer on intro pages
+        if (page === normalize(phase.startPage)) {
+            console.log('🆕 Starting new timer for:', phase.name);
             phases.forEach(p => {
                 const key = `phaseStart_${p.name}`;
                 if (key !== START_KEY) {
@@ -314,25 +311,24 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
             
-            // Force start this phase's timer (overwrite if exists)
             localStorage.setItem(START_KEY, Date.now());
         }
 
-        // -------------------------------
-        // ⛔ PREVENT TIMER START ON NON-START PAGES
-        // -------------------------------
-        if (!localStorage.getItem(START_KEY) && page !== phase.startPage) {
+        // Prevent timer start on non-start pages
+        if (!localStorage.getItem(START_KEY) && page !== normalize(phase.startPage)) {
+            console.log('⏸️ Timer not started yet');
             return;
         }
 
         let startTime = parseInt(localStorage.getItem(START_KEY), 10);
-        if (!startTime) return;
+        if (!startTime) {
+            console.log('❌ No start time found');
+            return;
+        }
 
-        // -------------------------------
-        // 🎨 ENHANCED TIMER UI
-        // -------------------------------
+        // Create Timer UI
         const timer = document.createElement("div");
-        timer.className = "timer-mobile"; // For responsive styling
+        timer.className = "timer-mobile";
         Object.assign(timer.style, {
             position: "fixed",
             top: "12px",
@@ -344,11 +340,13 @@ document.addEventListener('DOMContentLoaded', () => {
             fontFamily: "monospace",
             fontSize: "14px",
             fontWeight: "bold",
-            zIndex: 9999,
+            zIndex: "9999",
             boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
             transition: "background 0.3s ease"
         });
         document.body.appendChild(timer);
+        
+        console.log('⏰ Timer UI Created');
 
         function format(ms) {
             const s = Math.max(0, Math.floor(ms / 1000));
@@ -358,11 +356,11 @@ document.addEventListener('DOMContentLoaded', () => {
         function tick() {
             const remaining = phase.duration - (Date.now() - startTime);
             
-            // ⚠️ WARNING COLORS
-            if (remaining <= 60000) { // Last 1 minute - Red
+            // Warning colors
+            if (remaining <= 60000) {
                 timer.style.background = "#dc2626";
                 timer.style.animation = "pulse 1s infinite";
-            } else if (remaining <= 180000) { // Last 3 minutes - Orange
+            } else if (remaining <= 180000) {
                 timer.style.background = "#ea580c";
             }
             
@@ -370,8 +368,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (remaining <= 0 && phase.redirect) {
                 localStorage.removeItem(START_KEY);
-                
-                // Show timeout message
                 timer.textContent = "⏰ TIME'S UP!";
                 timer.style.background = "#dc2626";
                 
@@ -383,15 +379,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tick();
         setInterval(tick, 1000);
-
     })();
 
     // ===================================
-    // 📊 OPTIONAL: DISPLAY TOTAL TEST TIME
+    // 📊 DISPLAY TOTAL TEST TIME
     // ===================================
     function displayTotalTestTime() {
-        const totalTestTime = 45; // 15 + 15 + 15 = 45 minutes
-        const infoDiv = document.querySelector('.one'); // Adjust selector to match your layout
+        const totalTestTime = 45;
+        const infoDiv = document.querySelector('.one');
         
         if (infoDiv && currentPage.includes('intro')) {
             const timeInfo = document.createElement('p');
@@ -405,4 +400,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     displayTotalTestTime();
 
+    console.log('✅ Course Lock Script Initialization Complete');
 });

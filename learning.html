@@ -8,14 +8,7 @@
 
     <link rel="stylesheet" href="css/learning.css">
 
-    <style>
-        .lesson-list a.locked-element,
-        .sub-lesson-list a.locked-element {
-            filter: blur(1px);
-            opacity: 0.75;
-            pointer-events: none;
-        }
-    </style>
+    <!-- REMOVED CONFLICTING CSS - Let JavaScript handle the blur -->
 </head>
 
 <body>
@@ -309,114 +302,88 @@
     </section>
 
     <div class="dash-overlay" id="dashOverlay"></div>
-    <!-- <div class="side-dashboard" id="sideDash">
-    <div class="dash-inner">
-        <header class="dash-nav-header">
-            <h2>My Learning</h2>
-            <button id="closeDash">&times;</button>
-        </header>
 
-        <div class="dash-stats">
-            <div class="mini-stat">
-                <span id="count-enrolled">0</span>
-                <label>Enrolled</label>
-            </div>
-        </div> -->
-
-    <!-- <div id="enrolled-list" class="mini-course-grid">
-            </div>
-    </div>
-</div>
-
-<div class="dash-overlay" id="dashOverlay"></div> -->
-
+    <!-- ✅ LOAD SCRIPTS IN CORRECT ORDER -->
+    <!-- 1. Load course-lock.js FIRST (with fixed version) -->
     <script src="./js/course-lock.js"></script>
+    
+    <!-- 2. Load tracker.js SECOND -->
     <script src="tracker.js"></script>
-</body>
-
-
-<script>
-
-    document.addEventListener('DOMContentLoaded', () => {
-        const sideDash = document.getElementById('sideDash');
-        const openBtn = document.getElementById('openDash');
-        const closeBtn = document.getElementById('closeDash');
-        const overlay = document.getElementById('dashOverlay');
-        const welcomeText = document.getElementById('welcomeText');
-        const courseContainer = document.getElementById('enrolled-list');
-
-        // --- 1. OPEN DASHBOARD ---
-        openBtn.addEventListener('click', () => {
-            sideDash.classList.add('active');
-            overlay.classList.add('active');
-
-            // Hide the text label
-            if (welcomeText) {
-                welcomeText.classList.add('hidden');
-            }
-        });
-
-        // --- 2. CLOSE DASHBOARD ---
-        const closeAll = () => {
-            sideDash.classList.remove('active');
-            overlay.classList.remove('active');
-
-            // Show the text label again
-            if (welcomeText) {
-                welcomeText.classList.remove('hidden');
-            }
-        };
-
-        if (closeBtn) closeBtn.addEventListener('click', closeAll);
-        if (overlay) overlay.addEventListener('click', closeAll);
-
-        // --- 3. LOAD COURSES ---
-        const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
-        if (courseContainer) {
-            if (enrolledCourses.length > 0) {
-                courseContainer.innerHTML = enrolledCourses.map(course => `
-                <div class="mini-course-card">
-                    <img src="${course.image}" alt="${course.title}">
-                    <h4>${course.title}</h4>
-                    <a href="learning-page.html">Resume →</a>
-                </div>
-            `).join('');
-            } else {
-                courseContainer.innerHTML = '<p>No courses yet.</p>';
-            }
-        }
-
-        //vanishing text
-        window.addEventListener('scroll', function () {
+    
+    <!-- 3. Load page-specific scripts LAST -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const sideDash = document.getElementById('sideDash');
+            const openBtn = document.getElementById('openDash');
+            const closeBtn = document.getElementById('closeDash');
+            const overlay = document.getElementById('dashOverlay');
             const welcomeText = document.getElementById('welcomeText');
+            const courseContainer = document.getElementById('enrolled-list');
 
-            // Checks if the page has been scrolled more than 10px
-            if (window.scrollY > 10) {
-                document.body.classList.add('scrolled');
-            } else {
-                document.body.classList.remove('scrolled');
+            // --- 1. OPEN DASHBOARD ---
+            openBtn.addEventListener('click', () => {
+                sideDash.classList.add('active');
+                overlay.classList.add('active');
+
+                if (welcomeText) {
+                    welcomeText.classList.add('hidden');
+                }
+            });
+
+            // --- 2. CLOSE DASHBOARD ---
+            const closeAll = () => {
+                sideDash.classList.remove('active');
+                overlay.classList.remove('active');
+
+                if (welcomeText) {
+                    welcomeText.classList.remove('hidden');
+                }
+            };
+
+            if (closeBtn) closeBtn.addEventListener('click', closeAll);
+            if (overlay) overlay.addEventListener('click', closeAll);
+
+            // --- 3. LOAD COURSES ---
+            const enrolledCourses = JSON.parse(localStorage.getItem('enrolledCourses')) || [];
+            if (courseContainer) {
+                if (enrolledCourses.length > 0) {
+                    courseContainer.innerHTML = enrolledCourses.map(course => `
+                    <div class="mini-course-card">
+                        <img src="${course.image}" alt="${course.title}">
+                        <h4>${course.title}</h4>
+                        <a href="learning-page.html">Resume →</a>
+                    </div>
+                `).join('');
+                } else {
+                    courseContainer.innerHTML = '<p>No courses yet.</p>';
+                }
+            }
+
+            // Vanishing text on scroll
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 10) {
+                    document.body.classList.add('scrolled');
+                } else {
+                    document.body.classList.remove('scrolled');
+                }
+            });
+
+            const homeLink = document.getElementById('homeLink');
+            const homeBtn = document.getElementById('homeBtn');
+
+            homeLink.addEventListener('click', function (e) {
+                if (!homeBtn.classList.contains('active')) {
+                    e.preventDefault();
+                    homeBtn.classList.add('active');
+                }
+            });
+
+            // Start active course tracking
+            if (typeof startActiveCourse === 'function') {
+                startActiveCourse('Anagram Intelligence');
             }
         });
-
-
-        const homeLink = document.getElementById('homeLink');
-        const homeBtn = document.getElementById('homeBtn');
-
-        homeLink.addEventListener('click', function (e) {
-            // If the button is NOT yet active (first click)
-            if (!homeBtn.classList.contains('active')) {
-                // Stop the browser from going to dash.html
-                e.preventDefault();
-
-                // Show the text
-                homeBtn.classList.add('active');
-            }
-            // If it IS active (second click), the browser will naturally go to dash.html
-        });
-
-        // When user starts the course
-        startActiveCourse('Anagram Intelligence');
-    });
-</script>
+    </script>
+</body>
 
 </html>
