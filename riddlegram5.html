@@ -315,6 +315,7 @@
 
     </main>
      <script src="js/course-lock.js"></script>
+     <script src="js/certificate-engine.js"></script>
 <script src="tracker.js"></script>
 </body>
 
@@ -343,20 +344,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ================= QUIZ SETUP ================= */
-    const currentModule = '';
+    const currentModule = 'riddlegram';  // ✅ FIX: was empty string ''
     localStorage.setItem('currentModule', currentModule);
 
-    const scoreKey = `${currentModule}_score`;
-    const countKey = `${currentModule}_questionCount`;
+    const scoreKey   = `${currentModule}_score`;
+    const countKey   = `${currentModule}_questionCount`;
     const lastSetKey = `${currentModule}_lastSetScore`;
 
     if (!localStorage.getItem(scoreKey)) localStorage.setItem(scoreKey, 0);
     if (!localStorage.getItem(countKey)) localStorage.setItem(countKey, 0);
 
     const options = document.querySelectorAll('.option');
-    const result = document.getElementById('result');
+    const result  = document.getElementById('result');
 
-    const correctAnswer = 'B'; // ✔ correct answer
+    const correctAnswer = 'B';
     let answered = false;
 
 
@@ -367,29 +368,27 @@ document.addEventListener('DOMContentLoaded', () => {
             if (answered) return;
             answered = true;
 
-            let score = parseInt(localStorage.getItem(scoreKey));
+            let score         = parseInt(localStorage.getItem(scoreKey));
             let questionCount = parseInt(localStorage.getItem(countKey));
 
             questionCount++;
 
-            // Disable all options
             options.forEach(opt => opt.style.pointerEvents = 'none');
 
             if (option.dataset.answer === correctAnswer) {
                 score++;
-                result.textContent = 'Correct!';
+                result.textContent      = 'Correct!';
                 option.style.background = 'blue';
-                option.style.color = 'white';
+                option.style.color      = 'white';
             } else {
-                result.textContent = 'Incorrect';
+                result.textContent      = 'Incorrect';
                 option.style.background = 'red';
-                option.style.color = 'white';
+                option.style.color      = 'white';
 
-                // ✅ ALWAYS show the correct answer in blue
                 options.forEach(opt => {
                     if (opt.dataset.answer === correctAnswer) {
                         opt.style.background = 'blue';
-                        opt.style.color = 'white';
+                        opt.style.color      = 'white';
                     }
                 });
             }
@@ -400,8 +399,9 @@ document.addEventListener('DOMContentLoaded', () => {
             /* ===== AFTER 5 QUESTIONS ===== */
             if (questionCount % 5 === 0) {
 
-                // Save final score for congrat page
-                localStorage.setItem(lastSetKey, score);
+                localStorage.setItem(lastSetKey, score); // saves 'riddlegram_lastSetScore'
+
+                window.markFinalModule(); // ✅ sets 'lastCompletedModule' = 'riddlegram'
 
                 setTimeout(() => {
                     window.location.href = 'congrat.html';
@@ -409,20 +409,16 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
-             const homeLink = document.getElementById('homeLink');
-        const homeBtn = document.getElementById('homeBtn');
 
-        homeLink.addEventListener('click', function (e) {
-            // If the button is NOT yet active (first click)
-            if (!homeBtn.classList.contains('active')) {
-                // Stop the browser from going to dash.html
-                e.preventDefault();
+    const homeLink = document.getElementById('homeLink');
+    const homeBtn  = document.getElementById('homeBtn');
 
-                // Show the text
-                homeBtn.classList.add('active');
-            }
-            // If it IS active (second click), the browser will naturally go to dash.html
-        });
+    homeLink.addEventListener('click', function (e) {
+        if (!homeBtn.classList.contains('active')) {
+            e.preventDefault();
+            homeBtn.classList.add('active');
+        }
+    });
 });
 </script>
 

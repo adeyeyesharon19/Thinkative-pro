@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <title>Congratulations</title>
@@ -29,6 +28,7 @@
             border: 1px solid rgba(255, 255, 255, 0.8);
             position: relative;
             z-index: 10;
+            transition: opacity 0.5s ease;
         }
 
         #completionSlide {
@@ -41,7 +41,7 @@
             border-radius: 35px;
             box-shadow: 0 40px 80px rgba(0, 20, 50, 0.3);
             width: 85%;
-            max-width: 400px;
+            max-width: 420px;
             z-index: 100;
             text-align: center;
             opacity: 0;
@@ -55,10 +55,7 @@
         }
 
         @keyframes popCenter {
-            to {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
         }
 
         #scoreText {
@@ -73,6 +70,43 @@
             margin-bottom: 30px;
         }
 
+        .final-score-grid {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin: 20px 0 20px;
+        }
+        .final-score-box {
+            background: #f0f7ff;
+            border: 2px solid #001f3f;
+            border-radius: 14px;
+            padding: 14px 18px;
+            min-width: 76px;
+        }
+        .final-score-box .val {
+            font-size: 22px;
+            font-weight: 800;
+            color: #001f3f;
+        }
+        .final-score-box .lbl {
+            font-size: 10px;
+            color: #64748b;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+        .grade-badge {
+            display: inline-block;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+        .grade-pass   { background: #dcfce7; color: #166534; }
+        .grade-medium { background: #fef9c3; color: #854d0e; }
+        .grade-low    { background: #fee2e2; color: #991b1b; }
+
         button#mainBtn,
         .slide-btn {
             width: 100%;
@@ -85,117 +119,159 @@
             border: none;
             border-radius: 18px;
             text-transform: uppercase;
+            transition: background 0.2s, transform 0.2s;
+        }
+        button#mainBtn:hover,
+        .slide-btn:hover {
+            background: #1da1f2;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 
 <body>
-
     <canvas id="confetti-canvas"
-        style="position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:1;"></canvas>
+        style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;"></canvas>
 
+    <!-- Per-set score card -->
     <div class="info-card" id="mainCard">
-        <h1 style="color: #1565c0;">GREAT JOB!</h1>
-        <img src="image/congratulations.png" alt="Celebration" style="width:170px; margin:20px 0;">
+        <h1 style="color:#1565c0;">GREAT JOB!</h1>
+        <img src="image/congratulations.png" alt="Celebration" style="width:170px;margin:20px 0;">
         <div>
             <div id="scoreText">SCORE: 0 / 5</div>
         </div>
         <button id="mainBtn" onclick="goNext()">Continue</button>
     </div>
 
+    <!-- Final course completion overlay -->
     <div id="completionSlide">
-        <div style="font-size: 50px; margin-bottom: 10px;">🏆</div>
-        <h2 style="color: #001f3f;">CONGRATULATIONS!</h2>
-        <p>You have completed the entire<br><strong>Anagram Intelligence</strong> course.</p>
-        <button class="slide-btn" onclick="goToCertificate()">VIEW CERTIFICATE</button>
+        <div style="font-size:56px;margin-bottom:10px;">🏆</div>
+        <h2 style="color:#001f3f;margin-bottom:6px;">CONGRATULATIONS!</h2>
+        <p style="color:#475569;margin-bottom:6px;">
+            You have completed the entire<br><strong>Anagram Intelligence</strong> course.
+        </p>
+
+        <div class="final-score-grid">
+            <div class="final-score-box">
+                <div class="val" id="finalScore">—</div>
+                <div class="lbl">Score</div>
+            </div>
+            <div class="final-score-box">
+                <div class="val">45</div>
+                <div class="lbl">Total</div>
+            </div>
+            <div class="final-score-box">
+                <div class="val" id="finalPct">—</div>
+                <div class="lbl">Grade</div>
+            </div>
+        </div>
+
+        <div class="grade-badge" id="gradeBadge"></div>
+
+        <button class="slide-btn" onclick="goToCertificate()">🎓 VIEW CERTIFICATE</button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-
-
-<script src="tracker.js"></script>
+    <script src="certificate-engine.js"></script>  <!-- ✅ FIX 1: replaced score-tracker.js -->
+    <script src="tracker.js"></script>
 </body>
 
-
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const scoreDisplay = document.getElementById('scoreText');
-        const referrer = document.referrer.toLowerCase();
-        const allKeys = Object.keys(localStorage);
+document.addEventListener('DOMContentLoaded', () => {
 
-        // 1. Find the current level score key
-        const lastSetKey = allKeys.find(k => k.endsWith('_lastSetScore'));
+    const scoreDisplay = document.getElementById('scoreText');
+    const referrer     = document.referrer.toLowerCase();
+    const allKeys      = Object.keys(localStorage);
 
-        if (lastSetKey) {
-            const rawScore = parseInt(localStorage.getItem(lastSetKey)) || 0;
-            const accurateScore = rawScore > 5 ? rawScore % 6 : rawScore;
+    /* ── STEP 1: Find & bank this set's score ── */
+    const lastSetKey = allKeys.find(k => k.endsWith('_lastSetScore'));
 
-            scoreDisplay.textContent = `SCORE: ${accurateScore} / 5`;
+    if (lastSetKey) {
+        const rawScore      = parseInt(localStorage.getItem(lastSetKey), 10) || 0;
+        const accurateScore = rawScore > 5 ? rawScore % 6 : rawScore;
 
-            // --- BANKING LOGIC: Add to the Master Score ---
-            let masterScore = parseInt(localStorage.getItem('master_cumulative_score')) || 0;
-            masterScore += accurateScore;
-            localStorage.setItem('master_cumulative_score', masterScore);
+        scoreDisplay.textContent = `SCORE: ${accurateScore} / 5`;
 
-            // 2. DEEP CLEAN: Wipe level keys so next set starts at 0
-            const prefix = lastSetKey.split('_')[0];
-            allKeys.forEach(key => {
-                if (key.startsWith(prefix)) {
-                    localStorage.removeItem(key);
-                }
-            });
-        }
+        // Add to master cumulative score
+        let masterScore = parseInt(localStorage.getItem('master_cumulative_score'), 10) || 0;
+        masterScore += accurateScore;
+        localStorage.setItem('master_cumulative_score', masterScore);
 
-        confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-        // FINAL MODULE DETECTION
-        if (referrer.includes('riddlegram5')) {
-            setTimeout(() => {
-                document.getElementById('mainCard').style.opacity = "0.2";
-                document.getElementById('completionSlide').classList.add('show');
-                confetti({ particleCount: 200, colors: ['#001f3f', '#ffffff'] });
-
-                // Finalize the certificate data
-                const finalTotal = localStorage.getItem('master_cumulative_score') || 0;
-                let certificates = JSON.parse(localStorage.getItem('completed_courses')) || [];
-
-                const newCert = {
-                    id: 'AI' + Math.floor(1000 + Math.random() * 9000),
-                    name: 'Anagram Intelligence',
-                    date: new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }),
-                    marks: finalTotal,
-                    total: 45
-                };
-
-                certificates.push(newCert);
-                localStorage.setItem('completed_courses', JSON.stringify(certificates));
-            }, 1800);
-        }
-
-        window.goNext = function () {
-            if (referrer.includes('riddlegram5')) { window.location.href = 'certificate.html'; }
-            else if (referrer.includes('back')) { window.location.href = 'anagramplugintro.html'; }
-            else if (referrer.includes('plug')) { window.location.href = 'flipconnectintro.html'; }
-            else if (referrer.includes('flip')) { window.location.href = 'wordpickIQintro.html'; }
-            else if (referrer.includes('wordpick')) { window.location.href = 'anagramathintro.html'; }
-            else if (referrer.includes('math')) { window.location.href = 'smartphraseintro.html'; }
-            else if (referrer.includes('smart')) { window.location.href = 'meaningmathintro.html'; }
-            else if (referrer.includes('meaning')) { window.location.href = 'splitanagramintro.html'; }
-            else if (referrer.includes('split')) { window.location.href = 'riddlegramintro.html'; }
-            else { window.location.href = 'enroll.html'; }
-        };
-
-        window.goToCertificate = function () {
-            window.location.href = 'certificate.html';
-        };
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // Call this when course is complete
-            completeCourse('Anagram Intelligence');
+        // Wipe this set's keys so next set starts fresh
+        const prefix = lastSetKey.split('_')[0];
+        allKeys.forEach(key => {
+            if (key.startsWith(prefix)) localStorage.removeItem(key);
         });
+    }
 
-    });
+    /* ── STEP 2: Confetti ── */
+    confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+
+    /* ── STEP 3: Check if this is the FINAL module ──
+       ✅ FIX 2: also checks localStorage flag set by riddlegram5.html
+       because document.referrer is unreliable in some browsers/setups  */
+    const lastModule = localStorage.getItem('lastCompletedModule') || '';
+    localStorage.removeItem('lastCompletedModule'); // clear after reading
+    const isFinal = lastModule === 'riddlegram' || referrer.includes('riddlegram5');
+
+    if (isFinal) {
+        setTimeout(() => {
+
+            // Fade out the per-set card
+            document.getElementById('mainCard').style.opacity = '0.15';
+
+            // Read the fully banked master total
+            const masterTotal = parseInt(localStorage.getItem('master_cumulative_score'), 10) || 0;
+            const pct         = Math.round((masterTotal / 45) * 100);
+
+            // ── Populate the completion slide ──
+            document.getElementById('finalScore').textContent = masterTotal;
+            document.getElementById('finalPct').textContent   = pct + '%';
+
+            const badge = document.getElementById('gradeBadge');
+            if (pct >= 75) {
+                badge.textContent = '🌟 Excellent — Distinction!';
+                badge.className   = 'grade-badge grade-pass';
+            } else if (pct >= 50) {
+                badge.textContent = '👍 Good — Pass';
+                badge.className   = 'grade-badge grade-medium';
+            } else {
+                badge.textContent = '📚 Keep Practising';
+                badge.className   = 'grade-badge grade-low';
+            }
+
+            // ✅ FIX 3: use certificate-engine to save (reads master AFTER banking)
+            window.saveFinalCertificate();
+
+            // ── Show completion slide + extra confetti ──
+            document.getElementById('completionSlide').classList.add('show');
+            confetti({ particleCount: 200, colors: ['#001f3f', '#ffffff', '#1da1f2'] });
+
+        }, 1800);
+    }
+
+    /* ── STEP 4: Continue button — navigate to next section ── */
+    window.goNext = function () {
+        if      (isFinal)                               window.location.href = 'certificate.html';
+        else if (referrer.includes('backtofront') ||
+                 referrer.includes('spark'))            window.location.href = 'anagramplugintro.html';
+        else if (referrer.includes('plug'))             window.location.href = 'flipconnectintro.html';
+        else if (referrer.includes('flip'))             window.location.href = 'wordpickIQintro.html';
+        else if (referrer.includes('wordpick'))         window.location.href = 'anagramathintro.html';
+        else if (referrer.includes('anagramath') ||
+                 referrer.includes('math'))             window.location.href = 'smartphraseintro.html';
+        else if (referrer.includes('smart'))            window.location.href = 'meaningmathintro.html';
+        else if (referrer.includes('meaning'))          window.location.href = 'splitanagramintro.html';
+        else if (referrer.includes('split'))            window.location.href = 'riddlegramintro.html';
+        else                                            window.location.href = 'enroll.html';
+    };
+
+    /* ── STEP 5: Go to certificate page ── */
+    window.goToCertificate = function () {
+        window.location.href = 'certificate.html';
+    };
+
+});
 </script>
 
 </html>

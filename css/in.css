@@ -218,3 +218,188 @@ body {
         opacity: 1;
     }
 }
+
+
+
+/* =============================================
+   RESPONSIVE STYLES — MAIN / HOME PAGE
+   Paste at the BOTTOM of your existing CSS
+   ============================================= */
+
+/* -----------------------------------------------
+   TABLET — 768px
+----------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .nav-bar {
+    padding: 16px;
+  }
+
+  .nav-bar h2 {
+    font-size: 22px;
+  }
+
+  .nav-bar .container-1 {
+    padding: 10px;
+  }
+
+  /* Main card: remove large horizontal margins */
+  .sec .come {
+    margin: 20px 30px;
+    height: auto;
+    padding: 30px 20px;
+  }
+
+  .come h3 {
+    font-size: 24px;
+    margin-right: 0;
+    margin-bottom: 14px;
+  }
+
+  .come h4 {
+    font-size: 17px;
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+
+  .come p {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  /* Steps list */
+  .step {
+    margin-right: 0;
+    gap: 14px;
+    width: 100%;
+    padding: 0 10px;
+  }
+
+  .item {
+    gap: 12px;
+  }
+
+  /* Begin button */
+  .be-gin {
+    width: 70%;
+    margin: 16px auto;
+    text-align: center;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 80%;
+    padding: 24px 16px;
+  }
+}
+
+
+/* -----------------------------------------------
+   MOBILE — 480px
+----------------------------------------------- */
+@media (max-width: 480px) {
+
+  /* Body background: keep image but simplify */
+  body {
+    background-attachment: scroll;
+  }
+
+  /* Navbar */
+  .nav-bar {
+    padding: 12px 16px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .nav-bar h2 {
+    font-size: 18px;
+  }
+
+  .nav-bar .container-1 {
+    padding: 6px 0;
+  }
+
+  .dropdown-btn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .dropdown {
+    width: 130px;
+    top: 36px;
+  }
+
+  .dropdown a {
+    padding: 8px 14px;
+    font-size: 14px;
+  }
+
+  /* Main card: near full-width */
+  .sec .come {
+    margin: 16px 12px;
+    height: auto;
+    padding: 24px 16px;
+    border-radius: 14px;
+  }
+
+  .come h3 {
+    font-size: 20px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .come h4 {
+    font-size: 15px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  .come p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  /* Steps */
+  .step {
+    margin-right: 0;
+    gap: 12px;
+    width: 100%;
+    padding: 0 4px;
+  }
+
+  .item {
+    gap: 10px;
+  }
+
+  .circle,
+  .circle-2,
+  .circle-3 {
+    width: 34px;
+    height: 34px;
+    font-size: 15px;
+    flex-shrink: 0;   /* prevent circles from squishing */
+  }
+
+  /* Begin button */
+  .be-gin {
+    width: 85%;
+    margin: 14px auto;
+    text-align: center;
+    font-size: 14px;
+    padding: 11px 10px;
+  }
+
+  /* Modal */
+  .modal-content {
+    width: 92%;
+    padding: 20px 14px;
+    border-radius: 14px;
+  }
+
+  .modal-content button {
+    padding: 9px 12px;
+    font-size: 14px;
+    margin: 8px 6px;
+  }
+}

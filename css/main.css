@@ -56,7 +56,7 @@ body {
     height: 90vh;
     width: 100%;
     background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)),
-        url('hero2.jpg') center/cover no-repeat;
+        url('image.png') center/cover no-repeat;
      background-attachment: fixed;    
     display: flex;
     justify-content: center;
@@ -462,3 +462,288 @@ background-attachment: fixed;
 }
 
 
+
+
+
+
+
+
+/* ===== MOBILE RESPONSIVE FIXES ===== */
+
+/* NAVIGATION BAR FIX */
+@media (max-width: 480px) {
+  .nav-bar {
+    flex-wrap: nowrap;           /* keep items in one line */
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+  }
+
+  .nav-bar h2 {
+    font-size: 20px;
+    flex-shrink: 0;              /* prevent shrinking */
+  }
+
+  .log-btn, .start-btn {
+    padding: 8px 12px;
+    font-size: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+    flex-shrink: 0;              /* buttons stay inline */
+  }
+}
+
+/* HERO SECTION */
+@media (max-width: 480px) {
+  .hero .hero-1 h1 {
+    font-size: 36px;
+  }
+
+  .hero .hero-1 h4 {
+    font-size: 16px;
+  }
+
+  .hero .hero-1 button {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+}
+
+/* ===== HERO SECTION FOR TABLETS / SMALL SCREENS ===== */
+@media (max-width: 768px) {
+  .hero {
+    height: auto;                  /* let height adjust to content */
+    padding: 60px 20px;            /* add spacing around hero */
+  }
+
+  .hero .hero-1 h1 {
+    font-size: 50px;               /* scale down from 70px */
+    margin-bottom: 15px;
+  }
+
+  .hero .hero-1 h4 {
+    font-size: 18px;               /* scale down from 20px */
+    margin-bottom: 15px;
+  }
+
+  .hero .hero-1 button {
+    padding: 10px 16px;            /* smaller buttons */
+    font-size: 14px;
+  }
+}
+
+/* BOXES / WHAT NEXT SECTION */
+@media (max-width: 768px) {
+  .boxes {
+    flex-wrap: wrap;             /* allow boxes to wrap if necessary */
+    justify-content: center;
+    margin: 40px 10px;
+    gap: 20px;
+  }
+
+  .boxes > div {
+    flex: 1 1 250px;             /* scale boxes, minimum 250px */
+    max-width: 300px;
+    padding: 20px;
+  }
+
+  .boxes h3 {
+    font-size: 18px;
+  }
+
+  .boxes h6 {
+    font-size: 12px;
+  }
+}
+
+
+/* ===== MOBILE RESPONSIVE FUEL SECTION ===== */
+@media (max-width: 768px) {
+  .fuel {
+    height: auto; /* let height adjust to content */
+    padding: 60px 20px; /* add padding for spacing */
+    background-attachment: scroll; /* fixed backgrounds often break on mobile */
+    text-align: center;
+  }
+
+  .mind h2 {
+    font-size: 36px; /* reduce font size for mobile */
+    margin-bottom: 15px;
+  }
+
+  .mind p {
+    font-size: 16px; /* reduce font size for readability */
+    height: auto;     /* let paragraph height adjust */
+    margin: 10px 0;
+  }
+}
+
+/* Extra small phones (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  .fuel {
+    padding: 40px 15px;
+  }
+
+  .mind h2 {
+    font-size: 28px;
+  }
+
+  .mind p {
+    font-size: 14px;
+  }
+}
+
+/* RESEARCH SECTION */
+@media (max-width: 768px) {
+  .row1, .row2 {
+    flex-direction: column;      /* stack image and text */
+    align-items: center;
+    gap: 20px;
+  }
+
+  .text-container, .text-next, .image-container, .image-container2 {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .text-container h2, .text-next h3 {
+    font-size: 28px;
+  }
+
+  .text-container h3 {
+    font-size: 24px;
+  }
+
+  .text-container h5, .text-next h5 {
+    font-size: 14px;
+  }
+
+  .image-container img, .image-container2 img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* SOLVE / TESTIMONIAL SECTION */
+@media (max-width: 768px) {
+  .solve {
+    flex-direction: column;
+    margin: 40px 10px;
+    gap: 20px;
+  }
+
+  .solve-1, .solve-2 {
+    width: 100%;
+    padding: 40px 20px;
+    height: auto;
+  }
+  .story{
+    text-align: center;
+  }
+}
+
+/* LAST / HERO FOOTER SECTION */
+@media (max-width: 480px) {
+  .last-1 h1 {
+    font-size: 28px;
+  }
+
+  .star-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+}
+
+
+/* ===== LAST / HERO FOOTER SECTION FOR TABLETS / SMALL SCREENS ===== */
+@media (max-width: 768px) {
+  .last {
+    height: auto;                /* let content define height */
+    padding: 60px 20px;          /* add spacing */
+  }
+
+  .last-1 h1 {
+    font-size: 36px;             /* scale down from 50px */
+    margin-bottom: 20px;
+  }
+
+  .star-btn {
+    padding: 10px 16px;          /* slightly smaller buttons */
+    font-size: 14px;
+  }
+}
+
+
+/* ===== MOBILE RESPONSIVE FOOTER ===== */
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 40px 5%;
+  }
+
+  .footer-content {
+    flex-direction: row;       /* stack sections vertically */
+    align-items: flex-start;      /* align text to left */
+    gap: 20px;
+    height: auto;                 /* remove fixed height */
+    margin-top: 20px;
+  }
+
+  .think-1 h4 {
+    font-size: 18px;
+  }
+
+  .think-1 h6 {
+    font-size: 14px;
+  }
+
+  .contact-info h3,
+  .social-links h3 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .contact-info a {
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .social-links a {
+    font-size: 24px;
+    margin-right: 10px;
+  }
+}
+
+/* Extra small phones (iPhone SE, etc.) */
+@media (max-width: 480px) {
+  .site-footer {
+    padding: 30px 5%;
+  }
+
+  .footer-content{
+    display: flex;
+    flex-direction: row;
+  }
+
+  .think-1 h4 {
+    font-size: 16px;
+  }
+
+  .think-1 h6 {
+    font-size: 13px;
+  }
+
+  .contact-info h3,
+  .social-links h3 {
+    font-size: 12px;
+  }
+
+  .contact-info a {
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .social-links a {
+    font-size: 20px;
+    margin-right: 8px;
+  }
+}

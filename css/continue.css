@@ -240,3 +240,175 @@ body {
     color: white !important;
 }
  */
+
+
+
+ /* =============================================
+   RESPONSIVE STYLES — MOOD / OPTIONS PAGE
+   Paste at the BOTTOM of your existing CSS
+   ============================================= */
+
+/* -----------------------------------------------
+   TABLET — 768px
+----------------------------------------------- */
+@media (max-width: 768px) {
+
+  /* Navbar */
+  .nav-bar {
+    padding: 16px;
+  }
+
+  .nav-bar h2 {
+    font-size: 22px;
+  }
+
+  .nav-bar .container-1 {
+    padding: 10px;
+  }
+
+  .container-1 {
+    padding: 16px;
+  }
+
+  .dropdown {
+    width: 130px;
+  }
+
+
+
+  /* Main card */
+  .sec .container-2 {
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 0;
+    height: auto;
+    padding: 24px 20px;
+  }
+
+  .container-2 h3 {
+    font-size: 24px;
+    padding-top: 20px;
+  }
+
+  .container-2 h4 {
+    margin-right: 0;       /* remove the fixed 300px offset */
+    padding-top: 8px;
+    font-size: 15px;
+  }
+
+  .container-2 h5 {
+    font-size: 14px;
+  }
+
+  /* Option boxes */
+  .container-3 .record,
+  .container-3 .happy,
+  .container-3 .rock,
+  .container-3 .none,
+  .container-3 .option-link div {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* Number text */
+  .numbertext {
+    padding: 60px;
+    font-size: 13px;
+  }
+}
+
+
+/* -----------------------------------------------
+   MOBILE — 480px
+----------------------------------------------- */
+@media (max-width: 480px) {
+
+  /* Navbar */
+  .nav-bar {
+    padding: 12px 14px;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .nav-bar h2 {
+    font-size: 18px;
+  }
+
+  .nav-bar .container-1 {
+    padding: 6px 0;
+  }
+
+  .container-1 {
+    padding: 10px;
+  }
+
+  .dropdown-btn {
+    font-size: 14px;
+    padding: 8px 10px;
+  }
+
+  .dropdown {
+    width: 120px;
+    top: 36px;
+  }
+
+  .dropdown a {
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  /* Main card: near full width */
+  .sec .container-2 {
+    margin-left: 12px;
+    margin-right: 12px;
+    margin-top: 0;
+    height: auto;
+    padding: 20px 14px;
+    border-radius: 12px;
+  }
+
+  .container-2 h3 {
+    font-size: 20px;
+    padding-top: 16px;
+    margin-bottom: 6px;
+  }
+
+  .container-2 h4 {
+    margin-right: 0;
+    font-size: 14px;
+    padding-top: 6px;
+  }
+
+  .container-2 h5 {
+    font-size: 13px;
+    margin-bottom: 6px;
+  }
+
+  /* Option boxes: full-width friendly, comfortable tap targets */
+  .container-3 .record,
+  .container-3 .happy,
+  .container-3 .rock,
+  .container-3 .none {
+    padding: 12px 14px;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+
+  .container-3 .option-link div {
+    padding: 12px 14px;
+    font-size: 13px;
+    margin-top: 8px;
+    border-radius: 6px;
+  }
+
+  /* option-link fills full card width */
+  .option-link {
+    width: 100%;
+  }
+
+  /* Number text */
+  .numbertext {
+    padding: 16px;
+    font-size: 12px;
+  }
+}
